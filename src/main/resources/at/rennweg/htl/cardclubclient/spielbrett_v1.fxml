@@ -12,7 +12,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="740.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.rennweg.htl.cardclubclient.GameBoardController">
    <children>
-      <Button fx:id="exitButton" layoutX="690.0" layoutY="14.0" text="exit" />
+      <Button fx:id="exitButton" layoutX="690.0" layoutY="14.0" text="exit" onAction="#onExitButtonClick"/>
       <ImageView fitHeight="124.0" fitWidth="70.0" layoutX="253.0" layoutY="103.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@img/cardClubCard.png" />
@@ -23,7 +23,7 @@
             <Image url="@img/cardClubback.png" />
          </image>
       </ImageView>
-      <Button fx:id="UNOButton" layoutX="655.0" layoutY="367.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="70.0" text="UNO" onAction="#onHelloButtonClick"/>
+      <Button fx:id="UNOButton" layoutX="655.0" layoutY="367.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="70.0" text="UNO" onAction="#onUNOButtonClick"/>
       <ProgressBar layoutX="260.0" layoutY="292.0" prefWidth="200.0" progress="0" />
       <Label layoutX="312.0" layoutY="18.0" prefHeight="17.0" prefWidth="96.0" text="Spieler3" textAlignment="CENTER" wrapText="true" />
       <Label layoutX="630.0" layoutY="202.0" prefHeight="17.0" prefWidth="96.0" text="Spieler2" />

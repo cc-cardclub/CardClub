@@ -9,7 +9,12 @@ public class GameBoardController {
     private Button UNOButton;
 
     @FXML
-    protected void onHelloButtonClick() {
+    protected void onUNOButtonClick() {
         UNOButton.setText("Clicked");
+    }
+
+    @FXML
+    protected void onExitButtonClick() {
+        System.exit(0);
     }
 }
