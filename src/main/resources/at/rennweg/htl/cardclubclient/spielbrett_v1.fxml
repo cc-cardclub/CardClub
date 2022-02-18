@@ -32,7 +32,8 @@
          <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="131.0" prefWidth="501.0">
                <children>
-                  <HBox alignment="TOP_CENTER" layoutY="16.0" prefHeight="108.0" prefWidth="500.0">
+                  <HBox fx:id="handCards" alignment="TOP_CENTER" layoutY="16.0" prefHeight="108.0"
+                        prefWidth="500.0">
                      <children>
                         <ImageView fitHeight="124.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                            <image>
