@@ -16,7 +16,7 @@ public class GameBoardController {
     protected void onUNOButtonClick() {
         UNOButton.setText("Clicked");
 
-        Card newCard = new Card(5, "green");
+        Card newCard = new Card("5", "green", false);
         ImageView cardImg = new ImageView(String.valueOf(GameBoard.class.getResource(newCard.getTexture())));
         cardImg.setFitHeight(100D);
         cardImg.setFitWidth(70D);
