@@ -1,5 +1,7 @@
 package at.rennweg.htl.cardclubclient.cards;
 
+import at.rennweg.htl.cardclubclient.logic.Checker;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -9,8 +11,11 @@ public class Deck {
     private static List<Card> playedCards = new ArrayList<>();
 
     public static void playCard(Card card) {
-        // TODO check validity
-        playedCards.add(card);
+        if (Checker.checkTurnValidity(card, getLastCard())) {
+            playedCards.add(card);
+        } else {
+            // TODO give player two cards
+        }
     }
 
     public static Card getLastCard() {
