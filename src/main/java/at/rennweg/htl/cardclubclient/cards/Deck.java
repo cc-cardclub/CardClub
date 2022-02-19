@@ -39,12 +39,52 @@ public class Deck {
 
     private static List<Card> shuffleCards(List<Card> cards) {
         List<Card> shuffledCards = new ArrayList<>();
+        /*
         while (cards.size() > 0) {
             // TODO actually shuffle
             Random random = new Random();
             random.nextInt();
         }
+        */
 
-        return shuffledCards;
+        return cards;
+    }
+
+    public static void prepareDeck() {
+        List<Card> deck = new ArrayList<>();
+        String[] colors = {"yellow", "red", "green", "blue", "black"};
+
+        for (String color : colors) {
+            deck.addAll(getAllCardsWithColor(color));
+        }
+
+        remainingCards = shuffleCards(deck);
+        playedCards.add(drawCard());
+    }
+
+    private static List<Card> getAllCardsWithColor(String color) {
+        List<Card> cards = new ArrayList<>();
+
+        if (color.equals("black")) {
+            for (int i = 0; i < 4; i++) {
+                cards.add(new Card("wild", color, true));
+                cards.add(new Card("wildDraw4", color, true));
+            }
+        } else {
+            for (int i = 0; i < 10; i++) {
+                cards.add(new Card(i + "", color, false));
+            }
+            for (int i = 1; i < 10; i++) {
+                cards.add(new Card(i + "", color, false));
+            }
+
+            for (int i = 0; i < 2; i++) {
+                cards.add(new Card("draw2", color, true));
+                cards.add(new Card("reverse", color, true));
+                cards.add(new Card("skip", color, true));
+            }
+        }
+
+        return cards;
     }
 }

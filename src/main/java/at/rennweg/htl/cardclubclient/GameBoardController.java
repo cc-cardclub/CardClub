@@ -1,6 +1,7 @@
 package at.rennweg.htl.cardclubclient;
 
 import at.rennweg.htl.cardclubclient.cards.Card;
+import at.rennweg.htl.cardclubclient.cards.Deck;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
@@ -16,12 +17,7 @@ public class GameBoardController {
 
     @FXML
     protected void onDrawPile() {
-        String[] num = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
-        String[] color = { "red", "green", "blue", "yellow" };
-
-        Random random = new Random();
-
-        Card newCard = new Card(num[random.nextInt(num.length)], color[random.nextInt(color.length)], false);
+        Card newCard = Deck.drawCard();
         ImageView cardImg = new ImageView(String.valueOf(GameBoard.class.getResource(newCard.getTexture())));
         cardImg.setFitHeight(100D);
         cardImg.setFitWidth(70D);
