@@ -39,15 +39,16 @@ public class Deck {
 
     private static List<Card> shuffleCards(List<Card> cards) {
         List<Card> shuffledCards = new ArrayList<>();
-        /*
-        while (cards.size() > 0) {
-            // TODO actually shuffle
-            Random random = new Random();
-            random.nextInt();
-        }
-        */
+        Random random = new Random();
 
-        return cards;
+        while (cards.size() > 0) {
+            int randomCard = random.nextInt(cards.size());
+
+            shuffledCards.add(cards.get(randomCard));
+            cards.remove(randomCard);
+        }
+
+        return shuffledCards;
     }
 
     public static void prepareDeck() {
