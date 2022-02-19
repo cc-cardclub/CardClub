@@ -27,8 +27,14 @@ public class Deck {
 
     public static Card drawCard() {
         if (remainingCards.size() < 1) {
-            // TODO leave last played card
-            shuffleCards(playedCards);
+            List<Card> shuffleThis = new ArrayList<>();
+
+            for (int i = 0; i < playedCards.size() - 1; i++) {
+                shuffleThis.add(playedCards.get(0));
+                playedCards.remove(0);
+            }
+
+            remainingCards.addAll(shuffleCards(shuffleThis));
         }
 
         Card drawnCard = remainingCards.get(0);
