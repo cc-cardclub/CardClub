@@ -13,12 +13,12 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="740.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.rennweg.htl.cardclubclient.GameBoardController">
    <children>
       <Button fx:id="exitButton" layoutX="690.0" layoutY="14.0" onAction="#onExitButtonClick" text="exit" />
-      <ImageView fitHeight="124.0" fitWidth="70.0" layoutX="253.0" layoutY="103.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="124.0" fitWidth="70.0" layoutX="253.0" layoutY="103.0" onMouseClicked="#onDiscardPile" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@img/cardClubCard.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="108.0" fitWidth="70.0" layoutX="390.0" layoutY="104.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="108.0" fitWidth="70.0" layoutX="390.0" layoutY="104.0" onMouseClicked="#onDrawPile" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@img/cardClubback.png" />
          </image>

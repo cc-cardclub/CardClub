@@ -46,8 +46,7 @@ public class Card {
         this.number = number;
         this.color = color;
         this.isSpecial = isSpecial;
-        // this.texture = "img/" + color + "_" + number + ".png";
-        this.texture = "img/cardClubCard.png";
+        this.texture = "img/" + color + "/" + color + "_" + number + ".png";
     }
 
     public String getNumber() {
