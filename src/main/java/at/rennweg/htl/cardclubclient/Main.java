@@ -1,19 +1,22 @@
 package at.rennweg.htl.cardclubclient;
 
+import javafx.application.Application;
 import javafx.stage.Stage;
 
-public class Main {
+public class Main extends Application {
     private static Stage primaryStage;
-
-    public static void main(String[] args) {
-        SingleplayerMenu.launch(SingleplayerMenu.class, args);
-    }
 
     public static Stage getStage() {
         return primaryStage;
     }
 
-    public static void setStage(Stage primaryStage) {
+    @Override
+    public void start(Stage primaryStage) throws Exception {
         Main.primaryStage = primaryStage;
+        SingleplayerMenu.start();
+    }
+
+    public static void main(String[] args) {
+        launch(args);
     }
 }

@@ -3,7 +3,6 @@ package at.rennweg.htl.cardclubclient;
 import at.rennweg.htl.cardclubclient.cards.Card;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 

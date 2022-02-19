@@ -34,31 +34,6 @@
                <children>
                   <HBox fx:id="handCards" alignment="TOP_CENTER" layoutY="16.0" prefHeight="108.0"
                         prefWidth="500.0">
-                     <children>
-                        <ImageView fitHeight="124.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@img/cardClubCard.png" />
-                           </image>
-                        </ImageView>
-                        <Separator orientation="VERTICAL" prefHeight="200.0" />
-                        <ImageView fitHeight="124.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@img/cardClubCard.png" />
-                           </image>
-                        </ImageView>
-                        <Separator orientation="VERTICAL" prefHeight="200.0" />
-                        <ImageView fitHeight="124.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@img/cardClubCard.png" />
-                           </image>
-                        </ImageView>
-                        <Separator orientation="VERTICAL" prefHeight="200.0" />
-                        <ImageView fitHeight="124.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@img/cardClubCard.png" />
-                           </image>
-                        </ImageView>
-                     </children>
                   </HBox>
                </children>
             </AnchorPane>
