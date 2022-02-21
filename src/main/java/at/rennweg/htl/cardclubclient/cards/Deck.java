@@ -10,11 +10,13 @@ public class Deck {
     private static List<Card> remainingCards = new ArrayList<>();
     private static List<Card> playedCards = new ArrayList<>();
 
-    public static void playCard(Card card) {
+    public static void playCard(PlayerCards playerCards, Card card) {
         if (Checker.checkTurnValidity(card, getLastCard())) {
             playedCards.add(card);
         } else {
-            // TODO give player two cards
+            playerCards.addCard(card);
+            playerCards.addCard(drawCard());
+            playerCards.addCard(drawCard());
         }
     }
 

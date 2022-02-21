@@ -40,12 +40,13 @@ public class GameBoardController implements Initializable {
 
     @FXML
     protected void onDiscardPile() {
-        // TODO Checker: card played correctly?
+        // TODO message if turn was invalid
         if (selectedCard != null) {
             GameCore.getPlayer(0).removeCard(selectedCard);
             refreshHandCards();
 
-            Deck.playCard(selectedCard);
+            Deck.playCard(GameCore.getPlayer(0), selectedCard);
+            refreshHandCards();
             refreshDiscardPile();
 
             selectedCard = null;
