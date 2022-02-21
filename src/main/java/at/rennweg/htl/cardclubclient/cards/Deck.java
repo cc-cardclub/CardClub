@@ -94,4 +94,15 @@ public class Deck {
 
         return cards;
     }
+
+    public static Card[] getPlayerStartCards() {
+        final int startCardAmount = 7;
+        Card[] startCards = new Card[startCardAmount];
+
+        for (int i = 0; i < startCardAmount; i++) {
+            startCards[i] = drawCard();
+        }
+
+        return startCards;
+    }
 }
