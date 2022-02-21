@@ -3,6 +3,7 @@ package at.rennweg.htl.cardclubclient;
 import at.rennweg.htl.cardclubclient.cards.Card;
 import at.rennweg.htl.cardclubclient.cards.Deck;
 import at.rennweg.htl.cardclubclient.cards.PlayerCards;
+import at.rennweg.htl.cardclubclient.logic.GameCore;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -23,18 +24,17 @@ public class GameBoardController implements Initializable {
     @FXML
     private HBox handCards;
 
-    private PlayerCards playerCards;
     private Card selectedCard;
 
     @FXML
     public void initialize(URL location, ResourceBundle resources) {
         refreshDiscardPile();
-        playerCards = new PlayerCards();
+        refreshHandCards();
     }
 
     @FXML
     protected void onDrawPile() {
-        playerCards.addCard(Deck.drawCard());
+        GameCore.getPlayer(0).addCard(Deck.drawCard());
         refreshHandCards();
     }
 
@@ -42,7 +42,7 @@ public class GameBoardController implements Initializable {
     protected void onDiscardPile() {
         // TODO Checker: card played correctly?
         if (selectedCard != null) {
-            playerCards.removeCard(selectedCard);
+            GameCore.getPlayer(0).removeCard(selectedCard);
             refreshHandCards();
 
             Deck.playCard(selectedCard);
@@ -55,7 +55,7 @@ public class GameBoardController implements Initializable {
     @FXML
     protected void onCardSelect(Event event) {
         int index = handCards.getChildren().indexOf((ImageView) event.getSource());
-        selectedCard = playerCards.getCard(index);
+        selectedCard = GameCore.getPlayer(0).getCard(index);
     }
 
     @FXML
@@ -78,7 +78,7 @@ public class GameBoardController implements Initializable {
     private void refreshHandCards() {
         handCards.getChildren().clear();
 
-        for (Card card : playerCards.getAllCards()) {
+        for (Card card : GameCore.getPlayer(0).getAllCards()) {
             ImageView cardImg = new ImageView(String.valueOf(GameBoard.class.getResource(card.getTexture())));
             cardImg.setFitHeight(100D);
             cardImg.setFitWidth(70D);
