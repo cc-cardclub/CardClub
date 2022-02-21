@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TextArea editable="false" layoutX="107.0" layoutY="105.0" prefHeight="244.0" prefWidth="386.0" promptText="About us" text="We are a team of 3 students and this is our Software-Project! :)&#10;&#10;" wrapText="true">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </TextArea>
+      <TextField editable="false" layoutX="190.0" layoutY="22.0" prefHeight="70.0" prefWidth="219.0" text="   About us">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </TextField>
+   </children>
+</AnchorPane>

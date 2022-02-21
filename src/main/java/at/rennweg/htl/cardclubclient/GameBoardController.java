@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 
 import java.net.URL;
@@ -88,5 +89,8 @@ public class GameBoardController implements Initializable {
 
             handCards.getChildren().add(cardImg);
         }
+    }
+
+    public void onProgressBarClick(MouseEvent mouseEvent) {
     }
 }
