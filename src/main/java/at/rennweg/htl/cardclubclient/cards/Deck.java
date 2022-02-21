@@ -97,12 +97,16 @@ public class Deck {
 
     public static Card[] getPlayerStartCards() {
         final int startCardAmount = 7;
-        Card[] startCards = new Card[startCardAmount];
+        return getCards(startCardAmount);
+    }
 
-        for (int i = 0; i < startCardAmount; i++) {
-            startCards[i] = drawCard();
+    public static Card[] getCards(int amount) {
+        Card[] cards = new Card[amount];
+
+        for (int i = 0; i < amount; i++) {
+            cards[i] = drawCard();
         }
 
-        return startCards;
+        return cards;
     }
 }
