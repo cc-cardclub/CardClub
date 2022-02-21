@@ -15,8 +15,7 @@ public class Deck {
             playedCards.add(card);
         } else {
             playerCards.addCard(card);
-            playerCards.addCard(drawCard());
-            playerCards.addCard(drawCard());
+            playerCards.addCard(getCards(2));
         }
     }
 

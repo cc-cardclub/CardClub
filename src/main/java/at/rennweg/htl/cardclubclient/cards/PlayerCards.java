@@ -10,8 +10,8 @@ public class PlayerCards {
         this.cards.addAll(List.of(cards));
     }
 
-    public void addCard(Card card) {
-        this.cards.add(card);
+    public void addCard(Card... cards) {
+        this.cards.addAll(List.of(cards));
     }
 
     public void removeCard(Card card) {
