@@ -7,11 +7,11 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.rennweg.htl.cardclubclient.StartmenuController">
    <children>
-      <Button layoutX="82.0" layoutY="149.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="170.0" text="Singleplayer" onAction="#onSingleplayerButtonCLick"/>
+      <Button layoutX="82.0" layoutY="149.0" mnemonicParsing="false" onAction="#onSingleplayerButtonCLick" prefHeight="36.0" prefWidth="170.0" text="Singleplayer" />
       <Button layoutX="347.0" layoutY="149.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="170.0" text="Multiplayer" />
       <Button layoutX="82.0" layoutY="233.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="170.0" text="Options" />
       <Button layoutX="347.0" layoutY="233.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="170.0" text="(Leaderboard)" />
-      <Button fx:id="startmenuAbout" layoutX="234.0" layoutY="305.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="131.0" style="-fx-background-color: Blue;" text="About" textFill="WHITE" onAction="#onAboutButtonClick">
+      <Button fx:id="startmenuAbout" layoutX="234.0" layoutY="305.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="131.0" style="-fx-background-color: Blue;" text="About" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>
