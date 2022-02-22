@@ -2,6 +2,7 @@ package at.rennweg.htl.cardclubclient;
 
 import at.rennweg.htl.cardclubclient.cards.Card;
 import at.rennweg.htl.cardclubclient.cards.Deck;
+import at.rennweg.htl.cardclubclient.logic.Bot;
 import at.rennweg.htl.cardclubclient.logic.GameCore;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -43,6 +44,8 @@ public class GameBoardController implements Initializable {
         currentPlayer.setText("Derzeitiger Spieler: Spieler" + playerId);
         refreshDiscardPile();
         refreshHandCards();
+        GameBoard gameBoard = new GameBoard();
+        gameBoard.setController(this);
     }
 
     @FXML
@@ -123,6 +126,7 @@ public class GameBoardController implements Initializable {
     private void changeToNextPlayer() {
         if (playerId == 0) {
             playerId = 1;
+            ((Bot) GameCore.getPlayer(1)).botTurn();
         } else {
             playerId = 0;
         }
@@ -131,5 +135,11 @@ public class GameBoardController implements Initializable {
     }
 
     public void onProgressBarClick(MouseEvent mouseEvent) {
+    }
+
+    public void endBotTurn() {
+        changeToNextPlayer();
+        refreshHandCards();
+        refreshDiscardPile();
     }
 }
