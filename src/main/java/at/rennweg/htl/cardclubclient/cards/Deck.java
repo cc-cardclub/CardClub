@@ -74,6 +74,11 @@ public class Deck {
         while (cards.size() > 0) {
             int randomCard = random.nextInt(cards.size());
 
+            if (cards.get(randomCard).getNumber().equals("wild")
+                    || cards.get(randomCard).getNumber().equals("wildDraw4")) {
+                cards.get(randomCard).setColor("black");
+            }
+
             shuffledCards.add(cards.get(randomCard));
             cards.remove(randomCard);
         }
