@@ -6,13 +6,19 @@ import at.rennweg.htl.cardclubclient.cards.PlayerCards;
 import at.rennweg.htl.cardclubclient.logic.GameCore;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.stage.Popup;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
@@ -47,6 +53,21 @@ public class GameBoardController implements Initializable {
             refreshHandCards();
 
             Deck.playCard(GameCore.getPlayer(0), selectedCard);
+
+            if (selectedCard.getColor().equals("black")) {
+                try {
+                    Stage stage = new Stage();
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("farbwahlPopUp_v1.fxml"));
+                    Parent parent = (Parent) loader.load();
+                    Scene scene = new Scene(parent);
+                    stage.setScene(scene);
+                    stage.show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
             refreshHandCards();
             refreshDiscardPile();
 
