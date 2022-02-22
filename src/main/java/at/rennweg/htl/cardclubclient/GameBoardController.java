@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -23,6 +24,8 @@ import java.util.ResourceBundle;
 
 public class GameBoardController implements Initializable {
     @FXML
+    private Label currentPlayer;
+    @FXML
     private ImageView discardPileImg;
     @FXML
     private Button UNOButton;
@@ -30,16 +33,19 @@ public class GameBoardController implements Initializable {
     private HBox handCards;
 
     private Card selectedCard;
+    private int playerId;
 
     @FXML
     public void initialize(URL location, ResourceBundle resources) {
+        playerId = 0;
+        currentPlayer.setText("Derzeitiger Spieler: Spieler" + playerId);
         refreshDiscardPile();
         refreshHandCards();
     }
 
     @FXML
     protected void onDrawPile() {
-        GameCore.getPlayer(0).addCard(Deck.drawCard());
+        GameCore.getPlayer(playerId).addCard(Deck.drawCard());
         refreshHandCards();
     }
 
@@ -47,16 +53,16 @@ public class GameBoardController implements Initializable {
     protected void onDiscardPile() {
         // TODO message if turn was invalid
         if (selectedCard != null) {
-            GameCore.getPlayer(0).removeCard(selectedCard);
+            GameCore.getPlayer(playerId).removeCard(selectedCard);
             refreshHandCards();
 
-            Deck.playCard(GameCore.getPlayer(0), selectedCard);
+            Deck.playCard(GameCore.getPlayer(playerId), selectedCard);
 
             if (selectedCard.getColor().equals("black")) {
                 try {
                     Stage stage = new Stage();
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("farbwahlPopUp_v1.fxml"));
-                    Parent parent = (Parent) loader.load();
+                    Parent parent = loader.load();
                     Scene scene = new Scene(parent);
                     stage.setScene(scene);
                     stage.show();
@@ -66,17 +72,18 @@ public class GameBoardController implements Initializable {
 
             }
 
+            // Change player
+            selectedCard = null;
+            changeToNextPlayer();
             refreshHandCards();
             refreshDiscardPile();
-
-            selectedCard = null;
         }
     }
 
     @FXML
     protected void onCardSelect(Event event) {
         int index = handCards.getChildren().indexOf((ImageView) event.getSource());
-        selectedCard = GameCore.getPlayer(0).getCard(index);
+        selectedCard = GameCore.getPlayer(playerId).getCard(index);
     }
 
     @FXML
@@ -99,7 +106,7 @@ public class GameBoardController implements Initializable {
     private void refreshHandCards() {
         handCards.getChildren().clear();
 
-        for (Card card : GameCore.getPlayer(0).getAllCards()) {
+        for (Card card : GameCore.getPlayer(playerId).getAllCards()) {
             ImageView cardImg = new ImageView(String.valueOf(GameBoard.class.getResource(card.getTexture())));
             cardImg.setFitHeight(100D);
             cardImg.setFitWidth(70D);
@@ -108,6 +115,16 @@ public class GameBoardController implements Initializable {
 
             handCards.getChildren().add(cardImg);
         }
+    }
+
+    private void changeToNextPlayer() {
+        if (playerId == 0) {
+            playerId = 1;
+        } else {
+            playerId = 0;
+        }
+
+        currentPlayer.setText("Derzeitiger Spieler: Spieler" + playerId);
     }
 
     public void onProgressBarClick(MouseEvent mouseEvent) {
