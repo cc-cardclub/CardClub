@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -23,6 +24,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class GameBoardController implements Initializable {
+    public javafx.scene.control.ScrollPane ScrollPane;
     @FXML
     private Label currentPlayer;
     @FXML
@@ -115,6 +117,7 @@ public class GameBoardController implements Initializable {
 
             handCards.getChildren().add(cardImg);
         }
+        ScrollPane.hvalueProperty().bind(handCards.widthProperty());
     }
 
     private void changeToNextPlayer() {
