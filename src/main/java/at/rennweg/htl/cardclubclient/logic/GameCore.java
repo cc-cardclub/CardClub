@@ -1,22 +1,22 @@
 package at.rennweg.htl.cardclubclient.logic;
 
-import at.rennweg.htl.cardclubclient.cards.PlayerCards;
+import at.rennweg.htl.cardclubclient.cards.Player;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class GameCore {
-    private static List<PlayerCards> players = new ArrayList<>();
+    private static List<Player> players = new ArrayList<>();
 
-    public static PlayerCards getPlayer(int index) {
+    public static Player getPlayer(int index) {
         return players.get(index);
     }
 
-    public static void addPlayer(PlayerCards player) {
+    public static void addPlayer(Player player) {
         GameCore.players.add(player);
     }
 
-    public static void setPlayers(PlayerCards... players) {
+    public static void setPlayers(Player... players) {
         GameCore.players = List.of(players);
     }
 }

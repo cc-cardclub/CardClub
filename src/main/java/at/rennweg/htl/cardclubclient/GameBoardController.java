@@ -2,7 +2,6 @@ package at.rennweg.htl.cardclubclient;
 
 import at.rennweg.htl.cardclubclient.cards.Card;
 import at.rennweg.htl.cardclubclient.cards.Deck;
-import at.rennweg.htl.cardclubclient.cards.PlayerCards;
 import at.rennweg.htl.cardclubclient.logic.GameCore;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -14,7 +13,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 
 import java.net.URL;
-import java.util.Random;
 import java.util.ResourceBundle;
 
 public class GameBoardController implements Initializable {

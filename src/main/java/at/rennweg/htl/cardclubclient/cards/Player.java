@@ -3,10 +3,10 @@ package at.rennweg.htl.cardclubclient.cards;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PlayerCards {
+public class Player {
     private List<Card> cards = new ArrayList<>();
 
-    public PlayerCards(Card... cards) {
+    public Player(Card... cards) {
         this.cards.addAll(List.of(cards));
     }
 

@@ -1,9 +1,5 @@
 package at.rennweg.htl.cardclubclient;
 
-import at.rennweg.htl.cardclubclient.cards.Deck;
-import at.rennweg.htl.cardclubclient.cards.PlayerCards;
-import at.rennweg.htl.cardclubclient.logic.GameCore;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;

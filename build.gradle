@@ -25,7 +25,7 @@ tasks.withType(JavaCompile) {
 
 application {
     mainModule = 'at.rennweg.htl.cardclubclient'
-    mainClass = 'at.rennweg.htl.cardclubclient.HelloApplication'
+    mainClass = 'at.rennweg.htl.cardclubclient.Main'
 }
 
 javafx {
