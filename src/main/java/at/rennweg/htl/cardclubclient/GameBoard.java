@@ -26,4 +26,8 @@ public class GameBoard {
     public static void endBotTurn() {
         controller.endBotTurn();
     }
+
+    public static void refresh() {
+        controller.refresh();
+    }
 }

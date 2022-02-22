@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ProgressBar?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="740.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.rennweg.htl.cardclubclient.GameBoardController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="740.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.rennweg.htl.cardclubclient.GameBoardController">
     <children>
         <Button fx:id="exitButton" layoutX="690.0" layoutY="14.0" onAction="#onExitButtonClick" text="exit" />
         <ImageView fx:id="discardPileImg" fitHeight="124.0" fitWidth="70.0" layoutX="253.0" layoutY="103.0" onMouseClicked="#onDiscardPile" pickOnBounds="true" preserveRatio="true">
@@ -41,5 +36,6 @@
                 </HBox>
             </content>
         </ScrollPane>
+      <Button layoutX="24.0" layoutY="367.0" mnemonicParsing="false" onAction="#onBotButtonClick" text="Bot" />
     </children>
 </AnchorPane>

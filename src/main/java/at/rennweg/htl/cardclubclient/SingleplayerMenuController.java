@@ -13,7 +13,7 @@ public class SingleplayerMenuController {
     @FXML
     protected void onPlayButtonClick() throws IOException {
         Deck.prepareDeck();
-        GameCore.addPlayer(new Player(Deck.getPlayerStartCards())); // Player 0
+        GameCore.addPlayer(new Bot(Deck.getPlayerStartCards())); // Player 0
         GameCore.addPlayer(new Bot(Deck.getPlayerStartCards())); // Player 1
         GameBoard.start();
     }

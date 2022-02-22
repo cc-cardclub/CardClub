@@ -58,10 +58,11 @@ public class GameBoardController implements Initializable {
     protected void onDiscardPile() {
         // TODO message if turn was invalid
         if (selectedCard != null) {
-            GameCore.getPlayer(playerId).removeCard(selectedCard);
-            refreshHandCards();
+            // GameCore.getPlayer(playerId).removeCard(selectedCard);
+            // refreshHandCards();
 
             Deck.playCard(GameCore.getPlayer(playerId), selectedCard);
+            refreshHandCards();
 
             if (selectedCard.getColor().equals("black")) {
                 try {
@@ -126,7 +127,6 @@ public class GameBoardController implements Initializable {
     private void changeToNextPlayer() {
         if (playerId == 0) {
             playerId = 1;
-            ((Bot) GameCore.getPlayer(1)).botTurn();
         } else {
             playerId = 0;
         }
@@ -139,7 +139,16 @@ public class GameBoardController implements Initializable {
 
     public void endBotTurn() {
         changeToNextPlayer();
+        refresh();
+    }
+
+    public void refresh() {
         refreshHandCards();
         refreshDiscardPile();
+    }
+
+    @FXML
+    public void onBotButtonClick() {
+        ((Bot) GameCore.getPlayer(playerId)).botTurn();
     }
 }

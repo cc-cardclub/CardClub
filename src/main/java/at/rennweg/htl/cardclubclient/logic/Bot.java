@@ -53,10 +53,12 @@ public class Bot extends Player {
         }
         if (hasSameNumber) {
             Deck.playCard(this, getRandomCardWithNumber(lastCard.getNumber()));
+            GameBoard.endBotTurn();
             return;
         }
         if (hasWildCard) {
-            Deck.playCard(this, getRandomCardWithColor("black"));
+            Deck.playCard(this, getRandomCardWithColor("black"), true);
+            GameBoard.endBotTurn();
             return;
         }
 
@@ -64,8 +66,10 @@ public class Bot extends Player {
             this.addCard(Deck.drawCard());
             this.botTurn();
             firstTry = false;
+            GameBoard.refresh();
         } else {
             firstTry = true;
+            GameBoard.endBotTurn();
         }
     }
 
