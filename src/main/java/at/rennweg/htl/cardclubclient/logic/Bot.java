@@ -16,7 +16,7 @@ public class Bot extends Player {
         super(cards);
     }
 
-    private boolean firstTry = false;
+    private boolean firstTry = true;
 
     public void botTurn() {
         Card lastCard = Deck.getLastCard();
@@ -48,25 +48,28 @@ public class Bot extends Player {
 
         if (hasSameColor) {
             Deck.playCard(this, getRandomCardWithColor(lastCard.getColor()));
+            firstTry = true;
             GameBoard.endBotTurn();
             return;
         }
         if (hasSameNumber) {
             Deck.playCard(this, getRandomCardWithNumber(lastCard.getNumber()));
+            firstTry = true;
             GameBoard.endBotTurn();
             return;
         }
         if (hasWildCard) {
             Deck.playCard(this, getRandomCardWithColor("black"), true);
+            firstTry = true;
             GameBoard.endBotTurn();
             return;
         }
 
         if (firstTry) {
             this.addCard(Deck.drawCard());
-            this.botTurn();
             firstTry = false;
             GameBoard.refresh();
+            this.botTurn();
         } else {
             firstTry = true;
             GameBoard.endBotTurn();
