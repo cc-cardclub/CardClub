@@ -20,22 +20,23 @@ public class Deck {
         }
     }
 
-    public static void playCard(Player playerCards, Card card, Boolean automaticColor) {
+    public static void playCard(Player playerCards, Card card, String color) {
         if (Checker.checkTurnValidity(card, getLastCard())) {
             playedCards.add(card);
             playerCards.removeCard(card);
-            if (automaticColor) {
                 if (card.getColor().equals("black")) {
-                    Random random = new Random();
-                    int color = random.nextInt(4);
-                    switch (color) {
-                        case 0 -> getLastCard().setColor("blue");
-                        case 1 -> getLastCard().setColor("green");
-                        case 2 -> getLastCard().setColor("yellow");
-                        case 3 -> getLastCard().setColor("red");
+                    if (color.equals("black")) {
+                        Random random = new Random();
+                        switch (random.nextInt(4)) {
+                            case 0 -> getLastCard().setColor("yellow");
+                            case 1 -> getLastCard().setColor("blue");
+                            case 2 -> getLastCard().setColor("green");
+                            case 3 -> getLastCard().setColor("red");
+                        }
+                    } else {
+                        getLastCard().setColor(color);
                     }
                 }
-            }
         } else {
             playerCards.addCard(card);
             playerCards.addCard(getCards(2));

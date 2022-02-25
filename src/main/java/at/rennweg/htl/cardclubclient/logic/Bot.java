@@ -5,9 +5,8 @@ import at.rennweg.htl.cardclubclient.cards.Card;
 import at.rennweg.htl.cardclubclient.cards.Deck;
 import at.rennweg.htl.cardclubclient.cards.Player;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Bot extends Player {
     public Bot(Card... cards) {
@@ -44,6 +43,8 @@ public class Bot extends Player {
             }
         }
 
+        String color = getColorWithMostCards();
+
         if (hasSameColor) {
             Deck.playCard(this, getRandomCardWithColor(lastCard.getColor()));
             firstTry = true;
@@ -57,7 +58,7 @@ public class Bot extends Player {
             return;
         }
         if (hasWildCard) {
-            Deck.playCard(this, getRandomCardWithColor("black"), true);
+            Deck.playCard(this, getRandomCardWithColor("black"), color);
             firstTry = true;
             GameBoard.endBotTurn();
             return;
@@ -100,5 +101,13 @@ public class Bot extends Player {
 
         Random random = new Random();
         return numberCards.get(random.nextInt(numberCards.size()));
+    }
+
+    private String getColorWithMostCards() {
+        return getAllCards().stream()
+                .filter(cardColor -> Objects.nonNull(cardColor.getColor()))
+                .collect(Collectors.groupingBy(Card::getColor, Collectors.counting()))
+                .entrySet().stream().max(Map.Entry.comparingByValue())
+                .map(Map.Entry::getKey).orElse(null);
     }
 }
