@@ -1,6 +1,7 @@
 package at.rennweg.htl.cardclubclient.cards;
 
 import at.rennweg.htl.cardclubclient.logic.Checker;
+import at.rennweg.htl.cardclubclient.logic.GameCore;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -126,8 +127,7 @@ public class Deck {
     }
 
     public static Card[] getPlayerStartCards() {
-        final int startCardAmount = 7;
-        return getCards(startCardAmount);
+        return getCards(GameCore.getStartingCards());
     }
 
     public static Card[] getCards(int amount) {

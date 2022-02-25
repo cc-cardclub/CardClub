@@ -25,4 +25,7 @@ public class GameCore {
         GameCore.startingCards = startingCards;
     }
 
+    public static int getStartingCards() {
+        return startingCards;
+    }
 }
