@@ -25,7 +25,7 @@ public class GameCore {
         GameCore.startingCards = startingCards;
     }
 
-    public static boolean propertiesSet() {
-        return true; // dummy
+    public static int getStartingCards() {
+        return startingCards;
     }
 }

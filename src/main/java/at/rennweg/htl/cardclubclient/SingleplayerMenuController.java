@@ -42,16 +42,12 @@ public class SingleplayerMenuController implements Initializable {
 
     @FXML
     protected void onPlayButtonClick() throws IOException {
-
-
         Deck.prepareDeck();
 
         GameCore.addPlayer(new Bot(Deck.getPlayerStartCards())); // Player 0
         GameCore.addPlayer(new Bot(Deck.getPlayerStartCards())); // Player 1
 
-        if (GameCore.propertiesSet()) {
-            GameBoard.start();
-        }
+        GameBoard.start();
     }
 
     public void checkTimeForTurn() {
