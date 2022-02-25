@@ -5,24 +5,53 @@ import at.rennweg.htl.cardclubclient.logic.Bot;
 import at.rennweg.htl.cardclubclient.logic.GameCore;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.scene.input.InputMethodEvent;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class SingleplayerMenuController {
+public class SingleplayerMenuController implements Initializable {
 
     public TextField timeForTurn;
     public TextField startingCards;
     public TextField players;
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        timeForTurn.focusedProperty().addListener((ov, oldV, newV) -> {
+            if (!newV) {
+                checkTimeForTurn();
+            }
+        });
+
+        startingCards.focusedProperty().addListener((ov, oldV, newV) -> {
+            if (!newV) {
+                startingCards();
+            }
+        });
+
+        players.focusedProperty().addListener((ov, oldV, newV) -> {
+            if (!newV) {
+                howManyPlayers();
+            }
+        });
+    }
 
     @FXML
     protected void onPlayButtonClick() throws IOException {
+
+
         Deck.prepareDeck();
+
         GameCore.addPlayer(new Bot(Deck.getPlayerStartCards())); // Player 0
         GameCore.addPlayer(new Bot(Deck.getPlayerStartCards())); // Player 1
-        GameBoard.start();
+
+        if (GameCore.propertiesSet()) {
+            GameBoard.start();
+        }
     }
 
     public void checkTimeForTurn() {
