@@ -1,8 +1,6 @@
 package at.rennweg.htl.cardclubclient.logic;
 
 import at.rennweg.htl.cardclubclient.GameBoard;
-import at.rennweg.htl.cardclubclient.GameBoardController;
-import at.rennweg.htl.cardclubclient.SingleplayerMenuController;
 import at.rennweg.htl.cardclubclient.cards.Card;
 import at.rennweg.htl.cardclubclient.cards.Deck;
 import at.rennweg.htl.cardclubclient.cards.Player;
@@ -25,22 +23,22 @@ public class Bot extends Player {
         boolean hasSameNumber = false;
         boolean hasWildCard = false;
 
-        for (int i = 0; i < botCards.size(); i++) {
-            if (lastCard.getColor().equals(botCards.get(i).getColor())) {
+        for (Card botCard : botCards) {
+            if (lastCard.getColor().equals(botCard.getColor())) {
                 hasSameColor = true;
                 break;
             }
         }
 
-        for (int i = 0; i < botCards.size(); i++) {
-            if (lastCard.getNumber().equals(botCards.get(i).getNumber())) {
+        for (Card botCard : botCards) {
+            if (lastCard.getNumber().equals(botCard.getNumber())) {
                 hasSameNumber = true;
                 break;
             }
         }
 
-        for (int i = 0; i < botCards.size(); i++) {
-            if (botCards.get(i).getColor().equals("black")) {
+        for (Card botCard : botCards) {
+            if (botCard.getColor().equals("black")) {
                 hasWildCard = true;
                 break;
             }
@@ -80,9 +78,9 @@ public class Bot extends Player {
         List<Card> cards = this.getAllCards();
         List<Card> colorCards = new ArrayList<>();
 
-        for (int i = 0; i < cards.size(); i++) {
-            if (cards.get(i).getColor().equals(color)) {
-                colorCards.add(cards.get(i));
+        for (Card card : cards) {
+            if (card.getColor().equals(color)) {
+                colorCards.add(card);
             }
         }
 
@@ -94,9 +92,9 @@ public class Bot extends Player {
         List<Card> cards = this.getAllCards();
         List<Card> numberCards = new ArrayList<>();
 
-        for (int i = 0; i < cards.size(); i++) {
-            if (cards.get(i).getNumber().equals(number)) {
-                numberCards.add(cards.get(i));
+        for (Card card : cards) {
+            if (card.getNumber().equals(number)) {
+                numberCards.add(card);
             }
         }
 
