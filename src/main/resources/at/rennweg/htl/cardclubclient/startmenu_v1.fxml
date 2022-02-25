@@ -11,7 +11,7 @@
       <Button layoutX="347.0" layoutY="149.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="170.0" text="Multiplayer" />
       <Button layoutX="82.0" layoutY="233.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="170.0" text="Options" />
       <Button layoutX="347.0" layoutY="233.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="170.0" text="(Leaderboard)" />
-      <Button fx:id="startmenuAbout" layoutX="234.0" layoutY="305.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="131.0" style="-fx-background-color: Blue;" text="About" textFill="WHITE">
+      <Button fx:id="startmenuAbout" layoutX="234.0" layoutY="305.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="131.0" style="-fx-background-color: Blue;" text="About" textFill="WHITE" onAction="#onAboutButtonClick">
          <font>
             <Font size="20.0" />
          </font>

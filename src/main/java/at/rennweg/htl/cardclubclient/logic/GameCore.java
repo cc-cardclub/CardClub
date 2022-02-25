@@ -7,6 +7,7 @@ import java.util.List;
 
 public class GameCore {
     private static List<Player> players = new ArrayList<>();
+    private static int startingCards = 7;
 
     public static Player getPlayer(int index) {
         return players.get(index);
@@ -19,4 +20,9 @@ public class GameCore {
     public static void setPlayers(Player... players) {
         GameCore.players = List.of(players);
     }
+
+    public static void setStartingCards(int startingCards){
+        GameCore.startingCards = startingCards;
+    }
+
 }

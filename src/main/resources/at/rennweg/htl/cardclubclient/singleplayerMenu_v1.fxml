@@ -56,11 +56,12 @@
                         <Font size="36.0"/>
                     </font>
                 </Label>
-                <TextField layoutX="14.0" layoutY="102.0" prefHeight="26.0" prefWidth="111.0" promptText="Zugdauer"/>
-                <TextField layoutX="155.0" layoutY="102.0" prefHeight="26.0" prefWidth="111.0"
-                           promptText="Anzahl Startkarten"/>
-                <TextField layoutX="296.0" layoutY="102.0" prefHeight="26.0" prefWidth="111.0"
-                           promptText="Anzahl Mitspieler"/>
+                <TextField fx:id="timeForTurn" layoutX="14.0" layoutY="102.0" prefHeight="26.0" prefWidth="111.0"
+                           promptText="Zugdauer in sek." onAction="#checkTimeForTurn"/>
+                <TextField fx:id="startingCards" layoutX="155.0" layoutY="102.0" prefHeight="26.0" prefWidth="111.0"
+                           promptText="Anzahl Startkarten" onAction="#startingCards"/>
+                <TextField fx:id="players" layoutX="296.0" layoutY="102.0" prefHeight="26.0" prefWidth="111.0"
+                           promptText="Anzahl Mitspieler" onAction="#howManyPlayers"/>
             </children>
         </AnchorPane>
     </children>
