@@ -4,6 +4,7 @@ import at.rennweg.htl.cardclubclient.cards.Card;
 import at.rennweg.htl.cardclubclient.cards.Deck;
 import at.rennweg.htl.cardclubclient.logic.Bot;
 import at.rennweg.htl.cardclubclient.logic.GameCore;
+import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,6 +25,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class GameBoardController implements Initializable {
     public javafx.scene.control.ScrollPane ScrollPane;
@@ -39,9 +42,28 @@ public class GameBoardController implements Initializable {
     private Card selectedCard;
     private int playerId;
 
+    private Timer timer = new Timer();
+    private int turnTime = 15; // 15s
+
     @FXML
     public void initialize(URL location, ResourceBundle resources) {
         playerId = 0;
+
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                if (turnTime < 1) {
+                    Platform.runLater(() -> {
+                        changeToNextPlayer();
+                        refresh();
+                        turnTime = 15; // reset turn time
+                    });
+                }
+
+                turnTime--;
+            }
+        }, 0, 1000); // wait 0ms
+
         currentPlayer.setText("Derzeitiger Spieler: Spieler" + playerId);
         refreshDiscardPile();
         refreshHandCards();
