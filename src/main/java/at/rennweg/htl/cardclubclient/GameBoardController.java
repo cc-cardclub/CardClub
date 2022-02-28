@@ -147,11 +147,8 @@ public class GameBoardController implements Initializable {
             }
         }
 
-        if (playerId == 0) {
-            playerId = 1;
-        } else {
-            playerId = 0;
-        }
+        GameCore.switchToNextPlayer();
+        playerId = GameCore.getCurrentPlayerID();
 
         currentPlayer.setText("Derzeitiger Spieler: Spieler" + playerId);
     }
