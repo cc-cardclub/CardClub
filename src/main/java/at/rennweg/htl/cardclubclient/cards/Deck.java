@@ -15,6 +15,11 @@ public class Deck {
         if (Checker.checkTurnValidity(card, getLastCard())) {
             playedCards.add(card);
             playerCards.removeCard(card);
+            if (card.isSpecial()) {
+                if (card.getNumber().equals("skip")) {
+                    GameCore.switchToNextPlayer();
+                }
+            }
         } else {
             playerCards.addCard(card);
             playerCards.addCard(getCards(2));

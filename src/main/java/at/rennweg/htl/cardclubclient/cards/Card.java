@@ -64,4 +64,8 @@ public class Card {
     public String getTexture() {
         return texture;
     }
+
+    public boolean isSpecial() {
+        return this.isSpecial;
+    }
 }
