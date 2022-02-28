@@ -8,6 +8,7 @@ import java.util.List;
 public class GameCore {
     private static List<Player> players = new ArrayList<>();
     private static int startingCards = 7;
+    private static boolean gameFinished;
 
     public static Player getPlayer(int index) {
         return players.get(index);
@@ -27,5 +28,13 @@ public class GameCore {
 
     public static int getStartingCards() {
         return startingCards;
+    }
+
+    public static void setGameFinished(boolean gameFinished) {
+        GameCore.gameFinished = gameFinished;
+    }
+
+    public static boolean isGameFinished() {
+        return gameFinished;
     }
 }

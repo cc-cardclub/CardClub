@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -121,10 +122,31 @@ public class GameBoardController implements Initializable {
 
             handCards.getChildren().add(cardImg);
         }
+
         ScrollPane.hvalueProperty().bind(handCards.widthProperty());
     }
 
     private void changeToNextPlayer() {
+        if (GameCore.getPlayer(playerId).getAllCards().size() == 0) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
+            alert.setTitle("Information");
+            alert.setHeaderText("Gewonnen!");
+            alert.setContentText("Spieler" + playerId + " hat gewonnen!");
+
+            alert.showAndWait();
+
+            GameCore.setGameFinished(true);
+        }
+
+        if (GameCore.isGameFinished()) {
+            try {
+                Startmenu.start();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
         if (playerId == 0) {
             playerId = 1;
         } else {
