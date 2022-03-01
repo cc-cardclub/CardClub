@@ -217,6 +217,7 @@ public class GameBoardController implements Initializable {
     public void onContinueButtonClick() {
         if (!(GameCore.getCurrentPlayer() instanceof Bot)) {
             changeToNextPlayer();
+            refreshHandCards();
         } else {
             ((Bot) GameCore.getPlayer(playerId)).botTurn();
         }
