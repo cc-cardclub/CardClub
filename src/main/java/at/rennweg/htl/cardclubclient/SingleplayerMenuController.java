@@ -6,8 +6,10 @@ import at.rennweg.htl.cardclubclient.logic.GameCore;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.input.InputMethodEvent;
 
 import java.io.IOException;
 import java.net.URL;
@@ -18,6 +20,8 @@ public class SingleplayerMenuController implements Initializable {
     public TextField timeForTurn;
     public TextField startingCards;
     public TextField players;
+    public CheckBox plus2and4CardsSelected;
+    public TextArea textArea;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -84,6 +88,16 @@ public class SingleplayerMenuController implements Initializable {
             players.setText("");
             players.setStyle("-fx-background-color: RED;");
             players.setPromptText("nur Zahl-max 3");
+        }
+    }
+
+
+    public void checkBoxAction() {
+        if (plus2and4CardsSelected.isSelected()) {
+            GameCore.plus2and4CardsSelected = true;
+            textArea.setText(textArea.getText() + "\n" + "+2 darf auf +4");
+        } else {
+            textArea.setText("");
         }
     }
 }

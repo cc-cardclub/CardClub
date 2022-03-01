@@ -46,17 +46,33 @@ public class Deck {
 
     private static void doTurn(Player playerCards, Card card) {
         if (getLastCard().getNumber().equals("draw2")) {
-            if (!card.getNumber().equals("draw2")) {
-                playerCards.addCard(getCards(drawAmount));
-                GameBoard.refresh();
-                drawAmount = 0;
+            if (GameCore.plus2and4CardsSelected) {
+                if (!card.getNumber().equals("draw2") && !card.getNumber().equals("wildDraw4")) {
+                    playerCards.addCard(getCards(drawAmount));
+                    GameBoard.refresh();
+                    drawAmount = 0;
+                }
+            } else {
+                if (!card.getNumber().equals("draw2")) {
+                    playerCards.addCard(getCards(drawAmount));
+                    GameBoard.refresh();
+                    drawAmount = 0;
+                }
             }
         }
         if (getLastCard().getNumber().equals("wildDraw4")) {
-            if (!card.getNumber().equals("wildDraw4")) {
-                playerCards.addCard(getCards(drawAmount));
-                GameBoard.refresh();
-                drawAmount = 0;
+            if (GameCore.plus2and4CardsSelected) {
+                if (!card.getNumber().equals("draw2") && !card.getNumber().equals("wildDraw4")) {
+                    playerCards.addCard(getCards(drawAmount));
+                    GameBoard.refresh();
+                    drawAmount = 0;
+                }
+            } else {
+                if (!card.getNumber().equals("wildDraw4")) {
+                    playerCards.addCard(getCards(drawAmount));
+                    GameBoard.refresh();
+                    drawAmount = 0;
+                }
             }
         }
         playedCards.add(card);

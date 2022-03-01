@@ -75,4 +75,6 @@ public class GameCore {
     public static int getTurnDuration() {
         return GameCore.turnDuration;
     }
+
+    public static boolean plus2and4CardsSelected = false;
 }
