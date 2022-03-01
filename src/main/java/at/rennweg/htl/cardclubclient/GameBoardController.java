@@ -42,12 +42,12 @@ public class GameBoardController implements Initializable {
     private Card selectedCard;
     private int playerId;
 
-    private Timer timer = new Timer();
+    private final Timer timer = new Timer();
     private int turnTime = 15; // 15s
 
     @FXML
     public void initialize(URL location, ResourceBundle resources) {
-        playerId = 0;
+        playerId = GameCore.getCurrentPlayerID();
 
         timer.schedule(new TimerTask() {
             @Override
@@ -62,7 +62,7 @@ public class GameBoardController implements Initializable {
 
                 turnTime--;
             }
-        }, 0, 1000); // wait 0ms
+        }, 0, 1000); // wait 0ms, every 1s
 
         currentPlayer.setText("Derzeitiger Spieler: Spieler" + playerId);
         refreshDiscardPile();
