@@ -37,13 +37,13 @@ public class GameBoardController implements Initializable {
     private Button UNOButton;
     @FXML
     private HBox handCards;
-
-    private Card selectedCard;
-    private int playerId;
     @FXML
     public Button WildColorShower;
     @FXML
     private ScrollPane ScrollPane;
+
+    private Card selectedCard;
+    private int playerId;
 
     private final Timer timer = new Timer();
     private int turnDuration = GameCore.getTurnDuration();
@@ -180,12 +180,10 @@ public class GameBoardController implements Initializable {
         }
 
         GameCore.switchToNextPlayer();
+        turnDuration = GameCore.getTurnDuration(); // reset turn duration
         playerId = GameCore.getCurrentPlayerID();
 
         currentPlayer.setText("Derzeitiger Spieler: Spieler" + playerId);
-    }
-
-    public void onProgressBarClick(MouseEvent mouseEvent) {
     }
 
     public void endBotTurn() {
