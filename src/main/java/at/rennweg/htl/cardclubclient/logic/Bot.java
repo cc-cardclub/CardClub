@@ -45,6 +45,14 @@ public class Bot extends Player {
 
         String color = getColorWithMostCards();
 
+        if (lastCard.getNumber().equals("draw2") || lastCard.getNumber().equals("wildDraw4")) {
+            if (hasSameNumber) {
+                Deck.playCard(this, getRandomCardWithNumber(lastCard.getNumber()));
+                firstTry = true;
+                GameBoard.endBotTurn();
+                return;
+            }
+        }
         if (hasSameColor) {
             Deck.playCard(this, getRandomCardWithColor(lastCard.getColor()));
             firstTry = true;
