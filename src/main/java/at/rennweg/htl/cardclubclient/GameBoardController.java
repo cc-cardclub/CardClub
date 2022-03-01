@@ -52,6 +52,12 @@ public class GameBoardController implements Initializable {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
+                if (turnDuration < GameCore.getTurnDuration() - (GameCore.getTurnDuration() / 10)
+                && GameCore.getCurrentPlayer() instanceof Bot) {
+                    Platform.runLater(() -> {
+                        ((Bot) GameCore.getCurrentPlayer()).botTurn();
+                    });
+                }
                 if (turnDuration < 1) {
                     Platform.runLater(() -> {
                         GameCore.getPlayer(playerId).addCard(Deck.getCards(2));
@@ -61,7 +67,7 @@ public class GameBoardController implements Initializable {
                     });
                 }
 
-                progressBar.setProgress((double) turnDuration/GameCore.getTurnDuration());
+                progressBar.setProgress((double) turnDuration / GameCore.getTurnDuration());
                 turnDuration--;
             }
         }, 0, 1000); // wait 0ms, every 1s
