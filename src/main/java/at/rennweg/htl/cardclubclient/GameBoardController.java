@@ -30,6 +30,7 @@ import java.util.TimerTask;
 
 public class GameBoardController implements Initializable {
     public ProgressBar progressBar;
+    public Button botButton;
     @FXML
     private Label currentPlayer;
     @FXML
@@ -71,6 +72,7 @@ public class GameBoardController implements Initializable {
         }, 0, 1000); // wait 0ms, every 1s
 
         currentPlayer.setText("Derzeitiger Spieler: Spieler" + playerId);
+        botButton.setDisable(!(GameCore.getCurrentPlayer() instanceof Bot));
         refreshDiscardPile();
         refreshHandCards();
         GameBoard gameBoard = new GameBoard();
@@ -186,6 +188,8 @@ public class GameBoardController implements Initializable {
         playerId = GameCore.getCurrentPlayerID();
 
         currentPlayer.setText("Derzeitiger Spieler: Spieler" + playerId);
+
+        botButton.setDisable(!(GameCore.getCurrentPlayer() instanceof Bot));
     }
 
     public void endBotTurn() {

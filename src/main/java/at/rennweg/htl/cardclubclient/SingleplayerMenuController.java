@@ -1,9 +1,9 @@
 package at.rennweg.htl.cardclubclient;
 
 import at.rennweg.htl.cardclubclient.cards.Deck;
+import at.rennweg.htl.cardclubclient.cards.Player;
 import at.rennweg.htl.cardclubclient.logic.Bot;
 import at.rennweg.htl.cardclubclient.logic.GameCore;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
@@ -22,6 +22,8 @@ public class SingleplayerMenuController implements Initializable {
     public TextField players;
     public CheckBox plus2and4CardsSelected;
     public TextArea textArea;
+
+    private int amountBots;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -48,8 +50,11 @@ public class SingleplayerMenuController implements Initializable {
     protected void onPlayButtonClick() throws IOException {
         Deck.prepareDeck();
 
-        GameCore.addPlayer(new Bot(Deck.getPlayerStartCards())); // Player 0
-        GameCore.addPlayer(new Bot(Deck.getPlayerStartCards())); // Player 1
+        GameCore.addPlayer(new Player(Deck.getPlayerStartCards())); // Player
+
+        for (int i = 0; i < amountBots; i++) {
+            GameCore.addPlayer(new Bot(Deck.getPlayerStartCards())); // Bot
+        }
 
         GameBoard.start();
     }
@@ -80,8 +85,8 @@ public class SingleplayerMenuController implements Initializable {
     public void howManyPlayers() {
         players.setStyle("-fx-background-color: WHITE;");
         try {
-            int player = Integer.parseInt(players.getText());
-            if (player > 3) {
+            amountBots = Integer.parseInt(players.getText());
+            if (amountBots > 3) {
                 throw new NumberFormatException("Too much Players");
             }
         } catch (NumberFormatException e) {
