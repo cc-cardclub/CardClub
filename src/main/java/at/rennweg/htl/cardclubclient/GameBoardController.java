@@ -58,6 +58,7 @@ public class GameBoardController implements Initializable {
             public void run() {
                 if (turnDuration < 1) {
                     Platform.runLater(() -> {
+                        GameCore.getPlayer(playerId).addCard(Deck.getCards(2));
                         changeToNextPlayer();
                         refresh();
                         turnDuration = GameCore.getTurnDuration(); // reset turn time
