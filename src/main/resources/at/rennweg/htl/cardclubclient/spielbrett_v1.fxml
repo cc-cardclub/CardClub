@@ -36,7 +36,7 @@
                 </HBox>
             </content>
         </ScrollPane>
-      <Button fx:id="botButton" layoutX="24.0" layoutY="367.0" mnemonicParsing="false" onAction="#onBotButtonClick" text="Bot" />
+      <Button fx:id="continueButton" layoutX="14.0" layoutY="367.0" mnemonicParsing="false" onAction="#onContinueButtonClick" text="Continue" />
       <Button fx:id="WildColorShower" layoutX="324.0" layoutY="250.0" mnemonicParsing="false" text="Wild Color" />
     </children>
 </AnchorPane>

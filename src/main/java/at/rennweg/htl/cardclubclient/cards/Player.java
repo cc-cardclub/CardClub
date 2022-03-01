@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Player {
     private List<Card> cards = new ArrayList<>();
+    private boolean firstTry = true;
 
     public Player(Card... cards) {
         this.cards.addAll(List.of(cards));
@@ -26,4 +27,11 @@ public class Player {
         return this.cards;
     }
 
+    public boolean getFirstTry() {
+        return this.firstTry;
+    }
+
+    public void setFirstTry(boolean firstTry) {
+        this.firstTry = firstTry;
+    }
 }

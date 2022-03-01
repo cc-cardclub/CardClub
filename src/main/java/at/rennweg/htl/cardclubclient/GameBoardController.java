@@ -2,7 +2,6 @@ package at.rennweg.htl.cardclubclient;
 
 import at.rennweg.htl.cardclubclient.cards.Card;
 import at.rennweg.htl.cardclubclient.cards.Deck;
-import at.rennweg.htl.cardclubclient.cards.Player;
 import at.rennweg.htl.cardclubclient.logic.Bot;
 import at.rennweg.htl.cardclubclient.logic.GameCore;
 import javafx.application.Platform;
@@ -15,11 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.HBox;
-import javafx.scene.paint.Color;
-import javafx.stage.Popup;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -30,7 +25,7 @@ import java.util.TimerTask;
 
 public class GameBoardController implements Initializable {
     public ProgressBar progressBar;
-    public Button botButton;
+    public Button continueButton;
     @FXML
     private Label currentPlayer;
     @FXML
@@ -72,7 +67,6 @@ public class GameBoardController implements Initializable {
         }, 0, 1000); // wait 0ms, every 1s
 
         currentPlayer.setText("Derzeitiger Spieler: Spieler" + playerId);
-        botButton.setDisable(!(GameCore.getCurrentPlayer() instanceof Bot));
         refreshDiscardPile();
         refreshHandCards();
         GameBoard gameBoard = new GameBoard();
@@ -81,17 +75,17 @@ public class GameBoardController implements Initializable {
 
     @FXML
     protected void onDrawPile() {
-        GameCore.getPlayer(playerId).addCard(Deck.drawCard());
-        refreshHandCards();
+        if (GameCore.getCurrentPlayer().getFirstTry()) {
+            GameCore.getCurrentPlayer().addCard(Deck.drawCard());
+            refreshHandCards();
+            GameCore.getCurrentPlayer().setFirstTry(false);
+        }
     }
 
     @FXML
     protected void onDiscardPile() {
         // TODO message if turn was invalid
         if (selectedCard != null) {
-            // GameCore.getPlayer(playerId).removeCard(selectedCard);
-            // refreshHandCards();
-
             Deck.playCard(GameCore.getPlayer(playerId), selectedCard);
             refreshHandCards();
 
@@ -163,6 +157,7 @@ public class GameBoardController implements Initializable {
     }
 
     private void changeToNextPlayer() {
+        GameCore.getCurrentPlayer().setFirstTry(true);
         if (GameCore.getPlayer(playerId).getAllCards().size() == 0) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
 
@@ -188,12 +183,9 @@ public class GameBoardController implements Initializable {
         playerId = GameCore.getCurrentPlayerID();
 
         currentPlayer.setText("Derzeitiger Spieler: Spieler" + playerId);
-
-        botButton.setDisable(!(GameCore.getCurrentPlayer() instanceof Bot));
     }
 
     public void endBotTurn() {
-
         changeToNextPlayer();
         refresh();
     }
@@ -204,8 +196,12 @@ public class GameBoardController implements Initializable {
     }
 
     @FXML
-    public void onBotButtonClick() {
-        ((Bot) GameCore.getPlayer(playerId)).botTurn();
+    public void onContinueButtonClick() {
+        if (!(GameCore.getCurrentPlayer() instanceof Bot)) {
+            changeToNextPlayer();
+        } else {
+            ((Bot) GameCore.getPlayer(playerId)).botTurn();
+        }
     }
 
 }
