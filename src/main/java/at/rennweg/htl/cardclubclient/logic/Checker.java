@@ -1,6 +1,5 @@
 package at.rennweg.htl.cardclubclient.logic;
 
-import at.rennweg.htl.cardclubclient.GameBoard;
 import at.rennweg.htl.cardclubclient.cards.Card;
 
 public class Checker {

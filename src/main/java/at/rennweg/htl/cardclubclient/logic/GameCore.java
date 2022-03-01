@@ -12,6 +12,7 @@ public class GameCore {
     private static int currentPlayerID = 0;
     private static int turnDuration = 20;
     private static boolean clockwiseTurn = true;
+    public static boolean plus2and4CardsSelected = false;
 
     public static void reverseDirection() {
         clockwiseTurn = !clockwiseTurn;
@@ -92,6 +93,4 @@ public class GameCore {
     public static int getTurnDuration() {
         return GameCore.turnDuration;
     }
-
-    public static boolean plus2and4CardsSelected = false;
 }

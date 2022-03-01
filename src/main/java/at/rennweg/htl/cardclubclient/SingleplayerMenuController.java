@@ -7,7 +7,6 @@ import at.rennweg.htl.cardclubclient.logic.GameCore;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
@@ -16,14 +15,13 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class SingleplayerMenuController implements Initializable {
-
     public TextField timeForTurn;
     public TextField startingCards;
     public TextField players;
     public CheckBox plus2and4CardsSelected;
     public TextArea textArea;
 
-    private int amountBots;
+    private int amountBots = 1; // Standard amount
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

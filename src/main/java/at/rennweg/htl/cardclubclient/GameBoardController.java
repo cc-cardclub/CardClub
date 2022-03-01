@@ -24,8 +24,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class GameBoardController implements Initializable {
-    public ProgressBar progressBar;
-    public Button continueButton;
     @FXML
     private Label currentPlayer;
     @FXML
@@ -38,6 +36,10 @@ public class GameBoardController implements Initializable {
     public Button WildColorShower;
     @FXML
     private ScrollPane ScrollPane;
+    @FXML
+    private ProgressBar progressBar;
+    @FXML
+    private Button continueButton;
 
     private Card selectedCard;
     private int playerId;
@@ -54,9 +56,7 @@ public class GameBoardController implements Initializable {
             public void run() {
                 if (turnDuration < GameCore.getTurnDuration() - (GameCore.getTurnDuration() / 10)
                 && GameCore.getCurrentPlayer() instanceof Bot) {
-                    Platform.runLater(() -> {
-                        ((Bot) GameCore.getCurrentPlayer()).botTurn();
-                    });
+                    Platform.runLater(() -> ((Bot) GameCore.getCurrentPlayer()).botTurn());
                 }
                 if (turnDuration < 1) {
                     Platform.runLater(() -> {
@@ -72,7 +72,8 @@ public class GameBoardController implements Initializable {
             }
         }, 0, 1000); // wait 0ms, every 1s
 
-        currentPlayer.setText("Derzeitiger Spieler: Spieler" + playerId);
+        currentPlayer.setText("Derzeitiger Spieler: Spieler" + playerId
+                + " (" + GameCore.getCurrentPlayer().getClass().getSimpleName() + ")");
         refreshDiscardPile();
         refreshHandCards();
         GameBoard gameBoard = new GameBoard();
@@ -198,7 +199,8 @@ public class GameBoardController implements Initializable {
         turnDuration = GameCore.getTurnDuration(); // reset turn duration
         playerId = GameCore.getCurrentPlayerID();
 
-        currentPlayer.setText("Derzeitiger Spieler: Spieler" + playerId);
+        currentPlayer.setText("Derzeitiger Spieler: Spieler" + playerId
+                + " (" + GameCore.getCurrentPlayer().getClass().getSimpleName() + ")");
     }
 
     public void endBotTurn() {

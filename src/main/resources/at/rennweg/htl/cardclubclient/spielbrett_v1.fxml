@@ -20,7 +20,7 @@
         </ImageView>
         <Button fx:id="UNOButton" layoutX="655.0" layoutY="367.0" mnemonicParsing="false" onAction="#onUNOButtonClick" prefHeight="58.0" prefWidth="70.0" text="UNO" />
         <ProgressBar fx:id="progressBar" layoutX="260.0" layoutY="292.0" prefWidth="200.0" progress="0" />
-        <Label fx:id="currentPlayer" alignment="CENTER" layoutX="261.0" layoutY="18.0" prefHeight="17.0" prefWidth="200.0" text="Spieler3" textAlignment="CENTER" wrapText="true" />
+        <Label fx:id="currentPlayer" alignment="CENTER" layoutX="210.0" layoutY="18.0" prefHeight="17.0" prefWidth="300.0" text="Spieler3" textAlignment="CENTER" wrapText="true" />
         <Label layoutX="630.0" layoutY="202.0" prefHeight="17.0" prefWidth="96.0" text="Spieler2" />
         <Label layoutX="14.0" layoutY="202.0" prefHeight="17.0" prefWidth="96.0" text="Spieler4" textAlignment="CENTER" wrapText="true" />
         <ScrollPane fx:id="ScrollPane" layoutX="87.0" layoutY="322.0" prefHeight="148.0" prefWidth="547.0">

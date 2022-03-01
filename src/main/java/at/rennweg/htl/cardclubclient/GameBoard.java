@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class GameBoard {
-    private static GameBoardController controller ;
+    private static GameBoardController controller;
 
     public void setController(GameBoardController controller) {
         GameBoard.controller = controller ;
