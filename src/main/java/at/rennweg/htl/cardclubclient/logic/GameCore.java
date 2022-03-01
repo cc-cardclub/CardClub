@@ -24,7 +24,7 @@ public class GameCore {
         GameCore.players = List.of(players);
     }
 
-    public static void setStartingCards(int startingCards){
+    public static void setStartingCards(int startingCards) {
         GameCore.startingCards = startingCards;
     }
 

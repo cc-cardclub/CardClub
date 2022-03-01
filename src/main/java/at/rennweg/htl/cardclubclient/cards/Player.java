@@ -25,4 +25,5 @@ public class Player {
     public List<Card> getAllCards() {
         return this.cards;
     }
+
 }

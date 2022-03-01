@@ -2,6 +2,7 @@ package at.rennweg.htl.cardclubclient;
 
 import at.rennweg.htl.cardclubclient.cards.Card;
 import at.rennweg.htl.cardclubclient.cards.Deck;
+import at.rennweg.htl.cardclubclient.cards.Player;
 import at.rennweg.htl.cardclubclient.logic.Bot;
 import at.rennweg.htl.cardclubclient.logic.GameCore;
 import javafx.application.Platform;
@@ -15,7 +16,9 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
 
@@ -27,10 +30,6 @@ import java.util.TimerTask;
 
 public class GameBoardController implements Initializable {
     @FXML
-    private ScrollPane ScrollPane;
-    @FXML
-    private ProgressBar progressBar;
-    @FXML
     private Label currentPlayer;
     @FXML
     private ImageView discardPileImg;
@@ -41,6 +40,10 @@ public class GameBoardController implements Initializable {
 
     private Card selectedCard;
     private int playerId;
+    @FXML
+    public Button WildColorShower;
+    @FXML
+    private ScrollPane ScrollPane;
 
     private final Timer timer = new Timer();
     private int turnDuration = GameCore.getTurnDuration();
@@ -61,6 +64,7 @@ public class GameBoardController implements Initializable {
                 }
 
                 turnDuration--;
+
             }
         }, 0, 1000); // wait 0ms, every 1s
 
@@ -81,6 +85,9 @@ public class GameBoardController implements Initializable {
     protected void onDiscardPile() {
         // TODO message if turn was invalid
         if (selectedCard != null) {
+            // GameCore.getPlayer(playerId).removeCard(selectedCard);
+            // refreshHandCards();
+
             Deck.playCard(GameCore.getPlayer(playerId), selectedCard);
             refreshHandCards();
 
@@ -91,7 +98,9 @@ public class GameBoardController implements Initializable {
                     Parent parent = loader.load();
                     Scene scene = new Scene(parent);
                     stage.setScene(scene);
-                    stage.show();
+                    stage.showAndWait();
+                    String test = Deck.getLastCard().getColor();
+                    WildColorShower.setStyle("-fx-background-color:" + test + ";");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -114,7 +123,6 @@ public class GameBoardController implements Initializable {
 
     @FXML
     protected void onUNOButtonClick() {
-        // TODO: press button within 3s if you have only one card left
         UNOButton.setText("Clicked");
     }
 
@@ -128,6 +136,9 @@ public class GameBoardController implements Initializable {
                 GameBoardController.class.getResource(Deck.getLastCard().getTexture())
         ));
         discardPileImg.setImage(img);
+
+        String test = Deck.getLastCard().getColor();
+        WildColorShower.setStyle("-fx-background-color:" + test + ";");
     }
 
     private void refreshHandCards() {
@@ -142,8 +153,9 @@ public class GameBoardController implements Initializable {
 
             handCards.getChildren().add(cardImg);
         }
-
-        ScrollPane.hvalueProperty().bind(handCards.widthProperty());
+        if (GameCore.getCurrentPlayer().getAllCards().size() > 7) {
+            ScrollPane.hvalueProperty().bind(handCards.widthProperty());
+        }
     }
 
     private void changeToNextPlayer() {
@@ -173,7 +185,11 @@ public class GameBoardController implements Initializable {
         currentPlayer.setText("Derzeitiger Spieler: Spieler" + playerId);
     }
 
+    public void onProgressBarClick(MouseEvent mouseEvent) {
+    }
+
     public void endBotTurn() {
+
         changeToNextPlayer();
         refresh();
     }
@@ -187,4 +203,5 @@ public class GameBoardController implements Initializable {
     public void onBotButtonClick() {
         ((Bot) GameCore.getPlayer(playerId)).botTurn();
     }
+
 }
