@@ -11,6 +11,11 @@ public class GameCore {
     private static boolean gameFinished;
     private static int currentPlayerID = 0;
     private static int turnDuration = 20;
+    private static boolean clockwiseTurn = true;
+
+    public static void reverseDirection() {
+        clockwiseTurn = !clockwiseTurn;
+    }
 
     public static Player getPlayer(int index) {
         return players.get(index);
@@ -22,6 +27,10 @@ public class GameCore {
 
     public static void setPlayers(Player... players) {
         GameCore.players = List.of(players);
+    }
+
+    public static List<Player> getPlayers() {
+        return players;
     }
 
     public static void setStartingCards(int startingCards) {
@@ -49,10 +58,18 @@ public class GameCore {
     }
 
     public static void switchToNextPlayer() {
-        if (currentPlayerID + 1 < players.size()) {
-            currentPlayerID++;
+        if (clockwiseTurn) {
+            if (currentPlayerID + 1 < players.size()) {
+                currentPlayerID++;
+            } else {
+                currentPlayerID = 0;
+            }
         } else {
-            currentPlayerID = 0;
+            if (currentPlayerID > 0) {
+                currentPlayerID--;
+            } else {
+                currentPlayerID = players.size() - 1;
+            }
         }
     }
 
