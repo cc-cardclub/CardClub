@@ -148,17 +148,27 @@ public class GameBoardController implements Initializable {
     private void refreshHandCards() {
         handCards.getChildren().clear();
 
-        for (Card card : GameCore.getPlayer(playerId).getAllCards()) {
-            ImageView cardImg = new ImageView(String.valueOf(GameBoard.class.getResource(card.getTexture())));
-            cardImg.setFitHeight(100D);
-            cardImg.setFitWidth(70D);
+        if (GameCore.getCurrentPlayer() instanceof Bot) {
+            for (int i = 0; i < GameCore.getCurrentPlayer().getAllCards().size(); i++) {
+                ImageView cardImg = new ImageView(String.valueOf(GameBoard.class.getResource("img/cardClubback.png")));
+                cardImg.setFitHeight(100D);
+                cardImg.setFitWidth(70D);
 
-            cardImg.setOnMouseClicked(this::onCardSelect);
+                handCards.getChildren().add(cardImg);
+            }
+        } else {
+            for (Card card : GameCore.getPlayer(playerId).getAllCards()) {
+                ImageView cardImg = new ImageView(String.valueOf(GameBoard.class.getResource(card.getTexture())));
+                cardImg.setFitHeight(100D);
+                cardImg.setFitWidth(70D);
 
-            handCards.getChildren().add(cardImg);
-        }
-        if (GameCore.getCurrentPlayer().getAllCards().size() > 7) {
-            ScrollPane.hvalueProperty().bind(handCards.widthProperty());
+                cardImg.setOnMouseClicked(this::onCardSelect);
+
+                handCards.getChildren().add(cardImg);
+            }
+            if (GameCore.getCurrentPlayer().getAllCards().size() > 7) {
+                ScrollPane.hvalueProperty().bind(handCards.widthProperty());
+            }
         }
     }
 
