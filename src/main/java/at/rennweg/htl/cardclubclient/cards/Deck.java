@@ -15,31 +15,7 @@ public class Deck {
 
     public static void playCard(Player playerCards, Card card) {
         if (Checker.checkTurnValidity(card, getLastCard())) {
-            if (getLastCard().getNumber().equals("draw2")) {
-                if (!card.getNumber().equals("draw2")) {
-                    playerCards.addCard(getCards(drawAmount));
-                    GameBoard.refresh();
-                    drawAmount = 0;
-                }
-            }
-            if (getLastCard().getNumber().equals("wildDraw4")) {
-                if (!card.getNumber().equals("wildDraw4")) {
-                    playerCards.addCard(getCards(drawAmount));
-                    GameBoard.refresh();
-                    drawAmount = 0;
-                }
-            }
-            playedCards.add(card);
-            playerCards.removeCard(card);
-            if (card.isSpecial()) {
-                if (card.getNumber().equals("skip")) {
-                    GameCore.switchToNextPlayer();
-                } else if (card.getNumber().equals("draw2")) {
-                    drawAmount += 2;
-                } else if (card.getNumber().equals("wildDraw4")) {
-                    drawAmount += 4;
-                }
-            }
+            doTurn(playerCards, card);
         } else {
             playerCards.addCard(card);
             playerCards.addCard(getCards(2));
@@ -48,24 +24,51 @@ public class Deck {
 
     public static void playCard(Player playerCards, Card card, String color) {
         if (Checker.checkTurnValidity(card, getLastCard())) {
-            playedCards.add(card);
-            playerCards.removeCard(card);
-                if (card.getColor().equals("black")) {
-                    if (color.equals("black")) {
-                        Random random = new Random();
-                        switch (random.nextInt(4)) {
-                            case 0 -> getLastCard().setColor("yellow");
-                            case 1 -> getLastCard().setColor("blue");
-                            case 2 -> getLastCard().setColor("green");
-                            case 3 -> getLastCard().setColor("red");
-                        }
-                    } else {
-                        getLastCard().setColor(color);
+            doTurn(playerCards, card);
+            if (card.getColor().equals("black")) {
+                if (color.equals("black")) {
+                    Random random = new Random();
+                    switch (random.nextInt(4)) {
+                        case 0 -> getLastCard().setColor("yellow");
+                        case 1 -> getLastCard().setColor("blue");
+                        case 2 -> getLastCard().setColor("green");
+                        case 3 -> getLastCard().setColor("red");
                     }
+                } else {
+                    getLastCard().setColor(color);
                 }
+            }
         } else {
             playerCards.addCard(card);
             playerCards.addCard(getCards(2));
+        }
+    }
+
+    private static void doTurn(Player playerCards, Card card) {
+        if (getLastCard().getNumber().equals("draw2")) {
+            if (!card.getNumber().equals("draw2")) {
+                playerCards.addCard(getCards(drawAmount));
+                GameBoard.refresh();
+                drawAmount = 0;
+            }
+        }
+        if (getLastCard().getNumber().equals("wildDraw4")) {
+            if (!card.getNumber().equals("wildDraw4")) {
+                playerCards.addCard(getCards(drawAmount));
+                GameBoard.refresh();
+                drawAmount = 0;
+            }
+        }
+        playedCards.add(card);
+        playerCards.removeCard(card);
+        if (card.isSpecial()) {
+            if (card.getNumber().equals("skip")) {
+                GameCore.switchToNextPlayer();
+            } else if (card.getNumber().equals("draw2")) {
+                drawAmount += 2;
+            } else if (card.getNumber().equals("wildDraw4")) {
+                drawAmount += 4;
+            }
         }
     }
 
