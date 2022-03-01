@@ -5,7 +5,6 @@ import at.rennweg.htl.cardclubclient.logic.Checker;
 import at.rennweg.htl.cardclubclient.logic.GameCore;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -86,7 +85,11 @@ public class Deck {
             } else if (card.getNumber().equals("wildDraw4")) {
                 drawAmount += 4;
             } else if (card.getNumber().equals("reverse")) {
-                GameCore.reverseDirection();
+                if (GameCore.getPlayers().size() == 2) {
+                    GameCore.switchToNextPlayer();
+                } else {
+                    GameCore.reverseDirection();
+                }
             }
         }
     }
