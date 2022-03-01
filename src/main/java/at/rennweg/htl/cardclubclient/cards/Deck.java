@@ -1,5 +1,6 @@
 package at.rennweg.htl.cardclubclient.cards;
 
+import at.rennweg.htl.cardclubclient.GameBoard;
 import at.rennweg.htl.cardclubclient.logic.Checker;
 import at.rennweg.htl.cardclubclient.logic.GameCore;
 
@@ -10,14 +11,33 @@ import java.util.Random;
 public class Deck {
     private static List<Card> remainingCards = new ArrayList<>();
     private static List<Card> playedCards = new ArrayList<>();
+    private static int drawAmount = 0;
 
     public static void playCard(Player playerCards, Card card) {
         if (Checker.checkTurnValidity(card, getLastCard())) {
+            if (getLastCard().getNumber().equals("draw2")) {
+                if (!card.getNumber().equals("draw2")) {
+                    playerCards.addCard(getCards(drawAmount));
+                    GameBoard.refresh();
+                    drawAmount = 0;
+                }
+            }
+            if (getLastCard().getNumber().equals("wildDraw4")) {
+                if (!card.getNumber().equals("wildDraw4")) {
+                    playerCards.addCard(getCards(drawAmount));
+                    GameBoard.refresh();
+                    drawAmount = 0;
+                }
+            }
             playedCards.add(card);
             playerCards.removeCard(card);
             if (card.isSpecial()) {
                 if (card.getNumber().equals("skip")) {
                     GameCore.switchToNextPlayer();
+                } else if (card.getNumber().equals("draw2")) {
+                    drawAmount += 2;
+                } else if (card.getNumber().equals("wildDraw4")) {
+                    drawAmount += 4;
                 }
             }
         } else {
