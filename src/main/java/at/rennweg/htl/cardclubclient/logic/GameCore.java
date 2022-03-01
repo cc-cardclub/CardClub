@@ -10,6 +10,7 @@ public class GameCore {
     private static int startingCards = 7;
     private static boolean gameFinished;
     private static int currentPlayerID = 0;
+    private static int turnDuration = 20;
 
     public static Player getPlayer(int index) {
         return players.get(index);
@@ -65,5 +66,13 @@ public class GameCore {
         } else {
             return 0;
         }
+    }
+
+    public static void setTurnDuration(int sec) {
+        GameCore.turnDuration = sec;
+    }
+
+    public static int getTurnDuration() {
+        return GameCore.turnDuration;
     }
 }

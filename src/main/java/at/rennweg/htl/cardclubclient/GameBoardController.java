@@ -11,10 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -29,7 +26,10 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class GameBoardController implements Initializable {
-    public javafx.scene.control.ScrollPane ScrollPane;
+    @FXML
+    private ScrollPane ScrollPane;
+    @FXML
+    private ProgressBar progressBar;
     @FXML
     private Label currentPlayer;
     @FXML
@@ -43,7 +43,7 @@ public class GameBoardController implements Initializable {
     private int playerId;
 
     private final Timer timer = new Timer();
-    private int turnTime = 15; // 15s
+    private int turnDuration = GameCore.getTurnDuration();
 
     @FXML
     public void initialize(URL location, ResourceBundle resources) {
@@ -52,15 +52,15 @@ public class GameBoardController implements Initializable {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                if (turnTime < 1) {
+                if (turnDuration < 1) {
                     Platform.runLater(() -> {
                         changeToNextPlayer();
                         refresh();
-                        turnTime = 15; // reset turn time
+                        turnDuration = GameCore.getTurnDuration(); // reset turn time
                     });
                 }
 
-                turnTime--;
+                turnDuration--;
             }
         }, 0, 1000); // wait 0ms, every 1s
 
@@ -81,9 +81,6 @@ public class GameBoardController implements Initializable {
     protected void onDiscardPile() {
         // TODO message if turn was invalid
         if (selectedCard != null) {
-            // GameCore.getPlayer(playerId).removeCard(selectedCard);
-            // refreshHandCards();
-
             Deck.playCard(GameCore.getPlayer(playerId), selectedCard);
             refreshHandCards();
 
@@ -117,6 +114,7 @@ public class GameBoardController implements Initializable {
 
     @FXML
     protected void onUNOButtonClick() {
+        // TODO: press button within 3s if you have only one card left
         UNOButton.setText("Clicked");
     }
 
@@ -173,9 +171,6 @@ public class GameBoardController implements Initializable {
         playerId = GameCore.getCurrentPlayerID();
 
         currentPlayer.setText("Derzeitiger Spieler: Spieler" + playerId);
-    }
-
-    public void onProgressBarClick(MouseEvent mouseEvent) {
     }
 
     public void endBotTurn() {
