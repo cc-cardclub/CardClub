@@ -85,7 +85,11 @@ public class Deck {
             } else if (card.getNumber().equals("wildDraw4")) {
                 drawAmount += 4;
             } else if (card.getNumber().equals("reverse")) {
-                GameCore.reverseDirection();
+                if (GameCore.getPlayers().size() == 2) {
+                    GameCore.switchToNextPlayer();
+                } else {
+                    GameCore.reverseDirection();
+                }
             }
         }
     }
