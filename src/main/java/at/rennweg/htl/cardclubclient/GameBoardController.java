@@ -29,6 +29,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class GameBoardController implements Initializable {
+    public ProgressBar progressBar;
     @FXML
     private Label currentPlayer;
     @FXML
@@ -63,8 +64,8 @@ public class GameBoardController implements Initializable {
                     });
                 }
 
+                progressBar.setProgress((double) turnDuration/GameCore.getTurnDuration());
                 turnDuration--;
-
             }
         }, 0, 1000); // wait 0ms, every 1s
 

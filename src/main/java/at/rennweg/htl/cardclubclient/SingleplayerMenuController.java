@@ -53,7 +53,7 @@ public class SingleplayerMenuController implements Initializable {
     public void checkTimeForTurn() {
         timeForTurn.setStyle("-fx-background-color: WHITE;");
         try {
-            Integer.parseInt(timeForTurn.getText());
+            GameCore.setTurnDuration(Integer.parseInt(timeForTurn.getText()));
         } catch (NumberFormatException e) {
             timeForTurn.setText("");
             timeForTurn.setStyle("-fx-background-color: RED;");
