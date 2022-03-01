@@ -22,6 +22,14 @@ public class Bot extends Player {
         boolean hasSameNumber = false;
         boolean hasWildCard = false;
 
+        if (lastCard.getColor().equals("black")) {
+            Random random = new Random();
+            Deck.playCard(this, botCards.get(random.nextInt(botCards.size())));
+            firstTry = true;
+            GameBoard.endBotTurn();
+            return;
+        }
+
         for (Card botCard : botCards) {
             if (lastCard.getColor().equals(botCard.getColor())) {
                 hasSameColor = true;
