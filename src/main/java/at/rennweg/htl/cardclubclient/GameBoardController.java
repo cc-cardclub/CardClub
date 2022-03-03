@@ -12,9 +12,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -42,6 +44,7 @@ public class GameBoardController implements Initializable {
     private Button continueButton;
 
     private Card selectedCard;
+    private ImageView selectedCardImg;
     private int playerId;
 
     private final Timer timer = new Timer();
@@ -122,7 +125,16 @@ public class GameBoardController implements Initializable {
 
     @FXML
     protected void onCardSelect(Event event) {
-        int index = handCards.getChildren().indexOf((ImageView) event.getSource());
+        if (selectedCardImg != null) {
+            selectedCardImg.setEffect(null);
+        }
+
+        selectedCardImg = (ImageView) event.getSource();
+
+        DropShadow ds = new DropShadow(15, Color.BLACK);
+        selectedCardImg.setEffect(ds);
+
+        int index = handCards.getChildren().indexOf(selectedCardImg);
         selectedCard = GameCore.getPlayer(playerId).getCard(index);
     }
 
