@@ -238,8 +238,10 @@ public class GameBoardController implements Initializable {
     @FXML
     public void onContinueButtonClick() {
         if (!(GameCore.getCurrentPlayer() instanceof Bot)) {
-            changeToNextPlayer();
-            refreshHandCards();
+            if (!GameCore.getCurrentPlayer().getFirstTry()) {
+                changeToNextPlayer();
+                refreshHandCards();
+            }
         } else {
             ((Bot) GameCore.getPlayer(playerId)).botTurn();
         }
