@@ -163,7 +163,7 @@ public class GameBoardController implements Initializable {
 
         if (GameCore.getCurrentPlayer() instanceof Bot) {
             for (int i = 0; i < GameCore.getCurrentPlayer().getAllCards().size(); i++) {
-                ImageView cardImg = new ImageView(String.valueOf(GameBoard.class.getResource("img/cardClubback.png")));
+                ImageView cardImg = new ImageView(String.valueOf(GameBoard.class.getResource("img/UNOcardBack.png")));
                 cardImg.setFitHeight(100D);
                 cardImg.setFitWidth(70D);
 

@@ -15,7 +15,7 @@
         </ImageView>
         <ImageView fitHeight="108.0" fitWidth="70.0" layoutX="390.0" layoutY="104.0" onMouseClicked="#onDrawPile" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@img/cardClubback.png" />
+                <Image url="@img/UNOcardBack.png" />
             </image>
         </ImageView>
         <Button fx:id="UNOButton" layoutX="655.0" layoutY="367.0" mnemonicParsing="false" onAction="#onUNOButtonClick" prefHeight="58.0" prefWidth="70.0" text="UNO" />
@@ -37,6 +37,6 @@
             </content>
         </ScrollPane>
       <Button fx:id="continueButton" layoutX="14.0" layoutY="367.0" mnemonicParsing="false" onAction="#onContinueButtonClick" text="Continue" />
-      <Button fx:id="WildColorShower" layoutX="324.0" layoutY="250.0" mnemonicParsing="false" text="Wild Color" />
+      <Button fx:id="WildColorShower" layoutX="324.0" layoutY="250.0" mnemonicParsing="false" text="Play Color" />
     </children>
 </AnchorPane>
