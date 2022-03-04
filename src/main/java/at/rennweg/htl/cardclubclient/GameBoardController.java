@@ -49,31 +49,36 @@ public class GameBoardController implements Initializable {
 
     private final Timer timer = new Timer();
     private int turnDuration = GameCore.getTurnDuration();
+    private final TimerTask counter = new TimerTask() {
+        @Override
+        public void run() {
+            if (turnDuration < GameCore.getTurnDuration() - (GameCore.getTurnDuration() / 10)
+                    && GameCore.getCurrentPlayer() instanceof Bot) {
+                Platform.runLater(() -> ((Bot) GameCore.getCurrentPlayer()).botTurn());
+            }
+            if (turnDuration < 1) {
+                Platform.runLater(() -> {
+                    GameCore.getPlayer(playerId).addCard(Deck.getCards(2));
+                    changeToNextPlayer();
+                    refresh();
+                    turnDuration = GameCore.getTurnDuration(); // reset turn time
+                });
+            }
+
+            progressBar.setProgress((double) turnDuration / GameCore.getTurnDuration());
+            turnDuration--;
+
+        }
+    };
 
     @FXML
     public void initialize(URL location, ResourceBundle resources) {
         playerId = GameCore.getCurrentPlayerID();
 
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                if (turnDuration < GameCore.getTurnDuration() - (GameCore.getTurnDuration() / 10)
-                && GameCore.getCurrentPlayer() instanceof Bot) {
-                    Platform.runLater(() -> ((Bot) GameCore.getCurrentPlayer()).botTurn());
-                }
-                if (turnDuration < 1) {
-                    Platform.runLater(() -> {
-                        GameCore.getPlayer(playerId).addCard(Deck.getCards(2));
-                        changeToNextPlayer();
-                        refresh();
-                        turnDuration = GameCore.getTurnDuration(); // reset turn time
-                    });
-                }
-
-                progressBar.setProgress((double) turnDuration / GameCore.getTurnDuration());
-                turnDuration--;
-            }
-        }, 0, 1000); // wait 0ms, every 1s
+        timer.schedule(counter, 0, 1000); // wait 0ms, every 1s
+        if (GameCore.pauseProgressBar) {
+            timer.cancel();
+        }
 
         currentPlayer.setText("Derzeitiger Spieler: Spieler" + playerId
                 + " (" + GameCore.getCurrentPlayer().getClass().getSimpleName() + ")");
@@ -120,6 +125,8 @@ public class GameBoardController implements Initializable {
             changeToNextPlayer();
             refreshHandCards();
             refreshDiscardPile();
+        } else {
+
         }
     }
 
@@ -194,8 +201,8 @@ public class GameBoardController implements Initializable {
             alert.setHeaderText("Gewonnen!");
             alert.setContentText("Spieler" + playerId + " hat gewonnen!");
 
-            alert.showAndWait();
-
+            alert.show();
+            GameCore.pauseProgressBar = true;
             GameCore.setGameFinished(true);
         }
 
@@ -205,14 +212,16 @@ public class GameBoardController implements Initializable {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        } else {
+
+            GameCore.switchToNextPlayer();
+            turnDuration = GameCore.getTurnDuration(); // reset turn duration
+            playerId = GameCore.getCurrentPlayerID();
+
+            currentPlayer.setText("Derzeitiger Spieler: Spieler" + playerId
+                    + " (" + GameCore.getCurrentPlayer().getClass().getSimpleName() + ")");
+
         }
-
-        GameCore.switchToNextPlayer();
-        turnDuration = GameCore.getTurnDuration(); // reset turn duration
-        playerId = GameCore.getCurrentPlayerID();
-
-        currentPlayer.setText("Derzeitiger Spieler: Spieler" + playerId
-                + " (" + GameCore.getCurrentPlayer().getClass().getSimpleName() + ")");
     }
 
     public void endBotTurn() {
