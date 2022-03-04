@@ -21,9 +21,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ResourceBundle;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 public class GameBoardController implements Initializable {
     @FXML
@@ -177,6 +175,9 @@ public class GameBoardController implements Initializable {
                 handCards.getChildren().add(cardImg);
             }
         } else {
+            // Sort the cards
+            GameCore.getCurrentPlayer().getAllCards().sort(Comparator.comparing(Card::getTexture));
+
             for (Card card : GameCore.getPlayer(playerId).getAllCards()) {
                 ImageView cardImg = new ImageView(String.valueOf(GameBoard.class.getResource(card.getTexture())));
                 cardImg.setFitHeight(100D);
