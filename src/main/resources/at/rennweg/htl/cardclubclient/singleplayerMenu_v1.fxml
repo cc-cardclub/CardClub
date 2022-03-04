@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.rennweg.htl.cardclubclient.SingleplayerMenuController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.rennweg.htl.cardclubclient.SingleplayerMenuController">
     <children>
         <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="367.0" prefWidth="150.0">
             <children>
@@ -48,9 +53,12 @@
                         <Font size="36.0" />
                     </font>
                 </Label>
-                <TextField fx:id="timeForTurn" layoutX="14.0" layoutY="102.0" onAction="#checkTimeForTurn" prefHeight="26.0" prefWidth="111.0" promptText="Zugdauer in sek." />
-                <TextField fx:id="startingCards" layoutX="155.0" layoutY="102.0" onAction="#startingCards" prefHeight="26.0" prefWidth="111.0" promptText="Anzahl Startkarten" />
-                <TextField fx:id="players" layoutX="296.0" layoutY="102.0" onAction="#howManyPlayers" prefHeight="26.0" prefWidth="111.0" promptText="Anzahl Mitspieler" />
+                <TextField fx:id="timeForTurn" layoutX="14.0" layoutY="115.0" onAction="#checkTimeForTurn" prefHeight="26.0" prefWidth="111.0" promptText="Zugdauer in sek." />
+                <TextField fx:id="startingCards" layoutX="155.0" layoutY="115.0" onAction="#startingCards" prefHeight="26.0" prefWidth="111.0" promptText="Anzahl Startkarten" />
+                <TextField fx:id="players" layoutX="296.0" layoutY="115.0" onAction="#howManyPlayers" prefHeight="26.0" prefWidth="111.0" promptText="max. 3 Mitspieler" />
+            <Label layoutX="40.0" layoutY="93.0" prefHeight="18.0" prefWidth="60.0" text="Zugdauer" />
+            <Label layoutX="322.0" layoutY="93.0" prefHeight="18.0" prefWidth="60.0" text="Mitspieler" />
+            <Label layoutX="178.0" layoutY="93.0" prefHeight="18.0" prefWidth="66.0" text="Startkarten" />
             </children>
         </AnchorPane>
     </children>
