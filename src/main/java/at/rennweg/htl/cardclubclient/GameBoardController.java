@@ -178,6 +178,18 @@ public class GameBoardController implements Initializable {
     }
 
     @FXML
+    protected void onContinueButtonClick() {
+        if (!(GameCore.getCurrentPlayer() instanceof Bot)) {
+            if (!GameCore.getCurrentPlayer().getFirstTry()) {
+                changeToNextPlayer();
+                refreshHandCards();
+            }
+        } else {
+            ((Bot) GameCore.getPlayer(playerId)).botTurn();
+        }
+    }
+
+    @FXML
     protected void onExitButtonClick() {
         System.exit(0);
     }
@@ -262,17 +274,5 @@ public class GameBoardController implements Initializable {
     public void refresh() {
         refreshHandCards();
         refreshDiscardPile();
-    }
-
-    @FXML
-    public void onContinueButtonClick() {
-        if (!(GameCore.getCurrentPlayer() instanceof Bot)) {
-            if (!GameCore.getCurrentPlayer().getFirstTry()) {
-                changeToNextPlayer();
-                refreshHandCards();
-            }
-        } else {
-            ((Bot) GameCore.getPlayer(playerId)).botTurn();
-        }
     }
 }
