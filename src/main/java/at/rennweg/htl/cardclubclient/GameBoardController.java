@@ -71,7 +71,8 @@ public class GameBoardController implements Initializable {
 
             progressBar.setProgress((double) turnDuration / GameCore.getTurnDuration());
             turnDuration--;
-            /* if (oneCardLeft) {
+            /*
+            if (oneCardLeft) {
 
                 if (UNOButtonClicked) {
                     UNOButtonClicked = false;
