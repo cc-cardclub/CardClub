@@ -88,6 +88,7 @@ public class GameBoardController implements Initializable {
 
     @FXML
     protected void onDrawPile() {
+        if (GameCore.getCurrentPlayer() instanceof Bot) return;
         if (GameCore.getCurrentPlayer().getFirstTry()) {
             GameCore.getCurrentPlayer().addCard(Deck.drawCard());
             refreshHandCards();
