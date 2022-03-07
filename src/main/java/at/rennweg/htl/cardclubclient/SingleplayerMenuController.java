@@ -57,7 +57,8 @@ public class SingleplayerMenuController implements Initializable {
         GameBoard.start();
     }
 
-    public void checkTimeForTurn() {
+    @FXML
+    protected void checkTimeForTurn() {
         timeForTurn.setStyle("-fx-background-color: WHITE;");
         try {
             GameCore.setTurnDuration(Integer.parseInt(timeForTurn.getText()));
@@ -68,7 +69,8 @@ public class SingleplayerMenuController implements Initializable {
         }
     }
 
-    public void startingCards() {
+    @FXML
+    protected void startingCards() {
         startingCards.setStyle("-fx-background-color: WHITE;");
         try {
             GameCore.setStartingCards(Integer.parseInt(startingCards.getText()));
@@ -79,8 +81,8 @@ public class SingleplayerMenuController implements Initializable {
         }
     }
 
-
-    public void howManyPlayers() {
+    @FXML
+    protected void howManyPlayers() {
         players.setStyle("-fx-background-color: WHITE;");
         try {
             amountBots = Integer.parseInt(players.getText());
@@ -94,8 +96,8 @@ public class SingleplayerMenuController implements Initializable {
         }
     }
 
-
-    public void checkBoxAction() {
+    @FXML
+    protected void checkBoxAction() {
         if (plus2and4CardsSelected.isSelected()) {
             GameCore.plus2and4CardsSelected = true;
             textArea.setText(textArea.getText() + "\n" + "+2 darf auf +4");
