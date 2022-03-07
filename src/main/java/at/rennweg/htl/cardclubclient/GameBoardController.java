@@ -2,6 +2,7 @@ package at.rennweg.htl.cardclubclient;
 
 import at.rennweg.htl.cardclubclient.cards.Card;
 import at.rennweg.htl.cardclubclient.cards.Deck;
+import at.rennweg.htl.cardclubclient.cards.Player;
 import at.rennweg.htl.cardclubclient.logic.Bot;
 import at.rennweg.htl.cardclubclient.logic.GameCore;
 import javafx.application.Platform;
@@ -45,8 +46,13 @@ public class GameBoardController implements Initializable {
     private ImageView selectedCardImg;
     private int playerId;
 
+    private int UNOButtonTime = 3;
+    private boolean oneCardLeft = false;
+    private boolean UNOButtonClicked = false;
+
     private final Timer timer = new Timer();
     private int turnDuration = GameCore.getTurnDuration();
+
     private final TimerTask counter = new TimerTask() {
         @Override
         public void run() {
@@ -65,6 +71,20 @@ public class GameBoardController implements Initializable {
 
             progressBar.setProgress((double) turnDuration / GameCore.getTurnDuration());
             turnDuration--;
+            /* if (oneCardLeft) {
+
+                if (UNOButtonClicked) {
+                    UNOButtonClicked = false;
+                    changeToNextPlayer();
+                }
+                if (UNOButtonTime <= 0) {
+                    oneCardLeft = false;
+                    GameCore.getCurrentPlayer().addCard(Deck.getCards(2));
+                    changeToNextPlayer();
+                }
+                UNOButtonTime--;
+            }*/
+
 
         }
     };
@@ -79,7 +99,8 @@ public class GameBoardController implements Initializable {
         }
 
         currentPlayer.setText("Derzeitiger Spieler: Spieler" + playerId
-                + " (" + GameCore.getCurrentPlayer().getClass().getSimpleName() + ")");
+                + " (" + GameCore.getNextPlayer().getClass().getSimpleName() + " hat " + GameCore.getNextPlayer().getAllCards().size() + " Karten)");
+
         refreshDiscardPile();
         refreshHandCards();
         GameBoard gameBoard = new GameBoard();
@@ -100,9 +121,12 @@ public class GameBoardController implements Initializable {
     protected void onDiscardPile() {
         // TODO message if turn was invalid
         if (selectedCard != null) {
+
             Deck.playCard(GameCore.getPlayer(playerId), selectedCard);
             refreshHandCards();
-
+            if (GameCore.getCurrentPlayer().getAllCards().size() == 1) {
+                oneCardLeft = true;
+            }
             if (selectedCard.getColor().equals("black")) {
                 try {
                     Stage stage = new Stage();
@@ -121,7 +145,9 @@ public class GameBoardController implements Initializable {
 
             // Change player
             selectedCard = null;
-            changeToNextPlayer();
+            /*if (!oneCardLeft) {*/
+                changeToNextPlayer();
+            /*}*/
             refreshHandCards();
             refreshDiscardPile();
         } else {
@@ -147,6 +173,7 @@ public class GameBoardController implements Initializable {
     @FXML
     protected void onUNOButtonClick() {
         UNOButton.setText("Clicked");
+        UNOButtonClicked = true;
     }
 
     @FXML
@@ -160,8 +187,8 @@ public class GameBoardController implements Initializable {
         ));
         discardPileImg.setImage(img);
 
-        String test = Deck.getLastCard().getColor();
-        WildColorShower.setStyle("-fx-background-color:" + test + ";");
+        String color = Deck.getLastCard().getColor();
+        WildColorShower.setStyle("-fx-background-color:" + color + ";");
     }
 
     private void refreshHandCards() {
@@ -221,7 +248,7 @@ public class GameBoardController implements Initializable {
             playerId = GameCore.getCurrentPlayerID();
 
             currentPlayer.setText("Derzeitiger Spieler: Spieler" + playerId
-                    + " (" + GameCore.getCurrentPlayer().getClass().getSimpleName() + ")");
+                    + " (" + GameCore.getNextPlayer().getClass().getSimpleName() + " hat " + GameCore.getNextPlayer().getAllCards().size() + " Karten)");
 
         }
     }
@@ -247,5 +274,4 @@ public class GameBoardController implements Initializable {
             ((Bot) GameCore.getPlayer(playerId)).botTurn();
         }
     }
-
 }
