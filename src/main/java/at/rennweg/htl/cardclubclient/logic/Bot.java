@@ -5,16 +5,37 @@ import at.rennweg.htl.cardclubclient.cards.Card;
 import at.rennweg.htl.cardclubclient.cards.Deck;
 import at.rennweg.htl.cardclubclient.cards.Player;
 
-import java.util.*;
+
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Random;
+import java.util.ArrayList;
 import java.util.stream.Collectors;
 
+/**
+ * This class gives bots all of their needed functions to compete against players
+ *
+ * @author Mattias Burkard
+ */
 public class Bot extends Player {
+    /**
+     * Initialize a new bot
+     *
+     * @param cards cards for the bot
+     */
     public Bot(Card... cards) {
         super(cards);
     }
 
+    /**
+     * Whether the bot can still draw a card in this turn or if it already did that
+     */
     private boolean firstTry = true;
 
+    /**
+     * Function for the bot to make its turn
+     */
     public void botTurn() {
         Card lastCard = Deck.getLastCard();
         List<Card> botCards = this.getAllCards();
@@ -22,6 +43,7 @@ public class Bot extends Player {
         boolean hasSameNumber = false;
         boolean hasWildCard = false;
 
+        // Enable the bot to play a random card, if the first ever card was a wild card
         if (lastCard.getColor().equals("black")) {
             Random random = new Random();
             Deck.playCard(this, botCards.get(random.nextInt(botCards.size())));
@@ -30,6 +52,7 @@ public class Bot extends Player {
             return;
         }
 
+        // Check if the bot has a card of the same color as the last played one
         for (Card botCard : botCards) {
             if (lastCard.getColor().equals(botCard.getColor())) {
                 hasSameColor = true;
@@ -37,6 +60,7 @@ public class Bot extends Player {
             }
         }
 
+        // Check if the bot has a card with the same number as the last played one
         for (Card botCard : botCards) {
             if (lastCard.getNumber().equals(botCard.getNumber())) {
                 hasSameNumber = true;
@@ -44,6 +68,7 @@ public class Bot extends Player {
             }
         }
 
+        // Check if the bot has a wild card
         for (Card botCard : botCards) {
             if (botCard.getColor().equals("black")) {
                 hasWildCard = true;
@@ -53,6 +78,7 @@ public class Bot extends Player {
 
         String color = getColorWithMostCards();
 
+        // IF the last card would make the bot have to draw cards, it'll try to prevent that
         if (lastCard.getNumber().equals("draw2") || lastCard.getNumber().equals("wildDraw4")) {
             if (hasSameNumber) {
                 Deck.playCard(this, getRandomCardWithNumber(lastCard.getNumber()));
@@ -61,18 +87,24 @@ public class Bot extends Player {
                 return;
             }
         }
+
+        // Play a card of the same color
         if (hasSameColor) {
             Deck.playCard(this, getRandomCardWithColor(lastCard.getColor()));
             firstTry = true;
             GameBoard.endBotTurn();
             return;
         }
+
+        // Play a card with the same number
         if (hasSameNumber) {
             Deck.playCard(this, getRandomCardWithNumber(lastCard.getNumber()));
             firstTry = true;
             GameBoard.endBotTurn();
             return;
         }
+
+        // Play a wild card and set the color to the one, which it has the most cards of
         if (hasWildCard) {
             Deck.playCard(this, getRandomCardWithColor("black"), color);
             firstTry = true;
@@ -80,6 +112,7 @@ public class Bot extends Player {
             return;
         }
 
+        // Draw a card if it hasn't done that yet and then try again
         if (firstTry) {
             this.addCard(Deck.drawCard());
             firstTry = false;
@@ -91,34 +124,57 @@ public class Bot extends Player {
         }
     }
 
+    /**
+     * Get a random card of a given color
+     *
+     * @param color color to return a card of
+     * @return random card
+     */
     private Card getRandomCardWithColor(String color) {
+        // Get the cards of the bot
         List<Card> cards = this.getAllCards();
         List<Card> colorCards = new ArrayList<>();
 
+        // Add all cards wit the given color to a list
         for (Card card : cards) {
             if (card.getColor().equals(color)) {
                 colorCards.add(card);
             }
         }
 
+        // Return a random one of the possible cards
         Random random = new Random();
         return colorCards.get(random.nextInt(colorCards.size()));
     }
 
+    /**
+     * Get a random card with a given number
+     *
+     * @param number number to get a card with
+     * @return random card
+     */
     private Card getRandomCardWithNumber(String number) {
+        // Get the cards of the bot
         List<Card> cards = this.getAllCards();
         List<Card> numberCards = new ArrayList<>();
 
+        // Add all cards wit the given number to a list
         for (Card card : cards) {
             if (card.getNumber().equals(number)) {
                 numberCards.add(card);
             }
         }
 
+        // Return a random one of the possible cards
         Random random = new Random();
         return numberCards.get(random.nextInt(numberCards.size()));
     }
 
+    /**
+     * Gets the color which the bot has the most cards of
+     *
+     * @return color with the most cards
+     */
     private String getColorWithMostCards() {
         return getAllCards().stream()
                 .filter(cardColor -> Objects.nonNull(cardColor.getColor()))
