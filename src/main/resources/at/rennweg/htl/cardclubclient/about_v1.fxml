@@ -12,7 +12,7 @@
             <Font size="30.0" />
          </font>
       </Text>
-      <Label layoutX="104.0" layoutY="124.0" prefHeight="27.0" prefWidth="389.0" text="Current version: 0.1 (BETA)" />
+      <Label fx:id="currVersion" layoutX="104.0" layoutY="124.0" prefHeight="27.0" prefWidth="389.0" text="Current version: " />
       <Label layoutX="104.0" layoutY="151.0" prefHeight="27.0" prefWidth="389.0" text="Developer: Bernd Reither, Mattias Burkard, Lisa-Marie Hörmann" />
       <Group layoutX="103.0" layoutY="178.0">
          <children>
