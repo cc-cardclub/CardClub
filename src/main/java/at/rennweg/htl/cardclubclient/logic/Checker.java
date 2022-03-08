@@ -5,12 +5,14 @@ import javafx.scene.control.Alert;
 
 /**
  * Class for checking the validity of a turn
+ *
  * @author Mattias Burkard, Lisa-Marie Hörmann
  */
 public class Checker {
     /**
      * Check whether a turn is valid
-     * @param currentCard card to be played
+     *
+     * @param currentCard  card to be played
      * @param previousCard card that was last played
      * @return if the turn is valid
      */

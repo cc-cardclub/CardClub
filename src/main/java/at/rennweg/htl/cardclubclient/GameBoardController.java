@@ -71,22 +71,9 @@ public class GameBoardController implements Initializable {
 
             progressBar.setProgress((double) turnDuration / GameCore.getTurnDuration());
             turnDuration--;
-            /*
             if (oneCardLeft) {
-
-                if (UNOButtonClicked) {
-                    UNOButtonClicked = false;
-                    changeToNextPlayer();
-                }
-                if (UNOButtonTime <= 0) {
-                    oneCardLeft = false;
-                    GameCore.getCurrentPlayer().addCard(Deck.getCards(2));
-                    changeToNextPlayer();
-                }
                 UNOButtonTime--;
-            }*/
-
-
+            }
         }
     };
 
@@ -127,6 +114,8 @@ public class GameBoardController implements Initializable {
             refreshHandCards();
             if (GameCore.getCurrentPlayer().getAllCards().size() == 1) {
                 oneCardLeft = true;
+                UNOButton.setText("oneCard");
+                UNOButtonCheck();
             }
             if (selectedCard.getColor().equals("black")) {
                 try {
@@ -146,13 +135,11 @@ public class GameBoardController implements Initializable {
 
             // Change player
             selectedCard = null;
-            /*if (!oneCardLeft) {*/
+            if (!oneCardLeft) {
                 changeToNextPlayer();
-            /*}*/
+            }
             refreshHandCards();
             refreshDiscardPile();
-        } else {
-
         }
     }
 
@@ -175,6 +162,18 @@ public class GameBoardController implements Initializable {
     protected void onUNOButtonClick() {
         UNOButton.setText("Clicked");
         UNOButtonClicked = true;
+        UNOButtonCheck();
+    }
+
+    public void UNOButtonCheck(){
+        if (oneCardLeft && UNOButtonClicked) {
+            changeToNextPlayer();
+            refresh();
+        } else {
+            GameCore.getCurrentPlayer().addCard(GameCore.getCurrentPlayer().getCard(2));
+            changeToNextPlayer();
+            refresh();
+        }
     }
 
     @FXML
