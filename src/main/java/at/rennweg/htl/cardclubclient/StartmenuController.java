@@ -14,4 +14,8 @@ public class StartmenuController {
     protected void onSingleplayerButtonCLick() throws IOException {
         SingleplayerMenu.start();
     }
+
+    public void onOptionsButtonClick() throws IOException {
+        Options.start();
+    }
 }
