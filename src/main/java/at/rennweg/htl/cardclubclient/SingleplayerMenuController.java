@@ -25,6 +25,14 @@ public class SingleplayerMenuController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        // Reset the GameCore to default values
+        GameCore.reset();
+
+        // Set default values for input fields
+        timeForTurn.setText(String.valueOf(GameCore.getTurnDuration()));
+        startingCards.setText(String.valueOf(GameCore.getStartingCards()));
+        timeForTurn.setText(String.valueOf(amountBots));
+
         timeForTurn.focusedProperty().addListener((ov, oldV, newV) -> {
             if (!newV) {
                 checkTimeForTurn();

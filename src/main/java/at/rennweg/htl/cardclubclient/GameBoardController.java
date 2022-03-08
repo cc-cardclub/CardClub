@@ -235,6 +235,7 @@ public class GameBoardController implements Initializable {
 
     private void changeToNextPlayer() {
         GameCore.getCurrentPlayer().setFirstTry(true);
+
         if (GameCore.getPlayer(playerId).getAllCards().size() == 0) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
 

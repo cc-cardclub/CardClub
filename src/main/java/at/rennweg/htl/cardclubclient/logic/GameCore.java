@@ -7,13 +7,13 @@ import java.util.List;
 
 public class GameCore {
     private static List<Player> players = new ArrayList<>();
-    private static int startingCards = 7;
+    private static int startingCards;
     private static boolean gameFinished;
-    private static int currentPlayerID = 0;
-    private static int turnDuration = 20;
-    private static boolean clockwiseTurn = true;
-    public static boolean plus2and4CardsSelected = false;
-    public static boolean pauseProgressBar = false;
+    private static int currentPlayerID;
+    private static int turnDuration;
+    private static boolean clockwiseTurn;
+    public static boolean plus2and4CardsSelected;
+    public static boolean pauseProgressBar;
 
     public static void reverseDirection() {
         clockwiseTurn = !clockwiseTurn;
@@ -93,6 +93,17 @@ public class GameCore {
 
     public static int getTurnDuration() {
         return GameCore.turnDuration;
+    }
+
+    public static void reset() {
+        players = new ArrayList<>();
+        startingCards = 7;
+        gameFinished = false;
+        currentPlayerID = 0;
+        turnDuration = 20;
+        clockwiseTurn = true;
+        plus2and4CardsSelected = false;
+        pauseProgressBar = false;
     }
 
 }
