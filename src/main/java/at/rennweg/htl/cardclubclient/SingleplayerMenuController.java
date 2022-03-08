@@ -31,7 +31,7 @@ public class SingleplayerMenuController implements Initializable {
         // Set default values for input fields
         timeForTurn.setText(String.valueOf(GameCore.getTurnDuration()));
         startingCards.setText(String.valueOf(GameCore.getStartingCards()));
-        timeForTurn.setText(String.valueOf(amountBots));
+        players.setText(String.valueOf(amountBots));
 
         timeForTurn.focusedProperty().addListener((ov, oldV, newV) -> {
             if (!newV) {
