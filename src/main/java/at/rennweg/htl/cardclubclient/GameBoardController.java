@@ -73,6 +73,12 @@ public class GameBoardController implements Initializable {
             turnDuration--;
             if (oneCardLeft) {
                 UNOButtonTime--;
+                if(UNOButtonTime <= 0) {
+                    oneCardLeft = false;
+                    UNOButtonTime = 3;
+
+                }
+                System.out.println(UNOButtonTime);
             }
         }
     };
@@ -115,7 +121,6 @@ public class GameBoardController implements Initializable {
             if (GameCore.getCurrentPlayer().getAllCards().size() == 1) {
                 oneCardLeft = true;
                 UNOButton.setText("oneCard");
-                UNOButtonCheck();
             }
             if (selectedCard.getColor().equals("black")) {
                 try {
@@ -162,18 +167,18 @@ public class GameBoardController implements Initializable {
     protected void onUNOButtonClick() {
         UNOButton.setText("Clicked");
         UNOButtonClicked = true;
-        UNOButtonCheck();
     }
 
-    public void UNOButtonCheck(){
+    public void UNOButtonCheck() {
         if (oneCardLeft && UNOButtonClicked) {
             changeToNextPlayer();
             refresh();
         } else {
-            GameCore.getCurrentPlayer().addCard(GameCore.getCurrentPlayer().getCard(2));
+            GameCore.getCurrentPlayer().addCard(Deck.getCards(2));
             changeToNextPlayer();
             refresh();
         }
+        UNOButtonClicked = false;
     }
 
     @FXML

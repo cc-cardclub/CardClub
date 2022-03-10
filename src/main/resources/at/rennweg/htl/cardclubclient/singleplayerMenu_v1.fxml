@@ -18,19 +18,19 @@
                         <Font size="36.0" />
                     </font>
                 </Label>
-                <CheckBox layoutX="5.0" layoutY="157.0" mnemonicParsing="false" text="Karte 7">
+                <CheckBox fx:id="cardsSwitchingInPlayingDirectory" layoutX="5.0" layoutY="157.0" mnemonicParsing="false" text="Karte 7">
                     <tooltip>
-                        <Tooltip showDelay="0s" text="7-Karten mit beliebigem Mitspieler tauschen" />
+                        <Tooltip showDelay="0s" text="Karten mit beliebigem Mitspieler tauschen" />
                     </tooltip>
                 </CheckBox>
                 <CheckBox layoutX="5.0" layoutY="130.0" mnemonicParsing="false" text="Karte 1">
                     <tooltip>
-                        <Tooltip showDelay="0s" text="1-Karten im Uhrzeigersinn weitergeben" />
+                        <Tooltip showDelay="0s" text="Karten in Spielrichtung weitergeben" />
                     </tooltip>
                 </CheckBox>
                 <CheckBox layoutX="5.0" layoutY="100.0" mnemonicParsing="false" text="Karte 0">
                     <tooltip>
-                        <Tooltip showDelay="0s" text="0-Karten im Uhrzeigersinn weitergeben" />
+                        <Tooltip showDelay="0s" text="Karten in Spielrichtung weitergeben" />
                     </tooltip>
                 </CheckBox>
                 <CheckBox fx:id="plus2and4CardsSelected" layoutX="5.0" layoutY="184.0" mnemonicParsing="false" onAction="#checkBoxAction" text="+2 und +4">

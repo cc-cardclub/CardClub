@@ -19,6 +19,7 @@ public class SingleplayerMenuController implements Initializable {
     public TextField startingCards;
     public TextField players;
     public CheckBox plus2and4CardsSelected;
+    public CheckBox cardsSwitchingInPlayingDirectory;
     public TextArea textArea;
 
     private int amountBots = 1; // Standard amount
@@ -109,7 +110,10 @@ public class SingleplayerMenuController implements Initializable {
         if (plus2and4CardsSelected.isSelected()) {
             GameCore.plus2and4CardsSelected = true;
             textArea.setText(textArea.getText() + "\n" + "+2 darf auf +4");
-        } else {
+        }else if(cardsSwitchingInPlayingDirectory.isSelected()){
+            GameCore.cardsSwitchingInPlayingDirectory = true;
+            textArea.setText(textArea.getText() + "\n" + "Karten werden in Spielrichtung weitergegeben");
+        }else {
             textArea.setText("");
         }
     }
