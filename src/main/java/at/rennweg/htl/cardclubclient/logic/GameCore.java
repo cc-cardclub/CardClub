@@ -13,6 +13,7 @@ public class GameCore {
     private static int turnDuration;
     private static boolean clockwiseTurn;
     public static boolean plus2and4CardsSelected;
+    public static boolean cardsSwitchingInPlayingDirectory;
     public static boolean pauseProgressBar;
 
     public static void reverseDirection() {

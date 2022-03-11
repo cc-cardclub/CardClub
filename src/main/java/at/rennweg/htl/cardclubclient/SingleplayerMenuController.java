@@ -110,10 +110,14 @@ public class SingleplayerMenuController implements Initializable {
         if (plus2and4CardsSelected.isSelected()) {
             GameCore.plus2and4CardsSelected = true;
             textArea.setText(textArea.getText() + "\n" + "+2 darf auf +4");
-        }else if(cardsSwitchingInPlayingDirectory.isSelected()){
+        }else {
+            textArea.setText("");
+        }
+        //TODO: broken text area
+        if (cardsSwitchingInPlayingDirectory.isSelected()) {
             GameCore.cardsSwitchingInPlayingDirectory = true;
             textArea.setText(textArea.getText() + "\n" + "Karten werden in Spielrichtung weitergegeben");
-        }else {
+        } else {
             textArea.setText("");
         }
     }

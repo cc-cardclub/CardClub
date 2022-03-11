@@ -194,8 +194,8 @@ public class GameBoardController implements Initializable {
     }
 
     @FXML
-    protected void onExitButtonClick() {
-        System.exit(0);
+    protected void onExitButtonClick() throws IOException {
+        SingleplayerMenu.start();
     }
 
     private void refreshDiscardPile() {
