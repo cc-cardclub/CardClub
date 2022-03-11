@@ -13,7 +13,7 @@ import java.io.IOException;
  */
 public class Startmenu {
     /**
-     * for Main to launch the new stage after Singleplayer-Menu
+     * for Main to launch the stage at the beginning
      *
      * @throws IOException
      */
