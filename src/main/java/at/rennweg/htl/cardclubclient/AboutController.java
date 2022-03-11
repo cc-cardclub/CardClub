@@ -12,7 +12,15 @@ import java.awt.Desktop;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
+/**
+ * class to control the About-Layout
+ *
+ * @author Bernd Reither
+ */
 public class AboutController implements Initializable {
+    /**
+     * stores the Current Version of the game
+     */
     @FXML
     private Label currVersion;
 
