@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 /**
  * choose the color when you play a wild-card
  *
- * @author Lisa-Marie
+ * @author Lisa-Marie Hörmann
  */
 public class ColorPopUpController {
     /**
