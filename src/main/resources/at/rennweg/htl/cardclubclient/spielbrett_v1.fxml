@@ -19,13 +19,13 @@
                 <Image url="@img/UNOcardBack.png" />
             </image>
         </ImageView>
-        <Button fx:id="UNOButton" layoutX="510.0" layoutY="287.0" mnemonicParsing="false" onAction="#onUNOButtonClick" prefHeight="26.0" prefWidth="70.0" style="-fx-background-color: LIME;" text="UNO" />
+        <Button fx:id="unoButton" layoutX="510.0" layoutY="287.0" mnemonicParsing="false" onAction="#onUNOButtonClick" prefHeight="26.0" prefWidth="70.0" style="-fx-background-color: LIME;" text="UNO" />
         <ProgressBar fx:id="progressBar" layoutX="260.0" layoutY="292.0" prefWidth="200.0" progress="0" />
         <Label fx:id="currentPlayer" alignment="CENTER" layoutX="155.0" layoutY="26.0" prefHeight="26.0" prefWidth="430.0" text="Bot 2" textAlignment="CENTER" wrapText="true">
          <font>
             <Font size="16.0" />
          </font></Label>
-        <ScrollPane fx:id="ScrollPane" layoutX="87.0" layoutY="322.0" prefHeight="148.0" prefWidth="547.0">
+        <ScrollPane fx:id="scrollPane" layoutX="87.0" layoutY="322.0" prefHeight="148.0" prefWidth="547.0">
             <content>
                 <HBox fx:id="handCards" alignment="CENTER" layoutY="16.0" prefHeight="132.0" prefWidth="547.0" spacing="10.0">
                     <padding>
@@ -39,6 +39,6 @@
             </content>
         </ScrollPane>
       <Button fx:id="continueButton" layoutX="145.0" layoutY="288.0" mnemonicParsing="false" onAction="#onContinueButtonClick" text="Continue" />
-      <Button fx:id="WildColorShower" layoutX="324.0" layoutY="250.0" mnemonicParsing="false" text="Play Color" />
+      <Button fx:id="wildColorShower" layoutX="324.0" layoutY="250.0" mnemonicParsing="false" text="Play Color" />
     </children>
 </AnchorPane>

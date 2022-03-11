@@ -2,7 +2,6 @@ package at.rennweg.htl.cardclubclient;
 
 import at.rennweg.htl.cardclubclient.cards.Card;
 import at.rennweg.htl.cardclubclient.cards.Deck;
-import at.rennweg.htl.cardclubclient.cards.Player;
 import at.rennweg.htl.cardclubclient.logic.Bot;
 import at.rennweg.htl.cardclubclient.logic.GameCore;
 import javafx.application.Platform;
@@ -12,7 +11,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -22,41 +24,110 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.*;
+import java.util.Comparator;
+import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
 
+/**
+ * class to control the GameBoard's buttons, Cards and more
+ *
+ * @author Lisa-Marie Hörmann, Bernd Reither, Mattias Burkard
+ */
 public class GameBoardController implements Initializable {
+
+    /**
+     * Label to show whose turn it is
+     */
     @FXML
     private Label currentPlayer;
+    /**
+     * imageView to show which card is on the discardPile
+     */
     @FXML
     private ImageView discardPileImg;
+    /**
+     * button for the UNO (one card left) function
+     */
     @FXML
-    private Button UNOButton;
+    private Button unoButton;
+    /**
+     * HBox to store the handCards of players
+     */
     @FXML
     private HBox handCards;
+    /**
+     * Button to show which color you have to play
+     */
     @FXML
-    public Button WildColorShower;
+    public Button wildColorShower;
+    /**
+     * ScrollPane outside th HBox to scroll threw your HandCards
+     */
     @FXML
-    private ScrollPane ScrollPane;
+    private javafx.scene.control.ScrollPane scrollPane;
+    /**
+     * progressBar to show how much time you have left for your turn
+     */
     @FXML
     private ProgressBar progressBar;
+    /**
+     * button to speed up the Bot Turn and switch to next player if you can't draw cards
+     */
     @FXML
     private Button continueButton;
 
+    /**
+     * which card is selected
+     */
     private Card selectedCard;
+    /**
+     * which card is selected-image
+     */
     private ImageView selectedCardImg;
+    /**
+     * which player's turn is it
+     */
     private int playerId;
 
-    private int UNOButtonTime = 3;
+    /**
+     * how many seconds do you have to click the UNO-Button
+     */
+    private final int unoButtonTime = 3;
+    /**
+     * count from unoButtonTime to zero
+     */
+    private int countUnoButtonTime = unoButtonTime;
+    /**
+     * does the player only have one card left?
+     */
     private boolean oneCardLeft = false;
-    private boolean UNOButtonClicked = false;
+    /**
+     * has the player clicked the UNO-Button?
+     */
+    private boolean unoButtonClicked = false;
 
+    /**
+     * final variable for turn duration
+     */
+    private final int botTurns = 10;
+
+    /**
+     * Timer for the player's turn
+     */
     private final Timer timer = new Timer();
+    /**
+     * turn-duration for player's turn
+     */
     private int turnDuration = GameCore.getTurnDuration();
 
+    /**
+     * Timer Task for player's turn
+     */
     private final TimerTask counter = new TimerTask() {
         @Override
         public void run() {
-            if (turnDuration < GameCore.getTurnDuration() - (GameCore.getTurnDuration() / 10)
+            if (turnDuration < GameCore.getTurnDuration() - (GameCore.getTurnDuration() / botTurns)
                     && GameCore.getCurrentPlayer() instanceof Bot) {
                 Platform.runLater(() -> ((Bot) GameCore.getCurrentPlayer()).botTurn());
             }
@@ -72,28 +143,36 @@ public class GameBoardController implements Initializable {
             progressBar.setProgress((double) turnDuration / GameCore.getTurnDuration());
             turnDuration--;
             if (oneCardLeft) {
-                UNOButtonTime--;
-                if(UNOButtonTime <= 0) {
+                countUnoButtonTime--;
+                if (countUnoButtonTime <= 0) {
                     oneCardLeft = false;
-                    UNOButtonTime = 3;
+                    countUnoButtonTime = unoButtonTime;
 
                 }
-                System.out.println(UNOButtonTime);
+                System.out.println(countUnoButtonTime);
             }
         }
     };
 
+    /**
+     * start the timer, refresh cards when GameBoard-Controller is called
+     *
+     * @param location
+     * @param resources
+     */
     @FXML
     public void initialize(URL location, ResourceBundle resources) {
+        final int oneSecond = 1000;
         playerId = GameCore.getCurrentPlayerID();
 
-        timer.schedule(counter, 0, 1000); // wait 0ms, every 1s
+        timer.schedule(counter, 0, oneSecond); // wait 0ms, every 1s
         if (GameCore.pauseProgressBar) {
             timer.cancel();
         }
 
         currentPlayer.setText("Derzeitiger Spieler: Spieler" + playerId
-                + " (" + GameCore.getNextPlayer().getClass().getSimpleName() + " hat " + GameCore.getNextPlayer().getAllCards().size() + " Karten)");
+                + " (" + GameCore.getNextPlayer().getClass().getSimpleName() + " hat "
+                + GameCore.getNextPlayer().getAllCards().size() + " Karten)");
 
         refreshDiscardPile();
         refreshHandCards();
@@ -120,18 +199,19 @@ public class GameBoardController implements Initializable {
             refreshHandCards();
             if (GameCore.getCurrentPlayer().getAllCards().size() == 1) {
                 oneCardLeft = true;
-                UNOButton.setText("oneCard");
+                unoButton.setText("oneCard");
             }
             if (selectedCard.getColor().equals("black")) {
                 try {
                     Stage stage = new Stage();
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("farbwahlPopUp_v1.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource(
+                            "farbwahlPopUp_v1.fxml"));
                     Parent parent = loader.load();
                     Scene scene = new Scene(parent);
                     stage.setScene(scene);
                     stage.showAndWait();
                     String test = Deck.getLastCard().getColor();
-                    WildColorShower.setStyle("-fx-background-color:" + test + ";");
+                    wildColorShower.setStyle("-fx-background-color:" + test + ";");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -155,8 +235,8 @@ public class GameBoardController implements Initializable {
         }
 
         selectedCardImg = (ImageView) event.getSource();
-
-        DropShadow ds = new DropShadow(15, Color.BLACK);
+        final int shadowRadius = 15;
+        DropShadow ds = new DropShadow(shadowRadius, Color.BLACK);
         selectedCardImg.setEffect(ds);
 
         int index = handCards.getChildren().indexOf(selectedCardImg);
@@ -165,20 +245,20 @@ public class GameBoardController implements Initializable {
 
     @FXML
     protected void onUNOButtonClick() {
-        UNOButton.setText("Clicked");
-        UNOButtonClicked = true;
+        unoButton.setText("Clicked");
+        unoButtonClicked = true;
     }
 
-    public void UNOButtonCheck() {
-        if (oneCardLeft && UNOButtonClicked) {
-            changeToNextPlayer();
-            refresh();
-        } else {
+    /**
+     * check if the UNO-Button is used the right way
+     */
+    public void unoButtonCheck() {
+        if (!oneCardLeft || !unoButtonClicked) {
             GameCore.getCurrentPlayer().addCard(Deck.getCards(2));
-            changeToNextPlayer();
-            refresh();
         }
-        UNOButtonClicked = false;
+        changeToNextPlayer();
+        refresh();
+        unoButtonClicked = false;
     }
 
     @FXML
@@ -195,6 +275,7 @@ public class GameBoardController implements Initializable {
 
     @FXML
     protected void onExitButtonClick() throws IOException {
+        timer.cancel();
         Startmenu.start();
     }
 
@@ -205,17 +286,20 @@ public class GameBoardController implements Initializable {
         discardPileImg.setImage(img);
 
         String color = Deck.getLastCard().getColor();
-        WildColorShower.setStyle("-fx-background-color:" + color + ";");
+        wildColorShower.setStyle("-fx-background-color:" + color + ";");
     }
 
     private void refreshHandCards() {
+        final double cardHeight = 100D;
+        final double cardWidth = 70D;
         handCards.getChildren().clear();
 
         if (GameCore.getCurrentPlayer() instanceof Bot) {
             for (int i = 0; i < GameCore.getCurrentPlayer().getAllCards().size(); i++) {
-                ImageView cardImg = new ImageView(String.valueOf(GameBoard.class.getResource("img/UNOcardBack.png")));
-                cardImg.setFitHeight(100D);
-                cardImg.setFitWidth(70D);
+                ImageView cardImg = new ImageView(String.valueOf(
+                        GameBoard.class.getResource("img/UNOcardBack.png")));
+                cardImg.setFitHeight(cardHeight);
+                cardImg.setFitWidth(cardWidth);
 
                 handCards.getChildren().add(cardImg);
             }
@@ -224,16 +308,14 @@ public class GameBoardController implements Initializable {
             GameCore.getCurrentPlayer().getAllCards().sort(Comparator.comparing(Card::getTexture));
 
             for (Card card : GameCore.getPlayer(playerId).getAllCards()) {
-                ImageView cardImg = new ImageView(String.valueOf(GameBoard.class.getResource(card.getTexture())));
-                cardImg.setFitHeight(100D);
-                cardImg.setFitWidth(70D);
+                ImageView cardImg = new ImageView(String.valueOf(
+                        GameBoard.class.getResource(card.getTexture())));
+                cardImg.setFitHeight(cardHeight);
+                cardImg.setFitWidth(cardWidth);
 
                 cardImg.setOnMouseClicked(this::onCardSelect);
 
                 handCards.getChildren().add(cardImg);
-            }
-            if (GameCore.getCurrentPlayer().getAllCards().size() > 7) {
-                ScrollPane.hvalueProperty().bind(handCards.widthProperty());
             }
         }
     }
@@ -266,16 +348,23 @@ public class GameBoardController implements Initializable {
             playerId = GameCore.getCurrentPlayerID();
 
             currentPlayer.setText("Derzeitiger Spieler: Spieler" + playerId
-                    + " (" + GameCore.getNextPlayer().getClass().getSimpleName() + " hat " + GameCore.getNextPlayer().getAllCards().size() + " Karten)");
+                    + " (" + GameCore.getNextPlayer().getClass().getSimpleName() + " hat "
+                    + GameCore.getNextPlayer().getAllCards().size() + " Karten)");
 
         }
     }
 
+    /**
+     * end the Bot's turn
+     */
     public void endBotTurn() {
         changeToNextPlayer();
         refresh();
     }
 
+    /**
+     * refresh HandCards and DiscardPile at once
+     */
     public void refresh() {
         refreshHandCards();
         refreshDiscardPile();
