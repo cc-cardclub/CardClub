@@ -152,10 +152,10 @@ public class SingleplayerMenuController implements Initializable {
     public void checkBox2and4() {
         if (plus2and4CardsSelected.isSelected()) {
             GameCore.plus2and4CardsSelected = true;
-            textArea.setText(textArea.getText() + "\n" + "+2 darf auf +4");
+            textArea.setText(textArea.getText() + "\n" + "+2 darf auf +4 gelegt werden");
         } else if (!plus2and4CardsSelected.isSelected()) {
             GameCore.plus2and4CardsSelected = false;
-            textArea.setText(textArea.getText().replace("\n" + "+2 darf auf +4", ""));
+            textArea.setText(textArea.getText().replace("\n" + "+2 darf auf +4 gelegt werden", ""));
         }
     }
 
