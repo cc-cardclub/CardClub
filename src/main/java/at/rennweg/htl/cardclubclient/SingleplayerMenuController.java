@@ -4,10 +4,8 @@ import at.rennweg.htl.cardclubclient.cards.Deck;
 import at.rennweg.htl.cardclubclient.cards.Player;
 import at.rennweg.htl.cardclubclient.logic.Bot;
 import at.rennweg.htl.cardclubclient.logic.GameCore;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -16,14 +14,39 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * class to control the Singleplayer Menu's buttons
+ *
+ * @author Lisa-Marie Hörmann, Bernd Reither, Mattias Burkard
+ */
 public class SingleplayerMenuController implements Initializable {
+    /**
+     * TextField how many seconds you have for one turn
+     */
     public TextField timeForTurn;
+    /**
+     * TextField how many starting Cards does everyone get
+     */
     public TextField startingCards;
+    /**
+     * TextField how many Bots you want to play against
+     */
     public TextField players;
+    /**
+     * Checkbox for extra rule
+     */
     public CheckBox plus2and4CardsSelected;
+    /**
+     * Checkbox for extra rule
+     */
     public CheckBox cardsSwitchingInPlayingDirectory;
+    /**
+     * TextArea to show which rules you want to play with
+     */
     public TextArea textArea;
-
+    /**
+     * standard amount of Bots you play against
+     */
     private int amountBots = 1; // Standard amount
 
     @Override
@@ -94,10 +117,11 @@ public class SingleplayerMenuController implements Initializable {
 
     @FXML
     protected void howManyPlayers() {
+        final int maximumEnemy = 3;
         players.setStyle("-fx-background-color: WHITE;");
         try {
             amountBots = Integer.parseInt(players.getText());
-            if (amountBots > 3) {
+            if (amountBots > maximumEnemy) {
                 throw new NumberFormatException("Too much Players");
             }
         } catch (NumberFormatException e) {
@@ -108,23 +132,40 @@ public class SingleplayerMenuController implements Initializable {
     }
 
     @FXML
-    protected void checkBoxAction() {
-        if (plus2and4CardsSelected.isSelected()) {
-            GameCore.plus2and4CardsSelected = true;
-            textArea.setText(textArea.getText() + "\n" + "+2 darf auf +4");
-        }else {
-            textArea.setText("");
-        }
-        //TODO: broken text area
+    protected void checkBoxCard1() {
+
         if (cardsSwitchingInPlayingDirectory.isSelected()) {
             GameCore.cardsSwitchingInPlayingDirectory = true;
-            textArea.setText(textArea.getText() + "\n" + "Karten werden in Spielrichtung weitergegeben");
-        } else {
-            textArea.setText("");
+            textArea.setText(textArea.getText()
+                    + "\n" + "Karten werden in Spielrichtung weitergegeben");
+        } else if (!cardsSwitchingInPlayingDirectory.isSelected()) {
+            GameCore.cardsSwitchingInPlayingDirectory = false;
+            textArea.setText(textArea.getText().replaceAll("\n"
+                    + "Karten werden in Spielrichtung weitergegeben", ""));
         }
     }
 
+    /**
+     * set the text in the TextArea for the plus2and4CardsSelected Checkbox
+     */
+    @FXML
+    public void checkBox2and4() {
+        if (plus2and4CardsSelected.isSelected()) {
+            GameCore.plus2and4CardsSelected = true;
+            textArea.setText(textArea.getText() + "\n" + "+2 darf auf +4");
+        } else if (!plus2and4CardsSelected.isSelected()) {
+            GameCore.plus2and4CardsSelected = false;
+            textArea.setText(textArea.getText().replace("\n" + "+2 darf auf +4", ""));
+        }
+    }
+
+    /**
+     * Event for button to return to the start menu
+     *
+     * @throws IOException
+     */
     public void backToStartMenu() throws IOException {
         Startmenu.start();
     }
+
 }

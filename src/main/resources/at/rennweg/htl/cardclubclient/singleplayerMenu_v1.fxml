@@ -29,7 +29,7 @@
                     </font>
                 </CheckBox>
                 <CheckBox fx:id="cardsSwitchingInPlayingDirectory" layoutX="5.0" layoutY="130.0" mnemonicParsing="false"
-                          onAction="#checkBoxAction" text="Karte 1">
+                          onAction="#checkBoxCard1" text="Karte 1">
                     <tooltip>
                         <Tooltip showDelay="0s" text="Karten in Spielrichtung weitergeben"/>
                     </tooltip>
@@ -46,7 +46,7 @@
                     </font>
                 </CheckBox>
                 <CheckBox fx:id="plus2and4CardsSelected" layoutX="5.0" layoutY="184.0" mnemonicParsing="false"
-                          onAction="#checkBoxAction" text="+2 und +4">
+                          onAction="#checkBox2and4" text="+2 und +4">
                     <tooltip>
                         <Tooltip showDelay="0s" text="+2 und +4 aufeinanderlegen dürfen"/>
                     </tooltip>
