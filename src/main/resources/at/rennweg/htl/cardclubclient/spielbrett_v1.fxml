@@ -8,7 +8,10 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="740.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.rennweg.htl.cardclubclient.GameBoardController">
     <children>
-        <Button fx:id="exitButton" layoutX="690.0" layoutY="14.0" onAction="#onExitButtonClick" text="exit" />
+        <Button fx:id="exitButton" layoutX="690.0" layoutY="14.0" onAction="#onExitButtonClick" text="exit">
+         <font>
+            <Font name="Franklin Gothic Medium" size="14.0" />
+         </font></Button>
         <ImageView fx:id="discardPileImg" fitHeight="124.0" fitWidth="70.0" layoutX="253.0" layoutY="103.0" onMouseClicked="#onDiscardPile" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@img/cardClubCard.png" />
@@ -19,11 +22,14 @@
                 <Image url="@img/UNOcardBack.png" />
             </image>
         </ImageView>
-        <Button fx:id="unoButton" layoutX="510.0" layoutY="287.0" mnemonicParsing="false" onAction="#onUNOButtonClick" prefHeight="26.0" prefWidth="70.0" style="-fx-background-color: LIME;" text="UNO" />
-        <ProgressBar fx:id="progressBar" layoutX="260.0" layoutY="292.0" prefWidth="200.0" progress="0" />
-        <Label fx:id="currentPlayer" alignment="CENTER" layoutX="155.0" layoutY="26.0" prefHeight="26.0" prefWidth="430.0" text="Bot 2" textAlignment="CENTER" wrapText="true">
+        <Button fx:id="unoButton" layoutX="510.0" layoutY="287.0" mnemonicParsing="false" onAction="#onUNOButtonClick" prefHeight="26.0" prefWidth="70.0" style="-fx-background-color: LIME;" text="UNO">
          <font>
-            <Font size="16.0" />
+            <Font name="Franklin Gothic Medium" size="14.0" />
+         </font></Button>
+        <ProgressBar fx:id="progressBar" layoutX="260.0" layoutY="292.0" prefWidth="200.0" progress="0" />
+        <Label fx:id="currentPlayer" alignment="CENTER" layoutX="155.0" layoutY="26.0" prefHeight="26.0" prefWidth="430.0" text="Bot" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font name="Franklin Gothic Medium" size="20.0" />
          </font></Label>
         <ScrollPane fx:id="scrollPane" layoutX="87.0" layoutY="322.0" prefHeight="148.0" prefWidth="547.0">
             <content>
@@ -38,7 +44,13 @@
                 </HBox>
             </content>
         </ScrollPane>
-      <Button fx:id="continueButton" layoutX="145.0" layoutY="288.0" mnemonicParsing="false" onAction="#onContinueButtonClick" text="Continue" />
-      <Button fx:id="wildColorShower" layoutX="324.0" layoutY="250.0" mnemonicParsing="false" text="Play Color" />
+      <Button fx:id="continueButton" layoutX="145.0" layoutY="288.0" mnemonicParsing="false" onAction="#onContinueButtonClick" text="Continue">
+         <font>
+            <Font name="Franklin Gothic Medium" size="14.0" />
+         </font></Button>
+      <Button fx:id="wildColorShower" layoutX="324.0" layoutY="250.0" mnemonicParsing="false" text="Play Color">
+         <font>
+            <Font name="Franklin Gothic Medium" size="14.0" />
+         </font></Button>
     </children>
 </AnchorPane>

@@ -1,24 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.rennweg.htl.cardclubclient.StartmenuController">
    <children>
-      <Button layoutX="82.0" layoutY="149.0" mnemonicParsing="false" onAction="#onSingleplayerButtonCLick" prefHeight="36.0" prefWidth="170.0" text="Singleplayer" />
-      <Button layoutX="347.0" layoutY="149.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="170.0" text="Multiplayer" />
-      <Button layoutX="82.0" layoutY="233.0" mnemonicParsing="false" onAction="#onOptionsButtonClick" prefHeight="36.0" prefWidth="170.0" text="Options" />
-      <Button layoutX="347.0" layoutY="233.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="170.0" text="(Leaderboard)" />
+      <Button layoutX="82.0" layoutY="149.0" mnemonicParsing="false" onAction="#onSingleplayerButtonCLick" prefHeight="36.0" prefWidth="170.0" text="Singleplayer">
+         <font>
+            <Font name="Franklin Gothic Medium" size="20.0" />
+         </font></Button>
+      <Button layoutX="347.0" layoutY="149.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="170.0" text="Multiplayer">
+         <font>
+            <Font name="Franklin Gothic Medium" size="20.0" />
+         </font></Button>
+      <Button layoutX="82.0" layoutY="233.0" mnemonicParsing="false" onAction="#onOptionsButtonClick" prefHeight="36.0" prefWidth="170.0" text="Options">
+         <font>
+            <Font name="Franklin Gothic Medium" size="20.0" />
+         </font></Button>
+      <Button layoutX="347.0" layoutY="233.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="170.0" text="(Leaderboard)">
+         <font>
+            <Font name="Franklin Gothic Medium" size="20.0" />
+         </font></Button>
       <Button fx:id="startmenuAbout" layoutX="234.0" layoutY="305.0" mnemonicParsing="false" onAction="#onAboutButtonClick" prefHeight="36.0" prefWidth="131.0" style="-fx-background-color: Blue;" text="About" textFill="WHITE">
          <font>
-            <Font size="20.0" />
+            <Font name="Franklin Gothic Medium" size="20.0" />
          </font>
       </Button>
-      <Text layoutX="198.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CardClub">
-         <font>
-            <Font size="50.0" />
-         </font>
-      </Text>
+      <ImageView fitHeight="118.0" fitWidth="369.0" layoutX="115.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@img/text-logo.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
