@@ -4,8 +4,10 @@ import at.rennweg.htl.cardclubclient.cards.Deck;
 import at.rennweg.htl.cardclubclient.cards.Player;
 import at.rennweg.htl.cardclubclient.logic.Bot;
 import at.rennweg.htl.cardclubclient.logic.GameCore;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -120,5 +122,9 @@ public class SingleplayerMenuController implements Initializable {
         } else {
             textArea.setText("");
         }
+    }
+
+    public void backToStartMenu() throws IOException {
+        Startmenu.start();
     }
 }
