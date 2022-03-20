@@ -93,11 +93,11 @@ public class GameBoardController implements Initializable {
     /**
      * how many seconds do you have to click the UNO-Button
      */
-    private final int unoButtonTime = 3;
+    private static final int UNO_BUTTON_TIME = 3;
     /**
      * count from unoButtonTime to zero
      */
-    private int countUnoButtonTime = unoButtonTime;
+    private int countUnoButtonTime = UNO_BUTTON_TIME;
     /**
      * does the player only have one card left?
      */
@@ -145,9 +145,24 @@ public class GameBoardController implements Initializable {
             if (oneCardLeft) {
                 countUnoButtonTime--;
                 if (countUnoButtonTime <= 0) {
-                    oneCardLeft = false;
-                    countUnoButtonTime = unoButtonTime;
+                    if (!unoButtonClicked) {
+                        Platform.runLater(() -> {
+                            oneCardLeft = false;
+                            countUnoButtonTime = UNO_BUTTON_TIME;
+                            unoButtonCheck();
+                        });
+                    } else {
+                        unoButtonClicked = false;
+                    }
 
+                    Platform.runLater(() -> unoButton.setText("UNO"));
+                }
+                if (unoButtonClicked) {
+                    Platform.runLater(() -> {
+                        oneCardLeft = false;
+                        changeToNextPlayer();
+                        refresh();
+                    });
                 }
                 System.out.println(countUnoButtonTime);
             }
