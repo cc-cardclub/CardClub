@@ -81,7 +81,7 @@ public class Bot extends Player {
         // IF the last card would make the bot have to draw cards, it'll try to prevent that
         if (lastCard.getNumber().equals("draw2") || lastCard.getNumber().equals("wildDraw4")) {
             if (hasSameNumber) {
-                Deck.playCard(this, getRandomCardWithNumber(lastCard.getNumber()));
+                Deck.playCard(this, getRandomCardWithNumber(lastCard.getNumber()), color);
                 firstTry = true;
                 GameBoard.endBotTurn();
                 return;
