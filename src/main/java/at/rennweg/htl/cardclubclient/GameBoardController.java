@@ -352,6 +352,7 @@ public class GameBoardController implements Initializable {
 
         if (GameCore.isGameFinished()) {
             try {
+                timer.cancel();
                 Startmenu.start();
             } catch (IOException e) {
                 e.printStackTrace();
