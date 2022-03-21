@@ -12,7 +12,7 @@ In the single player mode it is possible to play against a bot and in the option
 
 ### Built with
 
-The whole GUI is built with JavaFX and SceneBuilder to get a wide platform support.
+The whole GUI is built with [JavaFX](https://openjfx.io/) and SceneBuilder to get a wide platform support.
 
 
 
