@@ -226,8 +226,13 @@ public class GameBoardController implements Initializable {
                     Scene scene = new Scene(parent);
                     stage.setScene(scene);
                     stage.showAndWait();
-                    String test = Deck.getLastCard().getColor();
-                    wildColorShower.setStyle("-fx-background-color:" + test + ";");
+                    String color = Deck.getLastCard().getColor();
+
+                    if (color.equals("yellow")) {
+                        wildColorShower.setStyle("-fx-background-color: #FF931E;");
+                    } else {
+                        wildColorShower.setStyle("-fx-background-color: " + color + ";");
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -302,7 +307,12 @@ public class GameBoardController implements Initializable {
         discardPileImg.setImage(img);
 
         String color = Deck.getLastCard().getColor();
-        wildColorShower.setStyle("-fx-background-color:" + color + ";");
+
+        if (color.equals("yellow")) {
+            wildColorShower.setStyle("-fx-background-color: #FF931E;");
+        } else {
+            wildColorShower.setStyle("-fx-background-color: " + color + ";");
+        }
     }
 
     private void refreshHandCards() {
