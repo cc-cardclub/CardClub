@@ -160,6 +160,7 @@ public class GameBoardController implements Initializable {
                 if (unoButtonClicked) {
                     Platform.runLater(() -> {
                         oneCardLeft = false;
+                        countUnoButtonTime = UNO_BUTTON_TIME;
                         changeToNextPlayer();
                         refresh();
                     });
