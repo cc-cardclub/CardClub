@@ -182,4 +182,18 @@ public class Bot extends Player {
                 .entrySet().stream().max(Map.Entry.comparingByValue())
                 .map(Map.Entry::getKey).orElse(null);
     }
+
+    /**
+     * Make the bot press the uno button
+     */
+    public void unoButtonPress() {
+        // TODO: Adjust percentage based on difficulty
+        Random random = new Random();
+        final int fullPercentage = 100;
+        final int failThreshold = 90;
+
+        if (random.nextInt(fullPercentage) + 1 > failThreshold) {
+            GameCore.getCurrentPlayer().addCard(Deck.getCards(2));
+        }
+    }
 }

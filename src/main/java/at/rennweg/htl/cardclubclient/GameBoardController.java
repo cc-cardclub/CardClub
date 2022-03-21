@@ -208,7 +208,6 @@ public class GameBoardController implements Initializable {
 
     @FXML
     protected void onDiscardPile() {
-        // TODO message if turn was invalid
         if (selectedCard != null) {
 
             Deck.playCard(GameCore.getPlayer(playerId), selectedCard);
@@ -375,6 +374,9 @@ public class GameBoardController implements Initializable {
      * end the Bot's turn
      */
     public void endBotTurn() {
+        if (GameCore.getCurrentPlayer().getAllCards().size() == 1) {
+            ((Bot) GameCore.getCurrentPlayer()).unoButtonPress();
+        }
         changeToNextPlayer();
         refresh();
     }
