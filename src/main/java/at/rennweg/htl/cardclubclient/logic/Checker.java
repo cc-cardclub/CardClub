@@ -1,6 +1,5 @@
 package at.rennweg.htl.cardclubclient.logic;
 
-import at.rennweg.htl.cardclubclient.GameBoardController;
 import at.rennweg.htl.cardclubclient.cards.Card;
 import at.rennweg.htl.cardclubclient.cards.Deck;
 import at.rennweg.htl.cardclubclient.cards.Player;
@@ -37,6 +36,13 @@ public class Checker {
         return false;
     }
 
+    /**
+     * Check if a card could be played
+     *
+     * @param currentCard  card to play
+     * @param previousCard previously played card
+     * @return whether the turn is valid
+     */
     public static boolean cardValid(Card currentCard, Card previousCard) {
         // Check for the extra rule, which allows more possibilities with draw cards
         if (GameCore.plus2and4CardsSelected && previousCard.getNumber().equals("wildDraw4")
@@ -55,13 +61,15 @@ public class Checker {
         }
 
         // Test if the cards have an equal color
-        if (currentCard.getColor().equals(previousCard.getColor())) {
-            return true;
-        }
-
-        return false;
+        return currentCard.getColor().equals(previousCard.getColor());
     }
 
+    /**
+     * Check if a play could play a card
+     *
+     * @param playerCards cards of the player
+     * @return whether the player has any possible turns
+     */
     public static boolean canPlay(Player playerCards) {
         boolean canPlay = false;
         for (Card card : playerCards.getAllCards()) {

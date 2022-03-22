@@ -23,13 +23,16 @@ public class Deck {
     /**
      * Already played cards
      */
-    private static final List<Card> playedCards = new ArrayList<>();
+    private static final List<Card> PLAYED_CARDS = new ArrayList<>();
 
     /**
      * Amount of cards that the next player needs to draw
      */
     private static int drawAmount = 0;
 
+    /**
+     * Make the player draw cards if needed
+     */
     public static void drawNeeded() {
         boolean hasSameNumber = false;
 
@@ -128,7 +131,7 @@ public class Deck {
                 }
             }
         }
-        playedCards.add(card);
+        PLAYED_CARDS.add(card);
         playerCards.removeCard(card);
         if (card.isSpecial()) {
             switch (card.getNumber()) {
@@ -149,6 +152,8 @@ public class Deck {
                         GameCore.reverseDirection();
                     }
                     break;
+                default:
+                    break;
             }
         }
     }
@@ -158,10 +163,10 @@ public class Deck {
      * @return the last played card
      */
     public static Card getLastCard() {
-        if (playedCards.size() == 0) {
+        if (PLAYED_CARDS.size() == 0) {
             return null;
         }
-        return playedCards.get(playedCards.size() - 1);
+        return PLAYED_CARDS.get(PLAYED_CARDS.size() - 1);
     }
 
     /**
@@ -172,9 +177,9 @@ public class Deck {
         if (remainingCards.size() < 1) {
             List<Card> shuffleThis = new ArrayList<>();
 
-            for (int i = 0; i < playedCards.size() - 1; i++) {
-                shuffleThis.add(playedCards.get(0));
-                playedCards.remove(0);
+            for (int i = 0; i < PLAYED_CARDS.size() - 1; i++) {
+                shuffleThis.add(PLAYED_CARDS.get(0));
+                PLAYED_CARDS.remove(0);
             }
 
             remainingCards.addAll(shuffleCards(shuffleThis));
@@ -217,7 +222,7 @@ public class Deck {
         }
 
         remainingCards = shuffleCards(deck);
-        playedCards.add(drawCard());
+        PLAYED_CARDS.add(drawCard());
     }
 
     private static List<Card> getAllCardsWithColor(String color) {
