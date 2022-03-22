@@ -1,6 +1,8 @@
 package at.rennweg.htl.cardclubclient.logic;
 
 import at.rennweg.htl.cardclubclient.cards.Card;
+import at.rennweg.htl.cardclubclient.cards.Deck;
+import at.rennweg.htl.cardclubclient.cards.Player;
 import javafx.scene.control.Alert;
 
 /**
@@ -17,6 +19,24 @@ public class Checker {
      * @return if the turn is valid
      */
     public static boolean checkTurnValidity(Card currentCard, Card previousCard) {
+        if (cardValid(currentCard, previousCard)) {
+            return true;
+        }
+
+        // Show alert as the turn is invalid
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
+        GameCore.pauseProgressBar = true;
+        alert.setTitle("Information");
+        alert.setHeaderText("Zug kann nicht ausgeführt werden! Nicht zulässige Karte gelegt!");
+        alert.setContentText("Zug ist beendet, 2 Strafkarten");
+
+        alert.showAndWait();
+
+        return false;
+    }
+
+    public static boolean cardValid(Card currentCard, Card previousCard) {
         // Check for the extra rule, which allows more possibilities with draw cards
         if (GameCore.plus2and4CardsSelected && previousCard.getNumber().equals("wildDraw4")
                 && currentCard.getNumber().equals("draw2")) {
@@ -38,16 +58,17 @@ public class Checker {
             return true;
         }
 
-        // Show alert as the turn is invalid
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-
-        GameCore.pauseProgressBar = true;
-        alert.setTitle("Information");
-        alert.setHeaderText("Zug kann nicht ausgeführt werden! Nicht zulässige Karte gelegt!");
-        alert.setContentText("Zug ist beendet, 2 Strafkarten");
-
-        alert.showAndWait();
-
         return false;
+    }
+
+    public static boolean canPlay(Player playerCards) {
+        boolean canPlay = false;
+        for (Card card : playerCards.getAllCards()) {
+            if (cardValid(card, Deck.getLastCard())) {
+                canPlay = true;
+                break;
+            }
+        }
+        return canPlay;
     }
 }

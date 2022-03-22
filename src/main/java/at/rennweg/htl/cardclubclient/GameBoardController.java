@@ -3,6 +3,7 @@ package at.rennweg.htl.cardclubclient;
 import at.rennweg.htl.cardclubclient.cards.Card;
 import at.rennweg.htl.cardclubclient.cards.Deck;
 import at.rennweg.htl.cardclubclient.logic.Bot;
+import at.rennweg.htl.cardclubclient.logic.Checker;
 import at.rennweg.htl.cardclubclient.logic.GameCore;
 import javafx.application.Platform;
 import javafx.event.Event;
@@ -202,7 +203,16 @@ public class GameBoardController implements Initializable {
         if (GameCore.getCurrentPlayer().getFirstTry()) {
             GameCore.getCurrentPlayer().addCard(Deck.drawCard());
             refreshHandCards();
-            GameCore.getCurrentPlayer().setFirstTry(false);
+            if (Checker.canPlay(GameCore.getCurrentPlayer())) {
+                GameCore.getCurrentPlayer().setFirstTry(false);
+            } else {
+                selectedCard = null;
+                if (!oneCardLeft) {
+                    changeToNextPlayer();
+                }
+                refreshHandCards();
+                refreshDiscardPile();
+            }
         }
     }
 
