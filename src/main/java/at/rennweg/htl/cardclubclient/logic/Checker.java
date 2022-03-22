@@ -1,5 +1,6 @@
 package at.rennweg.htl.cardclubclient.logic;
 
+import at.rennweg.htl.cardclubclient.GameBoardController;
 import at.rennweg.htl.cardclubclient.cards.Card;
 import at.rennweg.htl.cardclubclient.cards.Deck;
 import at.rennweg.htl.cardclubclient.cards.Player;
@@ -24,15 +25,15 @@ public class Checker {
         }
 
         // Show alert as the turn is invalid
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-
         GameCore.pauseProgressBar = true;
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Information");
         alert.setHeaderText("Zug kann nicht ausgeführt werden! Nicht zulässige Karte gelegt!");
         alert.setContentText("Zug ist beendet, 2 Strafkarten");
 
         alert.showAndWait();
-
+        GameCore.pauseProgressBar = false;
         return false;
     }
 

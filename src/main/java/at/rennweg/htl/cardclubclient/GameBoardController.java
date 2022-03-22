@@ -128,45 +128,48 @@ public class GameBoardController implements Initializable {
     private final TimerTask counter = new TimerTask() {
         @Override
         public void run() {
-            if (turnDuration < GameCore.getTurnDuration() - (GameCore.getTurnDuration() / botTurns)
-                    && GameCore.getCurrentPlayer() instanceof Bot) {
-                Platform.runLater(() -> ((Bot) GameCore.getCurrentPlayer()).botTurn());
-            }
-            if (turnDuration < 1) {
-                Platform.runLater(() -> {
-                    GameCore.getPlayer(playerId).addCard(Deck.getCards(2));
-                    changeToNextPlayer();
-                    refresh();
-                    turnDuration = GameCore.getTurnDuration(); // reset turn time
-                });
-            }
+            if (!GameCore.pauseProgressBar) {
+                if (turnDuration < GameCore.getTurnDuration() - (GameCore.getTurnDuration() / botTurns)
+                        && GameCore.getCurrentPlayer() instanceof Bot) {
+                    Platform.runLater(() -> ((Bot) GameCore.getCurrentPlayer()).botTurn());
+                }
+                if (turnDuration < 1) {
+                    Platform.runLater(() -> {
+                        GameCore.getPlayer(playerId).addCard(Deck.getCards(2));
+                        changeToNextPlayer();
+                        refresh();
+                        turnDuration = GameCore.getTurnDuration(); // reset turn time
+                    });
+                }
 
-            progressBar.setProgress((double) turnDuration / GameCore.getTurnDuration());
-            turnDuration--;
-            if (oneCardLeft) {
-                countUnoButtonTime--;
-                if (countUnoButtonTime <= 0) {
-                    if (!unoButtonClicked) {
+                progressBar.setProgress((double) turnDuration / GameCore.getTurnDuration());
+                turnDuration--;
+
+                if (oneCardLeft) {
+                    countUnoButtonTime--;
+                    if (countUnoButtonTime <= 0) {
+                        if (!unoButtonClicked) {
+                            Platform.runLater(() -> {
+                                oneCardLeft = false;
+                                countUnoButtonTime = UNO_BUTTON_TIME;
+                                alertFalseUNOButtonUse();
+                            });
+                        } else {
+                            unoButtonClicked = false;
+                        }
+
+                        Platform.runLater(() -> unoButton.setText("UNO"));
+                    }
+                    if (unoButtonClicked) {
                         Platform.runLater(() -> {
                             oneCardLeft = false;
                             countUnoButtonTime = UNO_BUTTON_TIME;
-                            unoButtonCheck();
+                            changeToNextPlayer();
+                            refresh();
                         });
-                    } else {
-                        unoButtonClicked = false;
                     }
-
-                    Platform.runLater(() -> unoButton.setText("UNO"));
+                    System.out.println(countUnoButtonTime);
                 }
-                if (unoButtonClicked) {
-                    Platform.runLater(() -> {
-                        oneCardLeft = false;
-                        countUnoButtonTime = UNO_BUTTON_TIME;
-                        changeToNextPlayer();
-                        refresh();
-                    });
-                }
-                System.out.println(countUnoButtonTime);
             }
         }
     };
@@ -183,9 +186,6 @@ public class GameBoardController implements Initializable {
         playerId = GameCore.getCurrentPlayerID();
 
         timer.schedule(counter, 0, oneSecond); // wait 0ms, every 1s
-        if (GameCore.pauseProgressBar) {
-            timer.cancel();
-        }
 
         currentPlayer.setText("Derzeitiger Spieler: Spieler" + playerId
                 + " (" + GameCore.getNextPlayer().getClass().getSimpleName() + " hat "
@@ -282,10 +282,19 @@ public class GameBoardController implements Initializable {
     /**
      * check if the UNO-Button is used the right way
      */
-    public void unoButtonCheck() {
-        if (!oneCardLeft || !unoButtonClicked) {
-            GameCore.getCurrentPlayer().addCard(Deck.getCards(2));
-        }
+    public void alertFalseUNOButtonUse() {
+        GameCore.getCurrentPlayer().addCard(Deck.getCards(2));
+        GameCore.pauseProgressBar = true;
+
+        // Show alert as the turn is invalid
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information");
+        alert.setHeaderText("Zeit abgelaufen für: 'UNO Button klicken'");
+        alert.setContentText("Zug ist beendet, 2 Strafkarten");
+
+        alert.showAndWait();
+
+        GameCore.pauseProgressBar = false;
         changeToNextPlayer();
         refresh();
         unoButtonClicked = false;
