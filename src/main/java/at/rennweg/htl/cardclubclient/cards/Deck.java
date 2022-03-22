@@ -30,6 +30,22 @@ public class Deck {
      */
     private static int drawAmount = 0;
 
+    public static void drawNeeded() {
+        boolean hasSameNumber = false;
+
+        for (Card card : GameCore.getCurrentPlayer().getAllCards()) {
+            if (Objects.requireNonNull(getLastCard()).getNumber().equals(card.getNumber())) {
+                hasSameNumber = true;
+                break;
+            }
+        }
+
+        if (!hasSameNumber) {
+            GameCore.getCurrentPlayer().addCard(Deck.getCards(drawAmount));
+            drawAmount = 0;
+        }
+    }
+
     /**
      * Method for playing a card
      *

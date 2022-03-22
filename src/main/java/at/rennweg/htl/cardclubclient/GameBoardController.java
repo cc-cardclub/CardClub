@@ -203,9 +203,8 @@ public class GameBoardController implements Initializable {
         if (GameCore.getCurrentPlayer().getFirstTry()) {
             GameCore.getCurrentPlayer().addCard(Deck.drawCard());
             refreshHandCards();
-            if (Checker.canPlay(GameCore.getCurrentPlayer())) {
-                GameCore.getCurrentPlayer().setFirstTry(false);
-            } else {
+            GameCore.getCurrentPlayer().setFirstTry(false);
+            if (!Checker.canPlay(GameCore.getCurrentPlayer())) {
                 selectedCard = null;
                 if (!oneCardLeft) {
                     changeToNextPlayer();
@@ -396,6 +395,8 @@ public class GameBoardController implements Initializable {
                     + " (" + GameCore.getNextPlayer().getClass().getSimpleName() + " hat "
                     + GameCore.getNextPlayer().getAllCards().size() + " Karten)");
 
+            Deck.drawNeeded();
+            refreshHandCards();
         }
     }
 
