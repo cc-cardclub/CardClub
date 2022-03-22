@@ -129,6 +129,42 @@ public class GameBoardController implements Initializable {
         @Override
         public void run() {
             if (!GameCore.pauseProgressBar) {
+
+                // Check for one card - UNO button
+                if (oneCardLeft) {
+                    countUnoButtonTime--;
+
+                    if (!(GameCore.getCurrentPlayer() instanceof Bot)) {
+                        unoButton.setDisable(false);
+                    }
+
+                    if (countUnoButtonTime <= 0) {
+                        if (!unoButtonClicked) {
+                            Platform.runLater(() -> {
+                                oneCardLeft = false;
+                                countUnoButtonTime = UNO_BUTTON_TIME;
+                                alertFalseUNOButtonUse();
+                            });
+                        } else {
+                            unoButtonClicked = false;
+                        }
+                    }
+
+                    if (unoButtonClicked) {
+                        Platform.runLater(() -> {
+                            oneCardLeft = false;
+                            countUnoButtonTime = UNO_BUTTON_TIME;
+                            changeToNextPlayer();
+                            refresh();
+                        });
+                    }
+
+                    System.out.println("UNO-Button: " + countUnoButtonTime);
+
+                } else {
+                    unoButton.setDisable(true);
+                }
+
                 if (turnDuration < GameCore.getTurnDuration() - (GameCore.getTurnDuration() / botTurns)
                         && GameCore.getCurrentPlayer() instanceof Bot) {
                     Platform.runLater(() -> ((Bot) GameCore.getCurrentPlayer()).botTurn());
@@ -144,32 +180,6 @@ public class GameBoardController implements Initializable {
 
                 progressBar.setProgress((double) turnDuration / GameCore.getTurnDuration());
                 turnDuration--;
-
-                if (oneCardLeft) {
-                    countUnoButtonTime--;
-                    if (countUnoButtonTime <= 0) {
-                        if (!unoButtonClicked) {
-                            Platform.runLater(() -> {
-                                oneCardLeft = false;
-                                countUnoButtonTime = UNO_BUTTON_TIME;
-                                alertFalseUNOButtonUse();
-                            });
-                        } else {
-                            unoButtonClicked = false;
-                        }
-
-                        Platform.runLater(() -> unoButton.setText("UNO"));
-                    }
-                    if (unoButtonClicked) {
-                        Platform.runLater(() -> {
-                            oneCardLeft = false;
-                            countUnoButtonTime = UNO_BUTTON_TIME;
-                            changeToNextPlayer();
-                            refresh();
-                        });
-                    }
-                    System.out.println(countUnoButtonTime);
-                }
             }
         }
     };
@@ -223,8 +233,12 @@ public class GameBoardController implements Initializable {
             refreshHandCards();
             if (GameCore.getCurrentPlayer().getAllCards().size() == 1) {
                 oneCardLeft = true;
-                unoButton.setText("oneCard");
+
+                if (!(GameCore.getCurrentPlayer() instanceof Bot)) {
+                    unoButton.setDisable(false);
+                }
             }
+
             if (selectedCard.getColor().equals("black")) {
                 try {
                     Stage stage = new Stage();
@@ -274,7 +288,6 @@ public class GameBoardController implements Initializable {
 
     @FXML
     protected void onUNOButtonClick() {
-        unoButton.setText("Clicked");
         unoButtonClicked = true;
     }
 
