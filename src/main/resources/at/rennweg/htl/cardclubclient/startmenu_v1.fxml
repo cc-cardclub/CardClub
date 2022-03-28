@@ -19,11 +19,11 @@
          <font>
             <Font name="Franklin Gothic Medium" size="20.0" />
          </font></Button>
-      <Button layoutX="347.0" layoutY="233.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="170.0" text="(Leaderboard)">
+      <Button layoutX="347.0" layoutY="233.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="170.0" text="Leaderboard" onAction="#onLeaderButtonClick">
          <font>
             <Font name="Franklin Gothic Medium" size="20.0" />
          </font></Button>
-      <Button fx:id="startmenuAbout" layoutX="234.0" layoutY="305.0" mnemonicParsing="false" onAction="#onAboutButtonClick" prefHeight="36.0" prefWidth="131.0" style="-fx-background-color: Blue;" text="About" textFill="WHITE">
+      <Button layoutX="234.0" layoutY="305.0" mnemonicParsing="false" onAction="#onAboutButtonClick" prefHeight="36.0" prefWidth="131.0" style="-fx-background-color: Blue;" text="About" textFill="WHITE">
          <font>
             <Font name="Franklin Gothic Medium" size="20.0" />
          </font>

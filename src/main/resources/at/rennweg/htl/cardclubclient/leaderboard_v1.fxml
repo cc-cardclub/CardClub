@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.rennweg.htl.cardclubclient.LeaderboardController">
+    <children>
+        <Text layoutX="148.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Global Leaderboard">
+            <font>
+                <Font name="Franklin Gothic Medium" size="36.0" />
+            </font>
+        </Text>
+        <TableView layoutX="174.0" layoutY="117.0" prefHeight="248.0" prefWidth="252.0">
+            <columns>
+                <TableColumn prefWidth="124.800048828125" text="Player" />
+                <TableColumn minWidth="8.800048828125" prefWidth="125.59991455078125" text="Wins" />
+            </columns>
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+            </columnResizePolicy>
+        </TableView>
+        <Button layoutX="26.0" layoutY="352.0" mnemonicParsing="false" onAction="#backToStartMenu" text="Back to Menu">
+         <font>
+            <Font name="Franklin Gothic Medium" size="12.0" />
+         </font></Button>
+    </children>
+</AnchorPane>

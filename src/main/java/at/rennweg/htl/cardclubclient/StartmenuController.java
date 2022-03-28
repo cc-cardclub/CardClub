@@ -1,5 +1,6 @@
 package at.rennweg.htl.cardclubclient;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
 import java.io.IOException;
@@ -37,5 +38,9 @@ public class StartmenuController {
      */
     public void onOptionsButtonClick() throws IOException {
         Options.start();
+    }
+
+    public void onLeaderButtonClick() throws IOException {
+        Leaderboard.start();
     }
 }
