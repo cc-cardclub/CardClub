@@ -156,6 +156,12 @@ public class Deck {
                     break;
             }
         }
+
+        if (GameCore.getPlayers().size() == 2) {
+            if (card.getNumber().equals("skip") || card.getNumber().equals("reverse")) {
+                GameCore.getCurrentPlayer().setFirstTry(true);
+            }
+        }
     }
 
     /**
