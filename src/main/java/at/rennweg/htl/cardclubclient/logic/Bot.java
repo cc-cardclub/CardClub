@@ -81,10 +81,28 @@ public class Bot extends Player {
         // IF the last card would make the bot have to draw cards, it'll try to prevent that
         if (lastCard.getNumber().equals("draw2") || lastCard.getNumber().equals("wildDraw4")) {
             if (hasSameNumber) {
-                Deck.playCard(this, getRandomCardWithNumber(lastCard.getNumber()), color);
-                firstTry = true;
-                GameBoard.endBotTurn();
-                return;
+                if (GameCore.botDifficulty.equals("Easy")) {
+                    Random random = new Random();
+                    if (random.nextInt(100) > 50) {
+                        Deck.playCard(this, getRandomCardWithNumber(lastCard.getNumber()), color);
+                        firstTry = true;
+                        GameBoard.endBotTurn();
+                        return;
+                    }
+                } else if (GameCore.botDifficulty.equals("Medium")) {
+                    Random random = new Random();
+                    if (random.nextInt(100) > 75) {
+                        Deck.playCard(this, getRandomCardWithNumber(lastCard.getNumber()), color);
+                        firstTry = true;
+                        GameBoard.endBotTurn();
+                        return;
+                    }
+                } else if (GameCore.botDifficulty.equals("Hard")) {
+                    Deck.playCard(this, getRandomCardWithNumber(lastCard.getNumber()), color);
+                    firstTry = true;
+                    GameBoard.endBotTurn();
+                    return;
+                }
             }
         }
 
@@ -187,10 +205,15 @@ public class Bot extends Player {
      * Make the bot press the uno button
      */
     public void unoButtonPress() {
-        // TODO: Adjust percentage based on difficulty
         Random random = new Random();
         final int fullPercentage = 100;
-        final int failThreshold = 90;
+        int failThreshold = switch (GameCore.botDifficulty) {
+            case "Easy" -> 75;
+            case "Medium" -> 85;
+            case "Hard" -> 95;
+            default -> 100;
+        };
+
 
         if (random.nextInt(fullPercentage) + 1 > failThreshold) {
             GameCore.getCurrentPlayer().addCard(Deck.getCards(2));
