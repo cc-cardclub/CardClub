@@ -6,11 +6,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Slider;
 import javafx.scene.input.TouchEvent;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Collections;
 import java.util.Properties;
@@ -60,7 +62,15 @@ public class OptionsController implements Initializable {
         Properties props = new Properties();
 
         try {
-            props.load(new FileInputStream("settings/settings.properties"));
+            if (Files.exists(Path.of(System.getProperty("user.home")
+                    + "\\AppData\\Local\\CC\\settings.properties"))) {
+                props.load(new FileInputStream(System.getProperty("user.home")
+                        + "\\AppData\\Local\\CC\\settings.properties"));
+            } else {
+                props.load(AboutController.class.getResourceAsStream("data/settings.properties"));
+                props.store(new FileOutputStream(System.getProperty("user.home")
+                        + "\\AppData\\Local\\CC\\settings.properties"), null);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -70,7 +80,8 @@ public class OptionsController implements Initializable {
 
     private void setProps(Properties props) {
         try {
-            props.store(new FileOutputStream("settings/settings.properties"), null);
+            props.store(new FileOutputStream(System.getProperty("user.home")
+                    + "\\AppData\\Local\\CC\\settings.properties"), null);
         } catch (IOException e) {
             e.printStackTrace();
         }
