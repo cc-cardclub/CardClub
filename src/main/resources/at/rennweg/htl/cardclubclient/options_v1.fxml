@@ -11,9 +11,9 @@
             <Font name="Franklin Gothic Medium" size="30.0" />
          </font>
       </Text>
-      <Label layoutX="201.0" layoutY="134.0" nodeOrientation="RIGHT_TO_LEFT" text="Lautstärke">
+      <Label layoutX="192.0" layoutY="134.0" nodeOrientation="RIGHT_TO_LEFT" text="Lautstärke">
          <graphic>
-            <Slider />
+            <Slider fx:id="volumeSlider" />
          </graphic>
          <font>
             <Font name="Franklin Gothic Medium" size="16.0" />
