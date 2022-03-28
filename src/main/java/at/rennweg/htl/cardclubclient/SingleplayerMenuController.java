@@ -4,9 +4,11 @@ import at.rennweg.htl.cardclubclient.cards.Deck;
 import at.rennweg.htl.cardclubclient.cards.Player;
 import at.rennweg.htl.cardclubclient.logic.Bot;
 import at.rennweg.htl.cardclubclient.logic.GameCore;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
@@ -44,6 +46,7 @@ public class SingleplayerMenuController implements Initializable {
      * TextArea to show which rules you want to play with
      */
     public TextArea textArea;
+    public ChoiceBox choiceBox;
     /**
      * standard amount of Bots you play against
      */
@@ -168,4 +171,8 @@ public class SingleplayerMenuController implements Initializable {
         Startmenu.start();
     }
 
+    public void choiceBoxValue() {
+        GameCore.botDifficulty = (String) choiceBox.getValue();
+        System.out.println(GameCore.botDifficulty);
+    }
 }

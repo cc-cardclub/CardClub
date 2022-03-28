@@ -15,6 +15,7 @@ public class GameCore {
     public static boolean plus2and4CardsSelected;
     public static boolean cardsSwitchingInPlayingDirectory;
     public static boolean pauseProgressBar;
+    public static String botDifficulty;
 
     public static void reverseDirection() {
         clockwiseTurn = !clockwiseTurn;
