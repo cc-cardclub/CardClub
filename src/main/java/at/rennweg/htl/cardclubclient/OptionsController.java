@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Slider;
 import javafx.scene.input.TouchEvent;
 
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
@@ -33,6 +34,7 @@ public class OptionsController implements Initializable {
         // onVolumeSlider
         volumeSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
             props.setProperty("volume", String.valueOf(volumeSlider.getValue()));
+            setProps(props);
         });
     }
 
@@ -58,11 +60,19 @@ public class OptionsController implements Initializable {
         Properties props = new Properties();
 
         try {
-            props.load(AboutController.class.getResourceAsStream("data/settings.properties"));
+            props.load(new FileInputStream("settings/settings.properties"));
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         return props;
+    }
+
+    private void setProps(Properties props) {
+        try {
+            props.store(new FileOutputStream("settings/settings.properties"), null);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
