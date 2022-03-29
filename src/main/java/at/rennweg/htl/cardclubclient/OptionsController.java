@@ -4,6 +4,7 @@ import at.rennweg.htl.cardclubclient.logic.GameCore;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Slider;
+import javafx.scene.control.TextField;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -30,6 +31,10 @@ public class OptionsController implements Initializable {
 
     @FXML
     private Slider volumeSlider;
+    @FXML
+    private TextField serverIp;
+    @FXML
+    private TextField serverPort;
 
     private Properties props;
 
@@ -45,7 +50,10 @@ public class OptionsController implements Initializable {
         // Load props
         props = getProps();
 
+        // Set values
         volumeSlider.adjustValue(Double.parseDouble(props.getProperty("volume")));
+        serverIp.setText(props.getProperty("server"));
+        serverPort.setText(props.getProperty("port"));
 
         // onVolumeSlider
         volumeSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
@@ -61,6 +69,10 @@ public class OptionsController implements Initializable {
      */
     @FXML
     protected void onReturnToStartmenuButton() throws IOException {
+        props.setProperty("server", serverIp.getText());
+        props.setProperty("port", serverPort.getText());
+        setProps(props);
+
         Startmenu.start();
     }
 
