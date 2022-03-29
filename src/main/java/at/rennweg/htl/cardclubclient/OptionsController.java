@@ -98,6 +98,17 @@ public class OptionsController implements Initializable {
         try {
             if (Files.exists(Path.of(propsPath))) {
                 props.load(new FileInputStream(propsPath));
+
+                // Check if all properties are in the local file
+                Properties defaultProps = new Properties();
+                defaultProps.load(AboutController.class.getResourceAsStream("data/settings.properties"));
+                defaultProps.forEach((key, value) -> {
+                    if (props.getOrDefault(key, "no-value").equals("no-value")) {
+                        props.put(key, value);
+                    }
+                });
+
+                setProps(props);
             } else {
                 props.load(AboutController.class.getResourceAsStream("data/settings.properties"));
                 Files.createDirectories(Path.of(
@@ -111,7 +122,7 @@ public class OptionsController implements Initializable {
         return props;
     }
 
-    private void setProps(Properties props) {
+    private static void setProps(Properties props) {
         try {
             props.store(new FileOutputStream(propsPath), null);
         } catch (IOException e) {
