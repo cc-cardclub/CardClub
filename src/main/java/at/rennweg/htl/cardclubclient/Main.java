@@ -47,8 +47,13 @@ public class Main extends Application {
      * @param args
      */
     public static void main(String[] args) {
-        if (args[args.length - 1].equals("server")) {
-            at.rennweg.htl.cardclubserver.Main.main(args);
+        if (args.length > 0) {
+            if (args[args.length - 1].equals("server")) {
+                at.rennweg.htl.cardclubserver.Main.main(args);
+            } else {
+                ServerConnection.connect();
+                launch(args);
+            }
         } else {
             ServerConnection.connect();
             launch(args);
