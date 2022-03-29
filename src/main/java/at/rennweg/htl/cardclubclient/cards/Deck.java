@@ -53,7 +53,7 @@ public class Deck {
      * Method for playing a card
      *
      * @param playerCards all cards which the player has
-     * @param card card that the player wants to play
+     * @param card        card that the player wants to play
      */
     public static void playCard(Player playerCards, Card card) {
         if (Checker.checkTurnValidity(card, getLastCard())) {
@@ -66,9 +66,10 @@ public class Deck {
 
     /**
      * Method for playing a card and selecting a color
+     *
      * @param playerCards all cards which the player has
-     * @param card card that the player wants to play
-     * @param color color which should be chosen if the card was a wild card
+     * @param card        card that the player wants to play
+     * @param color       color which should be chosen if the card was a wild card
      */
     public static void playCard(Player playerCards, Card card, String color) {
         if (Checker.checkTurnValidity(card, getLastCard())) {
@@ -146,6 +147,7 @@ public class Deck {
                     drawAmount += draw4Amount;
                     break;
                 case "reverse":
+                case "1":
                     if (GameCore.getPlayers().size() == 2) {
                         GameCore.switchToNextPlayer();
                     } else {
@@ -158,7 +160,7 @@ public class Deck {
         }
 
         if (GameCore.getPlayers().size() == 2) {
-            if (card.getNumber().equals("skip") || card.getNumber().equals("reverse")) {
+            if (card.getNumber().equals("skip") || card.getNumber().equals("reverse") || GameCore.cardsSwitchingInPlayingDirectory) {
                 GameCore.getCurrentPlayer().setFirstTry(true);
             }
         }
@@ -166,6 +168,7 @@ public class Deck {
 
     /**
      * Method for getting the last played card
+     *
      * @return the last played card
      */
     public static Card getLastCard() {
@@ -177,6 +180,7 @@ public class Deck {
 
     /**
      * Method for drawing a card
+     *
      * @return the next available card
      */
     public static Card drawCard() {
@@ -246,7 +250,11 @@ public class Deck {
                 cards.add(new Card(i + "", color, false));
             }
             for (int i = 1; i < numberCards; i++) {
-                cards.add(new Card(i + "", color, false));
+                if (i == 1 && GameCore.cardsSwitchingInPlayingDirectory) {
+                    cards.add(new Card(i + "", color, true));
+                } else {
+                    cards.add(new Card(i + "", color, false));
+                }
             }
 
             for (int i = 0; i < 2; i++) {
@@ -261,6 +269,7 @@ public class Deck {
 
     /**
      * Method for getting the starting cards for a player
+     *
      * @return an array of cards for the player
      */
     public static Card[] getPlayerStartCards() {
@@ -269,6 +278,7 @@ public class Deck {
 
     /**
      * Method for getting a specific amount of cards
+     *
      * @param amount amount of cards to get
      * @return an array of cards for the player
      */
