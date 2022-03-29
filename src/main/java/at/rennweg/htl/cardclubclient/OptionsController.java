@@ -25,7 +25,8 @@ public class OptionsController implements Initializable {
     public static final String PROPS_PATH_WIN = System.getProperty("user.home")
             + "\\AppData\\Local\\cc-cardclub\\settings.properties";
 
-    public static final String PROPS_PATH_LINUX = "~/.cc-cardclub/settings.properties";
+    public static final String PROPS_PATH_LINUX = System.getProperty("user.home")
+            + "/.cc-cardclub/settings.properties";
     
     public static String propsPath;
 
