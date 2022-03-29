@@ -1,5 +1,6 @@
 package at.rennweg.htl.cardclubclient;
 
+import at.rennweg.htl.cardclubclient.logic.ServerConnection;
 import javafx.application.Application;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
@@ -46,6 +47,11 @@ public class Main extends Application {
      * @param args
      */
     public static void main(String[] args) {
-        launch(args);
+        if (args[args.length - 1].equals("server")) {
+            at.rennweg.htl.cardclubserver.Main.main(args);
+        } else {
+            ServerConnection.connect();
+            launch(args);
+        }
     }
 }

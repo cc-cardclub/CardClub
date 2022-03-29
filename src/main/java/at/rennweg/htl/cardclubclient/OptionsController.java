@@ -18,7 +18,7 @@ import java.util.ResourceBundle;
 /**
  * class to close the OptionsMenu
  *
- * @author Bernd Reither
+ * @author Bernd Reither, Mattias Burkard
  */
 public class OptionsController implements Initializable {
 
@@ -41,12 +41,7 @@ public class OptionsController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // Set correct path for settings
-        if (System.getProperty("os.name").toLowerCase().contains("win")) {
-            propsPath = PROPS_PATH_WIN;
-        } else {
-            propsPath = PROPS_PATH_LINUX;
-        }
+        setPath();
 
         // Load props
         props = getProps();
@@ -61,6 +56,15 @@ public class OptionsController implements Initializable {
             props.setProperty("volume", String.valueOf(volumeSlider.getValue()));
             setProps(props);
         });
+    }
+
+    public static void setPath() {
+        // Set correct path for settings
+        if (System.getProperty("os.name").toLowerCase().contains("win")) {
+            propsPath = PROPS_PATH_WIN;
+        } else {
+            propsPath = PROPS_PATH_LINUX;
+        }
     }
 
     /**
@@ -85,7 +89,7 @@ public class OptionsController implements Initializable {
         GameCore.reset();
     }
 
-    private Properties getProps() {
+    public static Properties getProps() {
         Properties props = new Properties();
 
         try {
