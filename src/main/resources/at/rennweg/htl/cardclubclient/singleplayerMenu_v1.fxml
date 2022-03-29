@@ -34,14 +34,6 @@
                         <Font name="Franklin Gothic Medium" size="16.0"/>
                     </font>
                 </CheckBox>
-                <CheckBox layoutX="5.0" layoutY="100.0" mnemonicParsing="false" text="Karte 0">
-                    <tooltip>
-                        <Tooltip showDelay="0s" text="Karten in Spielrichtung weitergeben"/>
-                    </tooltip>
-                    <font>
-                        <Font name="Franklin Gothic Medium" size="16.0"/>
-                    </font>
-                </CheckBox>
                 <CheckBox fx:id="plus2and4CardsSelected" layoutX="5.0" layoutY="184.0" mnemonicParsing="false"
                           onAction="#checkBox2and4" text="+2 und +4">
                     <tooltip>
