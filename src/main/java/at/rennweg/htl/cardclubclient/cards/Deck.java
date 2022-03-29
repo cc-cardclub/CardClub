@@ -4,6 +4,7 @@ import at.rennweg.htl.cardclubclient.GameBoard;
 import at.rennweg.htl.cardclubclient.logic.Checker;
 import at.rennweg.htl.cardclubclient.logic.GameCore;
 
+import java.lang.reflect.GenericArrayType;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -147,7 +148,6 @@ public class Deck {
                     drawAmount += draw4Amount;
                     break;
                 case "reverse":
-                case "1":
                     if (GameCore.getPlayers().size() == 2) {
                         GameCore.switchToNextPlayer();
                     } else {
@@ -160,7 +160,7 @@ public class Deck {
         }
 
         if (GameCore.getPlayers().size() == 2) {
-            if (card.getNumber().equals("skip") || card.getNumber().equals("reverse") || GameCore.cardsSwitchingInPlayingDirectory) {
+            if (card.getNumber().equals("skip") || card.getNumber().equals("reverse")) {
                 GameCore.getCurrentPlayer().setFirstTry(true);
             }
         }
@@ -250,11 +250,7 @@ public class Deck {
                 cards.add(new Card(i + "", color, false));
             }
             for (int i = 1; i < numberCards; i++) {
-                if (i == 1 && GameCore.cardsSwitchingInPlayingDirectory) {
-                    cards.add(new Card(i + "", color, true));
-                } else {
-                    cards.add(new Card(i + "", color, false));
-                }
+                cards.add(new Card(i + "", color, false));
             }
 
             for (int i = 0; i < 2; i++) {

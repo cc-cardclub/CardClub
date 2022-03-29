@@ -34,4 +34,11 @@ public class Player {
     public void setFirstTry(boolean firstTry) {
         this.firstTry = firstTry;
     }
+
+    public void removeAllCards(){
+        this.cards.clear();
+    }
+    public void addNewCards(List<Card> newCards){
+        this.cards = newCards;
+    }
 }

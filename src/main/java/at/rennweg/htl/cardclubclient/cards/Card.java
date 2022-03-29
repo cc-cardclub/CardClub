@@ -15,7 +15,7 @@ public class Card {
         if (isSpecial) {
             if (!number.equals("draw2") && !number.equals("reverse")
                     && !number.equals("skip") && !number.equals("wild")
-                    && !number.equals("wildDraw4") && !(GameCore.cardsSwitchingInPlayingDirectory && number.equals("1"))) {
+                    && !number.equals("wildDraw4")) {
                 throw new IllegalArgumentException("Number must be draw2, reverse, skip, "
                         + "wild or wildDraw4");
             }
