@@ -159,6 +159,17 @@ public class Deck {
             }
         }
 
+        if (GameCore.cardsSwitchingInPlayingDirectory && card.getNumber().equals("1")) {
+            List<Card> tempCards;
+            List<Card> tempCards1;
+            tempCards = new ArrayList<>(GameCore.getCurrentPlayer().getAllCards());
+            tempCards1 = new ArrayList<>(GameCore.getNextPlayer().getAllCards());
+            GameCore.getCurrentPlayer().removeAllCards();
+            GameCore.getCurrentPlayer().addNewCards(tempCards1);
+            GameCore.getNextPlayer().removeAllCards();
+            GameCore.getNextPlayer().addNewCards(tempCards);
+        }
+
         if (GameCore.getPlayers().size() == 2) {
             if (card.getNumber().equals("skip") || card.getNumber().equals("reverse")) {
                 GameCore.getCurrentPlayer().setFirstTry(true);
