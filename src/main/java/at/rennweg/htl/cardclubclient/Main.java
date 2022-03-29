@@ -1,6 +1,7 @@
 package at.rennweg.htl.cardclubclient;
 
 import javafx.application.Application;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
@@ -32,6 +33,10 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Main.primaryStage = primaryStage;
+
+        // Set icon
+        Main.primaryStage.getIcons().add(new Image(Main.class.getResourceAsStream("img/cc-logo.png")));
+
         Startmenu.start();
     }
 
