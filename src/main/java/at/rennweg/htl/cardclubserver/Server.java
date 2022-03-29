@@ -9,7 +9,14 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Properties;
 
+/**
+ * Class for the cardclub sever
+ * @author Mattias Burkard
+ */
 public class Server {
+    /**
+     * Basic server
+     */
     public static void server() {
         OptionsController.setPath();
         Properties props = OptionsController.getProps();

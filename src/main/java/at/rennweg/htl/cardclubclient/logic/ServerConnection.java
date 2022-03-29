@@ -7,10 +7,16 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.Socket;
-import java.net.UnknownHostException;
 import java.util.Properties;
 
+/**
+ * Class for connecting the client to the server
+ * @author Mattias Burkard
+ */
 public class ServerConnection {
+    /**
+     * Connect the client to the server
+     */
     public static void connect() {
         OptionsController.setPath();
         Properties props = OptionsController.getProps();

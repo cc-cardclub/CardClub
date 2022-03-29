@@ -58,6 +58,9 @@ public class OptionsController implements Initializable {
         });
     }
 
+    /**
+     * Sets the path for the settings file
+     */
     public static void setPath() {
         // Set correct path for settings
         if (System.getProperty("os.name").toLowerCase().contains("win")) {
