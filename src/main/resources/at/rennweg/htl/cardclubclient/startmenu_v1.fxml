@@ -11,7 +11,7 @@
          <font>
             <Font name="Franklin Gothic Medium" size="20.0" />
          </font></Button>
-      <Button layoutX="347.0" layoutY="149.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="170.0" text="Multiplayer">
+      <Button layoutX="347.0" layoutY="149.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="170.0" text="Multiplayer" onAction="#onMultiplayerButtonClick">
          <font>
             <Font name="Franklin Gothic Medium" size="20.0" />
          </font></Button>

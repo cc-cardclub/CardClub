@@ -43,4 +43,8 @@ public class StartmenuController {
     public void onLeaderButtonClick() throws IOException {
         Leaderboard.start();
     }
+
+    public void onMultiplayerButtonClick() throws IOException {
+        MultiplayerHostOrJoin.start();
+    }
 }
