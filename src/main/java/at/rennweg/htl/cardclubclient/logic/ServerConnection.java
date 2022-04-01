@@ -6,11 +6,14 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.ConnectException;
 import java.net.Socket;
+import java.net.SocketException;
 import java.util.Properties;
 
 /**
  * Class for connecting the client to the server
+ *
  * @author Mattias Burkard
  */
 public class ServerConnection {
@@ -29,7 +32,9 @@ public class ServerConnection {
             BufferedReader reader = new BufferedReader(new InputStreamReader(input));
 
             String server = reader.readLine();
-            System.out.println("Server:" + server);
+            System.out.println("Server: " + server);
+        } catch (ConnectException e) {
+            System.out.println("Can't connect to the server!");
         } catch (IOException e) {
             e.printStackTrace();
         }
