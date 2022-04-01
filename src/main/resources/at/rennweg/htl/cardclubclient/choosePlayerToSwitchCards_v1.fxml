@@ -6,9 +6,10 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="colorPopUp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+<AnchorPane fx:id="choosePlayerPopUp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+            minWidth="-Infinity"
             prefHeight="235.0" prefWidth="306.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="at.rennweg.htl.cardclubclient.ColorPopUpController">
+            fx:controller="at.rennweg.htl.cardclubclient.choosePlayerToSwitchCardsController">
     <children>
         <Text layoutX="20.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose Player to switch cards"
               textAlignment="CENTER" wrappingWidth="266.6111145019531">
@@ -16,26 +17,29 @@
                 <Font name="Franklin Gothic Medium" size="26.0"/>
             </font>
         </Text>
-        <Button layoutX="59.0" layoutY="93.0" mnemonicParsing="false" onAction="#onBlueColorSelected" prefHeight="20.0"
+        <Button layoutX="59.0" layoutY="93.0" mnemonicParsing="false" onAction="#onBot1Selected" prefHeight="20.0"
                 prefWidth="55.0" text="Bot 1">
             <font>
                 <Font name="Franklin Gothic Medium" size="13.0"/>
             </font>
         </Button>
-        <Button layoutX="125.0" layoutY="163.0" mnemonicParsing="false" onAction="#onRedColorSelected" prefHeight="20.0"
+        <Button layoutX="125.0" layoutY="163.0" mnemonicParsing="false" onAction="#onBot3Selected" prefHeight="20.0"
                 prefWidth="55.0" text="Bot 3">
             <font>
                 <Font name="Franklin Gothic Medium" size="13.0"/>
             </font>
         </Button>
-        <Button layoutX="194.0" layoutY="93.0" mnemonicParsing="false" onAction="#onYellowColorSelected"
+        <Button layoutX="194.0" layoutY="93.0" mnemonicParsing="false" onAction="#onBot2Selected"
                 prefHeight="20.0" prefWidth="55.0" text="Bot 2">
             <font>
                 <Font name="Franklin Gothic Medium" size="13.0"/>
             </font>
         </Button>
-        <Label layoutX="51.0" layoutY="125.0" prefHeight="18.0" prefWidth="80.0" text="amount cards"/>
-        <Label layoutX="182.0" layoutY="125.0" prefHeight="18.0" prefWidth="80.0" text="amount cards"/>
-        <Label layoutX="113.0" layoutY="196.0" prefHeight="18.0" prefWidth="80.0" text="amount cards"/>
+        <Label fx:id="amountCardsBot1" layoutX="51.0" layoutY="125.0" prefHeight="18.0" prefWidth="80.0"
+               text="amount cards 1"/>
+        <Label fx:id="amountCardsBot3" layoutX="182.0" layoutY="125.0" prefHeight="18.0" prefWidth="80.0"
+               text="amount cards 2"/>
+        <Label fx:id="amountCardsBot2" layoutX="113.0" layoutY="196.0" prefHeight="18.0" prefWidth="80.0"
+               text="amount cards 3"/>
     </children>
 </AnchorPane>

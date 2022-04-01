@@ -25,10 +25,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Comparator;
-import java.util.ResourceBundle;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 /**
  * class to control the GameBoard's buttons, Cards and more
@@ -241,6 +238,8 @@ public class GameBoardController implements Initializable {
 
             if (selectedCard.getColor().equals("black")) {
                 try {
+                    GameCore.pauseProgressBar = true;
+
                     Stage stage = new Stage();
                     FXMLLoader loader = new FXMLLoader(getClass().getResource(
                             "farbwahlPopUp_v1.fxml"));
@@ -255,9 +254,37 @@ public class GameBoardController implements Initializable {
                     } else {
                         wildColorShower.setStyle("-fx-background-color: " + color + ";");
                     }
+                    GameCore.pauseProgressBar = false;
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+
+            } else if (GameCore.switchCardsWithPlayer && selectedCard.getNumber().equals("7")) {
+                try {
+                    GameCore.pauseProgressBar = true;
+
+                    Stage stage = new Stage();
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource(
+                            "choosePlayerToSwitchCards_v1.fxml"));
+                    Parent parent = loader.load();
+                    Scene scene = new Scene(parent);
+                    stage.setScene(scene);
+                    stage.showAndWait();
+                    List<Card> tempCards;
+                    List<Card> tempCards1;
+                    tempCards = new ArrayList<>(GameCore.getCurrentPlayer().getAllCards());
+                    tempCards1 = new ArrayList<>(GameCore.chosenPlayerSwitchCards.getAllCards());
+                    GameCore.getCurrentPlayer().removeAllCards();
+                    GameCore.getCurrentPlayer().addNewCards(tempCards1);
+                    GameCore.chosenPlayerSwitchCards.removeAllCards();
+                    GameCore.chosenPlayerSwitchCards.addNewCards(tempCards);
+
+                    GameCore.pauseProgressBar = false;
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
 
             }
 

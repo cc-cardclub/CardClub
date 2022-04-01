@@ -17,7 +17,7 @@
                         <Font name="Franklin Gothic Medium" size="36.0"/>
                     </font>
                 </Label>
-                <CheckBox layoutX="5.0" layoutY="157.0" mnemonicParsing="false" text="Karte 7">
+                <CheckBox fx:id="switchCardsWithPlayer" layoutX="5.0" layoutY="157.0" mnemonicParsing="false" text="Karte 7" onAction="#checkBoxCard7">
                     <tooltip>
                         <Tooltip showDelay="0s" text="Karten mit beliebigem Mitspieler tauschen"/>
                     </tooltip>

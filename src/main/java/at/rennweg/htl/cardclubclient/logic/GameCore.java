@@ -52,6 +52,10 @@ public class GameCore {
      */
     public static String botDifficulty = "Medium";
 
+    public static boolean switchCardsWithPlayer;
+
+    public static Player chosenPlayerSwitchCards;
+
     /**
      * Reverse the playing direction
      */

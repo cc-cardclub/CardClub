@@ -3,7 +3,12 @@ package at.rennweg.htl.cardclubclient.cards;
 import at.rennweg.htl.cardclubclient.GameBoard;
 import at.rennweg.htl.cardclubclient.logic.Checker;
 import at.rennweg.htl.cardclubclient.logic.GameCore;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.lang.reflect.GenericArrayType;
 import java.util.ArrayList;
 import java.util.List;

@@ -35,10 +35,11 @@ public class Player {
         this.firstTry = firstTry;
     }
 
-    public void removeAllCards(){
+    public void removeAllCards() {
         this.cards.clear();
     }
-    public void addNewCards(List<Card> newCards){
+
+    public void addNewCards(List<Card> newCards) {
         this.cards = newCards;
     }
 }

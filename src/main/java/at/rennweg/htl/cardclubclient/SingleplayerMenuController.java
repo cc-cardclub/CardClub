@@ -47,6 +47,7 @@ public class SingleplayerMenuController implements Initializable {
      */
     public TextArea textArea;
     public ChoiceBox choiceBox;
+    public CheckBox switchCardsWithPlayer;
     /**
      * standard amount of Bots you play against
      */
@@ -148,6 +149,18 @@ public class SingleplayerMenuController implements Initializable {
         }
     }
 
+    public void checkBoxCard7(ActionEvent actionEvent) {
+        if (switchCardsWithPlayer.isSelected()) {
+            GameCore.switchCardsWithPlayer = true;
+            textArea.setText(textArea.getText()
+                    + "\n" + "Karten mit beliebigem Mitspieler tauschen");
+        } else if (!switchCardsWithPlayer.isSelected()) {
+            GameCore.switchCardsWithPlayer = false;
+            textArea.setText(textArea.getText().replaceAll("\n"
+                    + "Karten mit beliebigem Mitspieler tauschen", ""));
+        }
+    }
+
     /**
      * set the text in the TextArea for the plus2and4CardsSelected Checkbox
      */
@@ -175,4 +188,5 @@ public class SingleplayerMenuController implements Initializable {
         GameCore.botDifficulty = (String) choiceBox.getValue();
         System.out.println(GameCore.botDifficulty);
     }
+
 }
