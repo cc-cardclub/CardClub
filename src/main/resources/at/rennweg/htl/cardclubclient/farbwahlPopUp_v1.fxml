@@ -4,16 +4,22 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="colorPopUp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="190.0" prefWidth="240.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.rennweg.htl.cardclubclient.ColorPopUpController">
+<AnchorPane fx:id="colorPopUp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="190.0" prefWidth="240.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="at.rennweg.htl.cardclubclient.ColorPopUpController">
     <children>
         <Text layoutX="20.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose your Color">
             <font>
-                <Font name="Franklin Gothic Medium" size="26.0" />
+                <Font name="Franklin Gothic Medium" size="26.0"/>
             </font>
         </Text>
-        <Button layoutX="53.0" layoutY="75.0" mnemonicParsing="false" onAction="#onBlueColorSelected" prefHeight="20.0" prefWidth="55.0" style="-fx-background-color: BLUE;" text="#" textFill="WHITE" />
-        <Button layoutX="53.0" layoutY="132.0" mnemonicParsing="false" onAction="#onRedColorSelected" prefHeight="20.0" prefWidth="55.0" style="-fx-background-color: RED;" text="+" textFill="WHITE" />
-        <Button layoutX="129.0" layoutY="75.0" mnemonicParsing="false" onAction="#onYellowColorSelected" prefHeight="20.0" prefWidth="55.0" style="-fx-background-color: #FF931E;" text="*" />
-        <Button layoutX="129.0" layoutY="132.0" mnemonicParsing="false" onAction="#onGreenColorSelected" prefHeight="20.0" prefWidth="55.0" style="-fx-background-color: LIME;" text="-" />
+        <Button layoutX="53.0" layoutY="75.0" mnemonicParsing="false" onAction="#onBlueColorSelected" prefHeight="20.0"
+                prefWidth="55.0" style="-fx-background-color: BLUE;" text="#" textFill="WHITE"/>
+        <Button layoutX="53.0" layoutY="132.0" mnemonicParsing="false" onAction="#onRedColorSelected" prefHeight="20.0"
+                prefWidth="55.0" style="-fx-background-color: RED;" text="+" textFill="WHITE"/>
+        <Button layoutX="129.0" layoutY="75.0" mnemonicParsing="false" onAction="#onYellowColorSelected"
+                prefHeight="20.0" prefWidth="55.0" style="-fx-background-color: #FF931E;" text="*"/>
+        <Button layoutX="129.0" layoutY="132.0" mnemonicParsing="false" onAction="#onGreenColorSelected"
+                prefHeight="20.0" prefWidth="55.0" style="-fx-background-color: LIME;" text="-"/>
     </children>
 </AnchorPane>
