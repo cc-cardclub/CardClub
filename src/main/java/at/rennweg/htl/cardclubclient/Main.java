@@ -5,6 +5,9 @@ import javafx.application.Application;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+import java.util.Properties;
+import java.util.UUID;
+
 /**
  * change between stages
  *
@@ -37,6 +40,17 @@ public class Main extends Application {
 
         // Set icon
         Main.primaryStage.getIcons().add(new Image(Main.class.getResourceAsStream("img/cc-logo.png")));
+
+        // Generate client uuid
+        Properties settings = OptionsController.getProps();
+
+        try {
+            UUID uuid = UUID.fromString(settings.getProperty("uuid"));
+        } catch (IllegalArgumentException e) {
+            UUID uuid = UUID.randomUUID();
+            settings.setProperty("uuid", uuid.toString());
+            OptionsController.setProps(settings);
+        }
 
         Startmenu.start();
     }

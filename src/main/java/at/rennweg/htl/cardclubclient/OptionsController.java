@@ -16,7 +16,8 @@ import java.util.Properties;
 import java.util.ResourceBundle;
 
 /**
- * class to close the OptionsMenu
+ * OptionsController class<br>
+ * Used to access the settings file and control the options menu
  *
  * @author Bernd Reither, Mattias Burkard
  */
@@ -72,8 +73,6 @@ public class OptionsController implements Initializable {
 
     /**
      * return to StartMenu
-     *
-     * @throws IOException
      */
     @FXML
     protected void onReturnToStartmenuButton() throws IOException {
@@ -122,7 +121,7 @@ public class OptionsController implements Initializable {
         return props;
     }
 
-    private static void setProps(Properties props) {
+    public static void setProps(Properties props) {
         try {
             props.store(new FileOutputStream(propsPath), null);
         } catch (IOException e) {
