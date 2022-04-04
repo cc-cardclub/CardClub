@@ -170,7 +170,9 @@ public class GameBoardController implements Initializable {
                 if (turnDuration < GameCore.getTurnDuration()
                         - ((double) GameCore.getTurnDuration() / botTurns)
                         && GameCore.getCurrentPlayer() instanceof Bot) {
-                    Platform.runLater(() -> ((Bot) GameCore.getCurrentPlayer()).botTurn());
+                    Platform.runLater(() -> {
+                        GameCore.getCurrentBot().botTurn();
+                    });
                 }
 
                 if (turnDuration < subTime) {
@@ -237,8 +239,8 @@ public class GameBoardController implements Initializable {
                 unoButton.setDisable(false);
 
                 if ((GameCore.getPlayers().size() == 2)
-                && (selectedCard.getNumber().equals("reverse")
-                || selectedCard.getNumber().equals("skip"))) {
+                        && (selectedCard.getNumber().equals("reverse")
+                        || selectedCard.getNumber().equals("skip"))) {
                     GameCore.switchToNextPlayer();
                 }
             }
@@ -456,7 +458,7 @@ public class GameBoardController implements Initializable {
      */
     public void endBotTurn() {
         if (GameCore.getCurrentPlayer().getAllCards().size() == 1) {
-            ((Bot) GameCore.getCurrentPlayer()).unoButtonPress();
+            GameCore.getCurrentBot().unoButtonPress();
         }
         changeToNextPlayer();
         refresh();

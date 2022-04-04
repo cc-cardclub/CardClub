@@ -146,6 +146,19 @@ public class GameCore {
     }
 
     /**
+     * Get the current player as a bot
+     *
+     * @return the bot
+     */
+    public static Bot getCurrentBot() {
+        if (getCurrentPlayer() instanceof Bot) {
+            return (Bot) getCurrentPlayer();
+        } else {
+            return new Bot();
+        }
+    }
+
+    /**
      * Get the next player
      *
      * @return Next player
