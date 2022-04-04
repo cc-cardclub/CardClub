@@ -1,0 +1,36 @@
+# Author: Mattias Burkard
+version: "2.1"
+
+services:
+  CardClub-server:
+    image: cardclub/server:latest
+    environment:
+      - serverDatabaseUrl=jdbc:mysql://mysql_cardclub:3306/$databaseName
+      - serverDatabaseUser=$databaseUser
+      - serverDatabasePassword=$databasePassword
+    tty: true
+    stdin_open: true
+    restart: unless-stopped
+    ports:
+      - "17891:17891"
+    depends_on:
+      mysql_cardclub:
+        condition: service_healthy
+  mysql_cardclub:
+    image: mysql
+    restart: unless-stopped
+    environment:
+      - MYSQL_ROOT_PASSWORD=$databaseRootPassword
+      - MYSQL_USER=$databaseUser
+      - MYSQL_PASSWORD=$databasePassword
+      - MYSQL_DATABASE=$databaseName
+    volumes:
+      - mysql_cardclub:/var/lib/mysql
+    healthcheck:
+      test: "/usr/bin/mysql --user=root --password=$databaseRootPassword --execute \"SHOW DATABASES;\""
+      interval: 2s
+      timeout: 20s
+      retries: 10
+
+volumes:
+  mysql_cardclub:
