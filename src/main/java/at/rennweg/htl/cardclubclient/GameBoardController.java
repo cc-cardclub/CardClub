@@ -26,6 +26,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
+import java.util.concurrent.locks.Lock;
 
 /**
  * class to control the GameBoard's buttons, Cards and more
@@ -127,43 +128,45 @@ public class GameBoardController implements Initializable {
         public void run() {
             final double subTime = 0.125;
 
-            if (!GameCore.pauseProgressBar) {
+            // Check for one card - UNO button
+            if (oneCardLeft) {
+                if (!(GameCore.getCurrentPlayer() instanceof Bot)) {
+                    unoButton.setDisable(false);
+                }
 
-                // Check for one card - UNO button
-                if (oneCardLeft) {
-                    countUnoButtonTime -= subTime;
-
-                    if (!(GameCore.getCurrentPlayer() instanceof Bot)) {
-                        unoButton.setDisable(false);
-                    }
-
-                    if (countUnoButtonTime <= 0) {
-                        if (!unoButtonClicked) {
-                            Platform.runLater(() -> {
-                                oneCardLeft = false;
-                                countUnoButtonTime = UNO_BUTTON_TIME;
-                                alertFalseUNOButtonUse();
-                            });
-                        } else {
-                            unoButtonClicked = false;
-                        }
-                    }
-
-                    if (unoButtonClicked) {
+                if (countUnoButtonTime <= 0) {
+                    if (!unoButtonClicked) {
                         Platform.runLater(() -> {
                             oneCardLeft = false;
                             countUnoButtonTime = UNO_BUTTON_TIME;
+                            alertFalseUNOButtonUse();
                             changeToNextPlayer();
                             refresh();
                         });
+                    } else {
+                        unoButtonClicked = false;
                     }
-
-                    System.out.println("UNO-Button: " + countUnoButtonTime);
-
-                } else {
-                    unoButton.setDisable(true);
                 }
 
+                if (unoButtonClicked) {
+                    Platform.runLater(() -> {
+                        oneCardLeft = false;
+                        unoButtonClicked = false;
+                        countUnoButtonTime = UNO_BUTTON_TIME;
+                        changeToNextPlayer();
+                        refresh();
+                    });
+                }
+
+                System.out.println("UNO-Button Time: " + countUnoButtonTime);
+
+                countUnoButtonTime -= subTime;
+
+            } else {
+                unoButton.setDisable(true);
+            }
+
+            if (!GameCore.pauseProgressBar) {
                 if (turnDuration < GameCore.getTurnDuration()
                         - ((double) GameCore.getTurnDuration() / botTurns)
                         && GameCore.getCurrentPlayer() instanceof Bot) {
@@ -229,16 +232,19 @@ public class GameBoardController implements Initializable {
     @FXML
     protected void onDiscardPile() {
         if (selectedCard != null) {
+            if ((GameCore.getCurrentPlayer().getAllCards().size() - 1) == 1) {
+                oneCardLeft = true;
+                unoButton.setDisable(false);
+
+                if ((GameCore.getPlayers().size() == 2)
+                && (selectedCard.getNumber().equals("reverse")
+                || selectedCard.getNumber().equals("skip"))) {
+                    GameCore.switchToNextPlayer();
+                }
+            }
 
             Deck.playCard(GameCore.getPlayer(playerId), selectedCard);
             refreshHandCards();
-            if (GameCore.getCurrentPlayer().getAllCards().size() == 1) {
-                oneCardLeft = true;
-
-                if (!(GameCore.getCurrentPlayer() instanceof Bot)) {
-                    unoButton.setDisable(false);
-                }
-            }
 
             if (selectedCard.getColor().equals("black")) {
                 try {
