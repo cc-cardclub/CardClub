@@ -95,7 +95,7 @@ public class GameBoardController implements Initializable {
     /**
      * count from unoButtonTime to zero
      */
-    private int countUnoButtonTime = UNO_BUTTON_TIME;
+    private double countUnoButtonTime = UNO_BUTTON_TIME;
     /**
      * does the player only have one card left?
      */
@@ -117,7 +117,7 @@ public class GameBoardController implements Initializable {
     /**
      * turn-duration for player's turn
      */
-    private int turnDuration = GameCore.getTurnDuration();
+    private double turnDuration = GameCore.getTurnDuration();
 
     /**
      * Timer Task for player's turn
@@ -125,11 +125,13 @@ public class GameBoardController implements Initializable {
     private final TimerTask counter = new TimerTask() {
         @Override
         public void run() {
+            final double subTime = 0.125;
+
             if (!GameCore.pauseProgressBar) {
 
                 // Check for one card - UNO button
                 if (oneCardLeft) {
-                    countUnoButtonTime--;
+                    countUnoButtonTime -= subTime;
 
                     if (!(GameCore.getCurrentPlayer() instanceof Bot)) {
                         unoButton.setDisable(false);
@@ -162,11 +164,13 @@ public class GameBoardController implements Initializable {
                     unoButton.setDisable(true);
                 }
 
-                if (turnDuration < GameCore.getTurnDuration() - (GameCore.getTurnDuration() / botTurns)
+                if (turnDuration < GameCore.getTurnDuration()
+                        - ((double) GameCore.getTurnDuration() / botTurns)
                         && GameCore.getCurrentPlayer() instanceof Bot) {
                     Platform.runLater(() -> ((Bot) GameCore.getCurrentPlayer()).botTurn());
                 }
-                if (turnDuration < 1) {
+
+                if (turnDuration < subTime) {
                     Platform.runLater(() -> {
                         GameCore.getPlayer(playerId).addCard(Deck.getCards(2));
                         changeToNextPlayer();
@@ -175,8 +179,8 @@ public class GameBoardController implements Initializable {
                     });
                 }
 
-                progressBar.setProgress((double) turnDuration / GameCore.getTurnDuration());
-                turnDuration--;
+                progressBar.setProgress(turnDuration / GameCore.getTurnDuration());
+                turnDuration -= subTime;
             }
         }
     };
@@ -189,10 +193,10 @@ public class GameBoardController implements Initializable {
      */
     @FXML
     public void initialize(URL location, ResourceBundle resources) {
-        final int oneSecond = 1000;
+        final int oneEighthSecond = 125;
         playerId = GameCore.getCurrentPlayerID();
 
-        timer.schedule(counter, 0, oneSecond); // wait 0ms, every 1s
+        timer.schedule(counter, 0, oneEighthSecond); // wait 0ms, every 0.125s
 
         currentPlayer.setText("Derzeitiger Spieler: Spieler" + playerId
                 + " (" + GameCore.getNextPlayer().getClass().getSimpleName() + " hat "
@@ -420,6 +424,7 @@ public class GameBoardController implements Initializable {
 
         if (GameCore.isGameFinished()) {
             try {
+                // TODO: send win to server
                 timer.cancel();
                 Startmenu.start();
             } catch (IOException e) {
