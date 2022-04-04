@@ -3,6 +3,7 @@ plugins {
     id 'application'
     id 'org.openjfx.javafxplugin' version '0.0.10'
     id 'org.beryx.jlink' version '2.24.1'
+    id "com.github.johnrengelman.shadow" version "7.1.2"
 }
 
 group 'at.rennweg.htl'
@@ -43,6 +44,7 @@ dependencies {
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+    implementation("mysql:mysql-connector-java:8.0.28")
 }
 
 test {
@@ -59,4 +61,8 @@ jlink {
 
 jlinkZip {
     group = 'distribution'
+}
+
+shadowJar{
+    archiveFileName = "CardClubServer.${extension}"
 }
