@@ -9,7 +9,7 @@
 <AnchorPane fx:id="choosePlayerPopUp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
             minWidth="-Infinity"
             prefHeight="235.0" prefWidth="306.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="at.rennweg.htl.cardclubclient.choosePlayerToSwitchCardsController">
+            fx:controller="at.rennweg.htl.cardclubclient.ChoosePlayerToSwitchCardsController">
     <children>
         <Text layoutX="20.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose Player to switch cards"
               textAlignment="CENTER" wrappingWidth="266.6111145019531">

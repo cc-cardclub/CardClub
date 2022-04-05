@@ -167,12 +167,28 @@ public class Deck {
         if (GameCore.cardsSwitchingInPlayingDirectory && card.getNumber().equals("1")) {
             List<Card> tempCards;
             List<Card> tempCards1;
-            tempCards = new ArrayList<>(GameCore.getCurrentPlayer().getAllCards());
-            tempCards1 = new ArrayList<>(GameCore.getNextPlayer().getAllCards());
-            GameCore.getCurrentPlayer().removeAllCards();
-            GameCore.getCurrentPlayer().addNewCards(tempCards1);
-            GameCore.getNextPlayer().removeAllCards();
-            GameCore.getNextPlayer().addNewCards(tempCards);
+            //player ID 0
+            int playerID = 0;
+            tempCards = new ArrayList<>(GameCore.getPlayer(playerID).getAllCards());
+            GameCore.getPlayer(playerID).removeAllCards();
+            GameCore.getPlayer(playerID).addNewCards(GameCore.getPlayer(GameCore.getPlayers().size() - 1).getAllCards());
+            //Bot 1 ID 1
+            playerID += 1;
+            tempCards1 = new ArrayList<>(GameCore.getPlayer(playerID).getAllCards());
+            GameCore.getPlayer(playerID).removeAllCards();
+            GameCore.getPlayer(playerID).addNewCards(tempCards);
+            try {
+                //Bot 2 ID 2
+                playerID += 1;
+                tempCards = new ArrayList<>(GameCore.getPlayer(playerID).getAllCards());
+                GameCore.getPlayer(playerID).removeAllCards();
+                GameCore.getPlayer(playerID).addNewCards(tempCards1);
+                //Bot 3 ID 3
+                GameCore.getPlayer(playerID).removeAllCards();
+                GameCore.getPlayer(playerID).addNewCards(tempCards);
+            } catch (IndexOutOfBoundsException e) {
+                e.printStackTrace();
+            }
         }
 
         if (GameCore.getPlayers().size() == 2) {
