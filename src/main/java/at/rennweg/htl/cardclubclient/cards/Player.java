@@ -39,7 +39,7 @@ public class Player {
         this.cards.clear();
     }
 
-    public void addNewCards(List<Card> newCards) {
+    public void replaceCards(List<Card> newCards) {
         this.cards = newCards;
     }
 }

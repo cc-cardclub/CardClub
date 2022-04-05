@@ -243,6 +243,8 @@ public class GameCore {
         clockwiseTurn = true;
         plus2and4CardsSelected = false;
         pauseProgressBar = false;
+        cardsSwitchingInPlayingDirectory = false;
+        switchCardsWithPlayer = false;
 
         System.out.println("GameCore: Reset");
     }

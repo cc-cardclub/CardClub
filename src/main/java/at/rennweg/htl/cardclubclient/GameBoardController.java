@@ -2,7 +2,6 @@ package at.rennweg.htl.cardclubclient;
 
 import at.rennweg.htl.cardclubclient.cards.Card;
 import at.rennweg.htl.cardclubclient.cards.Deck;
-import at.rennweg.htl.cardclubclient.cards.Player;
 import at.rennweg.htl.cardclubclient.logic.Bot;
 import at.rennweg.htl.cardclubclient.logic.Checker;
 import at.rennweg.htl.cardclubclient.logic.GameCore;
@@ -28,7 +27,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
-import java.util.concurrent.locks.Lock;
 
 /**
  * class to control the GameBoard's buttons, Cards and more
@@ -294,9 +292,9 @@ public class GameBoardController implements Initializable {
                     tempCards = new ArrayList<>(GameCore.getCurrentPlayer().getAllCards());
                     tempCards1 = new ArrayList<>(GameCore.chosenPlayerSwitchCards.getAllCards());
                     GameCore.getCurrentPlayer().removeAllCards();
-                    GameCore.getCurrentPlayer().addNewCards(tempCards1);
+                    GameCore.getCurrentPlayer().replaceCards(tempCards1);
                     GameCore.chosenPlayerSwitchCards.removeAllCards();
-                    GameCore.chosenPlayerSwitchCards.addNewCards(tempCards);
+                    GameCore.chosenPlayerSwitchCards.replaceCards(tempCards);
 
                     GameCore.pauseProgressBar = false;
 

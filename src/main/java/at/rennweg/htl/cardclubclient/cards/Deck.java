@@ -3,13 +3,7 @@ package at.rennweg.htl.cardclubclient.cards;
 import at.rennweg.htl.cardclubclient.GameBoard;
 import at.rennweg.htl.cardclubclient.logic.Checker;
 import at.rennweg.htl.cardclubclient.logic.GameCore;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 
-import java.io.IOException;
-import java.lang.reflect.GenericArrayType;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -170,24 +164,21 @@ public class Deck {
             //player ID 0
             int playerID = 0;
             tempCards = new ArrayList<>(GameCore.getPlayer(playerID).getAllCards());
-            GameCore.getPlayer(playerID).removeAllCards();
-            GameCore.getPlayer(playerID).addNewCards(GameCore.getPlayer(GameCore.getPlayers().size() - 1).getAllCards());
+            GameCore.getPlayer(playerID).replaceCards(GameCore.getPlayer(GameCore.getPlayers().size() - 1).getAllCards());
             //Bot 1 ID 1
-            playerID += 1;
+            playerID++;
             tempCards1 = new ArrayList<>(GameCore.getPlayer(playerID).getAllCards());
-            GameCore.getPlayer(playerID).removeAllCards();
-            GameCore.getPlayer(playerID).addNewCards(tempCards);
-            try {
+            GameCore.getPlayer(playerID).replaceCards(tempCards);
+            if (GameCore.getPlayers().size() > 2) {
                 //Bot 2 ID 2
-                playerID += 1;
+                playerID++;
                 tempCards = new ArrayList<>(GameCore.getPlayer(playerID).getAllCards());
-                GameCore.getPlayer(playerID).removeAllCards();
-                GameCore.getPlayer(playerID).addNewCards(tempCards1);
+                GameCore.getPlayer(playerID).replaceCards(tempCards1);
+            }
+            if (GameCore.getPlayers().size() > 3) {
                 //Bot 3 ID 3
-                GameCore.getPlayer(playerID).removeAllCards();
-                GameCore.getPlayer(playerID).addNewCards(tempCards);
-            } catch (IndexOutOfBoundsException e) {
-                e.printStackTrace();
+                playerID++;
+                GameCore.getPlayer(playerID).replaceCards(tempCards);
             }
         }
 
