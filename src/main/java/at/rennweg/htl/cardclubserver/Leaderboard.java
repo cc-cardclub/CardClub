@@ -34,6 +34,10 @@ public class Leaderboard {
         List<User> users = new ArrayList<>();
 
         try {
+            if (amount > 1000) {
+                amount = 1000;
+            }
+
             Connection connection = getConnection();
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM CCLeaderboard" +
                     " ORDER BY wins DESC LIMIT ?;");
