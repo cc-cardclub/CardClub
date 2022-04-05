@@ -2,6 +2,7 @@ package at.rennweg.htl.cardclubclient;
 
 import at.rennweg.htl.cardclubclient.cards.Card;
 import at.rennweg.htl.cardclubclient.cards.Deck;
+import at.rennweg.htl.cardclubclient.cards.Player;
 import at.rennweg.htl.cardclubclient.logic.Bot;
 import at.rennweg.htl.cardclubclient.logic.Checker;
 import at.rennweg.htl.cardclubclient.logic.GameCore;
@@ -211,6 +212,7 @@ public class GameBoardController implements Initializable {
         refreshHandCards();
         GameBoard gameBoard = new GameBoard();
         gameBoard.setController(this);
+
     }
 
     @FXML
@@ -272,6 +274,7 @@ public class GameBoardController implements Initializable {
                 }
 
             } else if (GameCore.switchCardsWithPlayer && selectedCard.getNumber().equals("7")) {
+
                 try {
                     GameCore.pauseProgressBar = true;
 
