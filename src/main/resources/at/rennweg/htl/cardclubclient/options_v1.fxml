@@ -13,12 +13,12 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.rennweg.htl.cardclubclient.OptionsController">
    <children>
-      <Text layoutX="248.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Options" textAlignment="CENTER">
+      <Text layoutX="251.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Options" textAlignment="CENTER">
          <font>
             <Font name="Franklin Gothic Medium" size="30.0" />
          </font>
       </Text>
-      <VBox alignment="CENTER" layoutX="161.0" layoutY="105.0" prefHeight="111.0" prefWidth="317.0" spacing="15.0">
+      <VBox alignment="CENTER" layoutX="151.0" layoutY="104.0" prefHeight="111.0" prefWidth="317.0" spacing="15.0">
          <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                <children>
@@ -28,6 +28,19 @@
                      </font>
                   </Label>
                   <Slider fx:id="volumeSlider" prefHeight="19.0" prefWidth="326.0" />
+               </children>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="52.0" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+               <children>
+                  <Label nodeOrientation="RIGHT_TO_LEFT" prefHeight="27.0" prefWidth="80.0" text="Name">
+                     <font>
+                        <Font name="Franklin Gothic Medium" size="16.0" />
+                     </font>
+                     <padding>
+                        <Insets right="10.0" />
+                     </padding>
+                  </Label>
+                  <TextField fx:id="userName" prefHeight="27.0" prefWidth="174.0" />
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
@@ -55,10 +68,6 @@
             </HBox>
          </children>
       </VBox>
-      <Button layoutX="241.0" layoutY="240.0" mnemonicParsing="false" onAction="#onResetGameCore" text="Reset GameCore">
-         <font>
-            <Font name="Franklin Gothic Medium" size="14.0" />
-         </font></Button>
       <Button layoutX="213.0" layoutY="290.0" mnemonicParsing="false" onAction="#onReturnToStartmenuButton" prefHeight="70.0" prefWidth="175.0" text="Return to Startmenu">
          <font>
             <Font name="Franklin Gothic Medium" size="16.0" />

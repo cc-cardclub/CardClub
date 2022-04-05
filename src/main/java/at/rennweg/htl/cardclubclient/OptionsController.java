@@ -34,6 +34,8 @@ public class OptionsController implements Initializable {
     @FXML
     private Slider volumeSlider;
     @FXML
+    private TextField userName;
+    @FXML
     private TextField serverIp;
     @FXML
     private TextField serverPort;
@@ -49,6 +51,7 @@ public class OptionsController implements Initializable {
 
         // Set values
         volumeSlider.adjustValue(Double.parseDouble(props.getProperty("volume")));
+        userName.setText(props.getProperty("username"));
         serverIp.setText(props.getProperty("server"));
         serverPort.setText(props.getProperty("port"));
 
@@ -76,19 +79,12 @@ public class OptionsController implements Initializable {
      */
     @FXML
     protected void onReturnToStartmenuButton() throws IOException {
+        props.setProperty("username", userName.getText());
         props.setProperty("server", serverIp.getText());
         props.setProperty("port", serverPort.getText());
         setProps(props);
 
         Startmenu.start();
-    }
-
-    /**
-     * reset the game
-     */
-    @FXML
-    protected void onResetGameCore() {
-        GameCore.reset();
     }
 
     public static Properties getProps() {

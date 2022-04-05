@@ -44,12 +44,18 @@ public class Main extends Application {
 
         // Generate client uuid
         Properties settings = OptionsController.getProps();
+        UUID uuid;
 
         try {
-            UUID uuid = UUID.fromString(settings.getProperty("uuid"));
+            uuid = UUID.fromString(settings.getProperty("uuid"));
         } catch (IllegalArgumentException e) {
-            UUID uuid = UUID.randomUUID();
+            uuid = UUID.randomUUID();
             settings.setProperty("uuid", uuid.toString());
+            OptionsController.setProps(settings);
+        }
+
+        if (settings.getProperty("username").equals("0")) {
+            settings.setProperty("username", uuid.toString());
             OptionsController.setProps(settings);
         }
 
