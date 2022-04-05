@@ -29,9 +29,19 @@ public class Request {
     public void handle(Socket socket) {
         try {
             if (type.equals(RequestType.get)) {
-                List<User> users = Leaderboard.getLeaderboard(getAmount);
                 OutputStream output = socket.getOutputStream();
                 PrintWriter writer = new PrintWriter(output, true);
+
+                while (RateLimit.addresses.contains(socket.getInetAddress())) {
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                RateLimit.addresses.add(socket.getInetAddress());
+
+                List<User> users = Leaderboard.getLeaderboard(getAmount);
 
                 for (User user : users) {
                     writer.println("<cc-lb><cc-username-start>" + user.getName() + "<cc-username-end>" +

@@ -45,6 +45,7 @@ public class ServerConnection {
                         users.add(new User(text));
                     } else {
                         System.out.println(text);
+                        break;
                     }
                 }
             }

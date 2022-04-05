@@ -14,6 +14,8 @@ public class Main {
      * @param args program args
      */
     public static void main(String[] args) {
+        RateLimit.timer.schedule(RateLimit.resetRate, 0, 10000);
+
         for (String arg : args) {
             if (arg.startsWith("databaseUrl:")) {
                 Leaderboard.databaseUrl = arg.substring("databaseUrl:".length());

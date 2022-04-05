@@ -26,7 +26,9 @@ public class LeaderboardController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ServerConnection.leaderboardWin();
-        System.out.println(ServerConnection.getLeaderboard());
+        // Die folgende Zeile führt zu einer Wartezeit von 10 Sekunden beim Öffnen des Leaderboards und wurde daher auskommentiert
+        // Grund: Rate limit - nur eine Anfrage pro 10 Sekunden, dann wird gewartet
+        // System.out.println(ServerConnection.getLeaderboard());
 
         List<User> leaderboardList = ServerConnection.getLeaderboard();
 
