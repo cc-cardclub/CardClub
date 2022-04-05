@@ -11,10 +11,10 @@
                 <Font name="Franklin Gothic Medium" size="36.0" />
             </font>
         </Text>
-        <TableView layoutX="174.0" layoutY="117.0" prefHeight="248.0" prefWidth="252.0">
+        <TableView fx:id="leaderboard" layoutX="174.0" layoutY="117.0" prefHeight="248.0" prefWidth="252.0">
             <columns>
-                <TableColumn prefWidth="124.800048828125" text="Player" />
-                <TableColumn minWidth="8.800048828125" prefWidth="125.59991455078125" text="Wins" />
+                <TableColumn fx:id="playerColumn" prefWidth="124.800048828125" text="Player" />
+                <TableColumn fx:id="winsColumn" minWidth="8.800048828125" prefWidth="125.59991455078125" text="Wins" />
             </columns>
             <columnResizePolicy>
                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
