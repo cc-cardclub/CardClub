@@ -25,7 +25,10 @@ public class LeaderboardController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        List<User> leaderboardList = ServerConnection.getLeaderboard();
+        playerColumn.setStyle("-fx-alignment: CENTER;");
+        winsColumn.setStyle("-fx-alignment: CENTER;");
+
+        List<User> leaderboardList = ServerConnection.getLeaderboard(30);
 
         playerColumn.setCellValueFactory((data) -> new SimpleStringProperty(data.getValue().getName()));
         winsColumn.setCellValueFactory((data) -> new SimpleStringProperty(String.valueOf(data.getValue().getWins())));
