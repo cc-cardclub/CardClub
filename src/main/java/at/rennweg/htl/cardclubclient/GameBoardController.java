@@ -36,6 +36,10 @@ import java.util.concurrent.locks.Lock;
  */
 public class GameBoardController implements Initializable {
 
+    public Label playerCards;
+    public Label Bot1Cards;
+    public Label Bot2Cards;
+    public Label Bot3Cards;
     /**
      * Label to show whose turn it is
      */
@@ -204,9 +208,8 @@ public class GameBoardController implements Initializable {
 
         timer.schedule(counter, 0, oneEighthSecond); // wait 0ms, every 0.125s
 
-        currentPlayer.setText("Derzeitiger Spieler: Spieler" + playerId
-                + " (" + GameCore.getNextPlayer().getClass().getSimpleName() + " hat "
-                + GameCore.getNextPlayer().getAllCards().size() + " Karten)");
+        setCardTexts();
+
 
         refreshDiscardPile();
         refreshHandCards();
@@ -447,12 +450,22 @@ public class GameBoardController implements Initializable {
             turnDuration = GameCore.getTurnDuration(); // reset turn duration
             playerId = GameCore.getCurrentPlayerID();
 
-            currentPlayer.setText("Derzeitiger Spieler: Spieler" + playerId
-                    + " (" + GameCore.getNextPlayer().getClass().getSimpleName() + " hat "
-                    + GameCore.getNextPlayer().getAllCards().size() + " Karten)");
-
+            setCardTexts();
             Deck.drawNeeded();
             refreshHandCards();
+        }
+    }
+
+    private void setCardTexts() {
+        currentPlayer.setText("Derzeitiger Spieler: Spieler" + playerId);
+
+        playerCards.setText("PlayerCards: " + GameCore.getPlayer(0).getAllCards().size());
+        Bot1Cards.setText("Bot1Cards: " + GameCore.getPlayer(1).getAllCards().size());
+        if (GameCore.getPlayers().size() == 3) {
+            Bot2Cards.setText("Bot2Cards: " + GameCore.getPlayer(2).getAllCards().size());
+        } else if (GameCore.getPlayers().size() == 4) {
+            Bot2Cards.setText("Bot2Cards: " + GameCore.getPlayer(2).getAllCards().size());
+            Bot3Cards.setText("Bot3Cards: " + GameCore.getPlayer(3).getAllCards().size());
         }
     }
 
