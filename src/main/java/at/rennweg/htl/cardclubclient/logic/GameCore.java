@@ -56,6 +56,8 @@ public class GameCore {
 
     public static Player chosenPlayerSwitchCards;
 
+    public static boolean isValid = false;
+
     /**
      * Reverse the playing direction
      */

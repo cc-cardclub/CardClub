@@ -6,6 +6,7 @@ import at.rennweg.htl.cardclubclient.cards.Player;
 import at.rennweg.htl.cardclubclient.logic.Bot;
 import at.rennweg.htl.cardclubclient.logic.Checker;
 import at.rennweg.htl.cardclubclient.logic.GameCore;
+import at.rennweg.htl.cardclubclient.logic.ServerConnection;
 import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -437,8 +438,15 @@ public class GameBoardController implements Initializable {
         }
 
         if (GameCore.isGameFinished()) {
+            if (GameCore.isValid) {
+                if (playerId == 0) {
+                    ServerConnection.leaderboardWin();
+                } else {
+                    ServerConnection.leaderboardLoss();
+                }
+            }
+
             try {
-                // TODO: send win to server
                 timer.cancel();
                 Startmenu.start();
             } catch (IOException e) {

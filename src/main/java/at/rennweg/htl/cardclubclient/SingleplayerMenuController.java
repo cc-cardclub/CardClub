@@ -86,6 +86,12 @@ public class SingleplayerMenuController implements Initializable {
     protected void onPlayButtonClick() throws IOException {
         Deck.prepareDeck();
 
+        if (!GameCore.cardsSwitchingInPlayingDirectory && !GameCore.switchCardsWithPlayer
+                && !GameCore.plus2and4CardsSelected && GameCore.getTurnDuration() <= 20
+                && GameCore.getStartingCards() == 7 && GameCore.botDifficulty.equals("Medium")) {
+            GameCore.isValid = true;
+        }
+
         GameCore.addPlayer(new Player(Deck.getPlayerStartCards())); // Player
 
         for (int i = 0; i < amountBots; i++) {

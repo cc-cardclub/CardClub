@@ -71,7 +71,7 @@ public class ServerConnection {
             OutputStream output = socket.getOutputStream();
             PrintWriter writer = new PrintWriter(output, true);
             writer.println("addWin<cc-id-start>" + props.getProperty("uuid") + "<cc-id-end>" +
-                    "<cc-username-start>" + props.getProperty("uuid") + "<cc-username-end>");
+                    "<cc-username-start>" + props.getProperty("username") + "<cc-username-end>");
             writer.println("close");
 
         } catch (ConnectException e) {
@@ -92,7 +92,7 @@ public class ServerConnection {
             OutputStream output = socket.getOutputStream();
             PrintWriter writer = new PrintWriter(output, true);
             writer.println("addLoss<cc-id-start>" + props.getProperty("uuid") + "<cc-id-end>" +
-                    "<cc-username-start>" + props.getProperty("uuid") + "<cc-username-end>");
+                    "<cc-username-start>" + props.getProperty("username") + "<cc-username-end>");
             writer.println("close");
 
         } catch (ConnectException e) {
