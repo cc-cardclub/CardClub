@@ -252,7 +252,7 @@ public class GameBoardController implements Initializable {
             Deck.playCard(GameCore.getPlayer(playerId), selectedCard);
             refreshHandCards();
 
-            if (selectedCard.getColor().equals("black")) {
+            if (selectedCard.getColor().equals("black") && GameCore.getCurrentPlayer().getAllCards().size() != 0) {
                 try {
                     GameCore.pauseProgressBar = true;
 
