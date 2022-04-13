@@ -22,7 +22,6 @@ public class Options {
         Scene scene = new Scene(fxmlLoader.load());
         Stage stage = Main.getStage();
 
-        stage.setTitle("Options");
         stage.setScene(scene);
         stage.show();
     }

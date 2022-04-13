@@ -39,6 +39,11 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         Main.primaryStage = primaryStage;
 
+        // Set title
+        Properties propsInfo = new Properties();
+        propsInfo.load(AboutController.class.getResourceAsStream("data/info.properties"));
+        Main.primaryStage.setTitle("CardClub V" + propsInfo.getProperty("version"));
+
         // Set icon
         Main.primaryStage.getIcons().add(new Image(Main.class.getResourceAsStream("img/cc-logo.png")));
 

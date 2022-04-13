@@ -33,7 +33,6 @@ public class GameBoard {
         FXMLLoader fxmlLoader = new FXMLLoader(GameBoard.class.getResource("spielbrett_v1.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         Stage stage = Main.getStage();
-        stage.setTitle("Play UNO");
         stage.setScene(scene);
         stage.show();
     }

@@ -22,7 +22,6 @@ public class SingleplayerMenu {
         Scene scene = new Scene(fxmlLoader.load());
         Stage stage = Main.getStage();
 
-        stage.setTitle("Menu");
         stage.setScene(scene);
         stage.show();
     }

@@ -22,7 +22,6 @@ public class Leaderboard {
         Scene scene = new Scene(fxmlLoader.load());
         Stage stage = Main.getStage();
 
-        stage.setTitle("Leaderboard");
         stage.setScene(scene);
         stage.show();
     }

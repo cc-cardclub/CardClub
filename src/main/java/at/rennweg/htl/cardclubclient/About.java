@@ -21,8 +21,6 @@ public class About {
         FXMLLoader fxmlLoader = new FXMLLoader(GameBoard.class.getResource("about_v1.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         Stage stage = Main.getStage();
-
-        stage.setTitle("About us");
         stage.setScene(scene);
         stage.show();
     }
