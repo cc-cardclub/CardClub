@@ -1,6 +1,5 @@
 package at.rennweg.htl.cardclubclient;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
 import java.io.IOException;
@@ -40,10 +39,19 @@ public class StartmenuController {
         Options.start();
     }
 
+    /**
+     * Open the Leaderboard scene
+     *
+     * @throws IOException
+     */
     public void onLeaderButtonClick() throws IOException {
         Leaderboard.start();
     }
 
+    /**
+     * Open the MultiplayerHostOrJoin scene
+     * @throws IOException
+     */
     public void onMultiplayerButtonClick() throws IOException {
         MultiplayerHostOrJoin.start();
     }

@@ -7,31 +7,48 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+/**
+ * LeaderboardController class<br>
+ * Control the leaderboard scene
+ *
+ * @author Bernd Reither, Lisa-Marie Hörmann
+ */
 public class LeaderboardController implements Initializable {
+    /**
+     * The leaderboard table
+     */
     @FXML
     private TableView<User> leaderboard;
+    /**
+     * The player column
+     */
     @FXML
     private TableColumn<User, String> playerColumn;
+    /**
+     * The wins column
+     */
     @FXML
     private TableColumn<User, String> winsColumn;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        final int thirtyPlayers = 30;
+
         playerColumn.setStyle("-fx-alignment: CENTER;");
         winsColumn.setStyle("-fx-alignment: CENTER;");
 
-        List<User> leaderboardList = ServerConnection.getLeaderboard(30);
+        List<User> leaderboardList = ServerConnection.getLeaderboard(thirtyPlayers);
 
-        playerColumn.setCellValueFactory((data) -> new SimpleStringProperty(data.getValue().getName()));
-        winsColumn.setCellValueFactory((data) -> new SimpleStringProperty(String.valueOf(data.getValue().getWins())));
+        playerColumn.setCellValueFactory(
+                (data) -> new SimpleStringProperty(data.getValue().getName()));
+        winsColumn.setCellValueFactory(
+                (data) -> new SimpleStringProperty(String.valueOf(data.getValue().getWins())));
 
         leaderboard.getItems().addAll(leaderboardList);
     }

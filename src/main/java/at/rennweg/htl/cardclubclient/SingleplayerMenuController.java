@@ -1,6 +1,5 @@
 package at.rennweg.htl.cardclubclient;
 
-import at.rennweg.htl.cardclubclient.cards.Card;
 import at.rennweg.htl.cardclubclient.cards.Deck;
 import at.rennweg.htl.cardclubclient.cards.Player;
 import at.rennweg.htl.cardclubclient.logic.Bot;
@@ -47,7 +46,13 @@ public class SingleplayerMenuController implements Initializable {
      * TextArea to show which rules you want to play with
      */
     public TextArea textArea;
+    /**
+     * The choice box
+     */
     public ChoiceBox choiceBox;
+    /**
+     * Checkbox for extra rule
+     */
     public CheckBox switchCardsWithPlayer;
     /**
      * standard amount of Bots you play against
@@ -85,11 +90,15 @@ public class SingleplayerMenuController implements Initializable {
 
     @FXML
     protected void onPlayButtonClick() throws IOException {
+        final int turnDuration = 20;
+        final int startingCards = 7;
+
         Deck.prepareDeck();
 
         if (!GameCore.cardsSwitchingInPlayingDirectory && !GameCore.switchCardsWithPlayer
-                && !GameCore.plus2and4CardsSelected && GameCore.getTurnDuration() <= 20
-                && GameCore.getStartingCards() == 7 && GameCore.botDifficulty.equals("Medium")) {
+                && !GameCore.plus2and4CardsSelected && GameCore.getTurnDuration() <= turnDuration
+                && GameCore.getStartingCards() == startingCards
+                && GameCore.botDifficulty.equals("Medium")) {
             GameCore.isValid = true;
         }
 
@@ -156,6 +165,10 @@ public class SingleplayerMenuController implements Initializable {
         }
     }
 
+    /**
+     * Event for the checkBox "Card7"
+     * @param actionEvent
+     */
     public void checkBoxCard7(ActionEvent actionEvent) {
         if (switchCardsWithPlayer.isSelected()) {
             GameCore.switchCardsWithPlayer = true;
@@ -191,6 +204,9 @@ public class SingleplayerMenuController implements Initializable {
         Startmenu.start();
     }
 
+    /**
+     * Set the bot difficulty
+     */
     public void choiceBoxValue() {
         GameCore.botDifficulty = (String) choiceBox.getValue();
         System.out.println(GameCore.botDifficulty);

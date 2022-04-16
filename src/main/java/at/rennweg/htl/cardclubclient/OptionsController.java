@@ -1,6 +1,5 @@
 package at.rennweg.htl.cardclubclient;
 
-import at.rennweg.htl.cardclubclient.logic.GameCore;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Slider;
@@ -23,23 +22,47 @@ import java.util.ResourceBundle;
  */
 public class OptionsController implements Initializable {
 
+    /**
+     * Props path for windows systems
+     */
     public static final String PROPS_PATH_WIN = System.getProperty("user.home")
             + "\\AppData\\Local\\cc-cardclub\\settings.properties";
 
+    /**
+     * Props path for linux systems
+     */
     public static final String PROPS_PATH_LINUX = System.getProperty("user.home")
             + "/.cc-cardclub/settings.properties";
-    
+
+    /**
+     * The props path (different for every system)
+     */
     public static String propsPath;
 
+    /**
+     * The volume slider
+     */
     @FXML
     private Slider volumeSlider;
+    /**
+     * The username field
+     */
     @FXML
     private TextField userName;
+    /**
+     * The server ip field
+     */
     @FXML
     private TextField serverIp;
+    /**
+     * The server port field
+     */
     @FXML
     private TextField serverPort;
 
+    /**
+     * The properties
+     */
     private Properties props;
 
     @Override
@@ -76,6 +99,7 @@ public class OptionsController implements Initializable {
 
     /**
      * return to StartMenu
+     * @throws IOException
      */
     @FXML
     protected void onReturnToStartmenuButton() throws IOException {
@@ -87,6 +111,11 @@ public class OptionsController implements Initializable {
         Startmenu.start();
     }
 
+    /**
+     * Get the properties (file)
+     *
+     * @return Options properties (from file)
+     */
     public static Properties getProps() {
         Properties props = new Properties();
 
@@ -96,7 +125,8 @@ public class OptionsController implements Initializable {
 
                 // Check if all properties are in the local file
                 Properties defaultProps = new Properties();
-                defaultProps.load(AboutController.class.getResourceAsStream("data/settings.properties"));
+                defaultProps.load(
+                        AboutController.class.getResourceAsStream("data/settings.properties"));
                 defaultProps.forEach((key, value) -> {
                     if (props.getOrDefault(key, "no-value").equals("no-value")) {
                         props.put(key, value);
@@ -107,7 +137,8 @@ public class OptionsController implements Initializable {
             } else {
                 props.load(AboutController.class.getResourceAsStream("data/settings.properties"));
                 Files.createDirectories(Path.of(
-                        propsPath.substring(0, propsPath.length() - "settings.properties".length())));
+                        propsPath.substring(0, propsPath.length() - "settings.properties".length())
+                ));
                 props.store(new FileOutputStream(propsPath), null);
             }
         } catch (IOException e) {
@@ -117,6 +148,10 @@ public class OptionsController implements Initializable {
         return props;
     }
 
+    /**
+     * Set the properties (file)
+     * @param props
+     */
     public static void setProps(Properties props) {
         try {
             props.store(new FileOutputStream(propsPath), null);

@@ -35,10 +35,22 @@ import java.util.*;
  */
 public class GameBoardController implements Initializable {
 
+    /**
+     * Label for the amount of cards of the player
+     */
     public Label playerCards;
-    public Label Bot1Cards;
-    public Label Bot2Cards;
-    public Label Bot3Cards;
+    /**
+     * Label for the amount of cards of the first bot
+     */
+    public Label bot1Cards;
+    /**
+     * Label for the amount of cards of the second bot
+     */
+    public Label bot2Cards;
+    /**
+     * Label for the amount of cards of the third bot
+     */
+    public Label bot3Cards;
     /**
      * Label to show whose turn it is
      */
@@ -252,7 +264,8 @@ public class GameBoardController implements Initializable {
             Deck.playCard(GameCore.getPlayer(playerId), selectedCard);
             refreshHandCards();
 
-            if (selectedCard.getColor().equals("black") && GameCore.getCurrentPlayer().getAllCards().size() != 0) {
+            if (selectedCard.getColor().equals("black")
+                    && GameCore.getCurrentPlayer().getAllCards().size() != 0) {
                 try {
                     GameCore.pauseProgressBar = true;
 
@@ -463,15 +476,19 @@ public class GameBoardController implements Initializable {
     }
 
     private void setCardTexts() {
+        final int threePlayers = 3;
+        final int fourPlayers = 4;
+        final int playerFour = 3;
+
         currentPlayer.setText("Derzeitiger Spieler: Spieler" + playerId);
 
         playerCards.setText("PlayerCards: " + GameCore.getPlayer(0).getAllCards().size());
-        Bot1Cards.setText("Bot1Cards: " + GameCore.getPlayer(1).getAllCards().size());
-        if (GameCore.getPlayers().size() == 3) {
-            Bot2Cards.setText("Bot2Cards: " + GameCore.getPlayer(2).getAllCards().size());
-        } else if (GameCore.getPlayers().size() == 4) {
-            Bot2Cards.setText("Bot2Cards: " + GameCore.getPlayer(2).getAllCards().size());
-            Bot3Cards.setText("Bot3Cards: " + GameCore.getPlayer(3).getAllCards().size());
+        bot1Cards.setText("Bot1Cards: " + GameCore.getPlayer(1).getAllCards().size());
+        if (GameCore.getPlayers().size() == threePlayers) {
+            bot2Cards.setText("Bot2Cards: " + GameCore.getPlayer(2).getAllCards().size());
+        } else if (GameCore.getPlayers().size() == fourPlayers) {
+            bot2Cards.setText("Bot2Cards: " + GameCore.getPlayer(2).getAllCards().size());
+            bot3Cards.setText("Bot3Cards: " + GameCore.getPlayer(playerFour).getAllCards().size());
         }
     }
 

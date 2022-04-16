@@ -78,17 +78,17 @@
                 <Font name="Franklin Gothic Medium" size="15.0"/>
             </font>
         </Label>
-        <Label fx:id="Bot1Cards" layoutX="19.0" layoutY="130.0" prefHeight="18.0" prefWidth="178.0" text="Bot1 Cards">
+        <Label fx:id="bot1Cards" layoutX="19.0" layoutY="130.0" prefHeight="18.0" prefWidth="178.0" text="Bot1 Cards">
             <font>
                 <Font name="Franklin Gothic Medium" size="15.0"/>
             </font>
         </Label>
-        <Label fx:id="Bot2Cards" layoutX="19.0" layoutY="158.0" prefHeight="18.0" prefWidth="178.0" text="">
+        <Label fx:id="bot2Cards" layoutX="19.0" layoutY="158.0" prefHeight="18.0" prefWidth="178.0" text="">
             <font>
                 <Font name="Franklin Gothic Medium" size="15.0"/>
             </font>
         </Label>
-        <Label fx:id="Bot3Cards" layoutX="19.0" layoutY="184.0" prefHeight="18.0" prefWidth="178.0" text="">
+        <Label fx:id="bot3Cards" layoutX="19.0" layoutY="184.0" prefHeight="18.0" prefWidth="178.0" text="">
             <font>
                 <Font name="Franklin Gothic Medium" size="15.0"/>
             </font>

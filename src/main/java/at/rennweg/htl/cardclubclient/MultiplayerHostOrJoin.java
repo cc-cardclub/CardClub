@@ -6,6 +6,12 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * MultiplayerHostOrJoin class<br>
+ * Used to start the Host or Join scene
+ *
+ * @author Lisa-Marie Hörmann, Bernd Reither
+ */
 public class MultiplayerHostOrJoin {
     /**
      * for Main to launch the stage at the beginning
@@ -13,7 +19,8 @@ public class MultiplayerHostOrJoin {
      * @throws IOException
      */
     public static void start() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(GameBoard.class.getResource("multiplayerHostOrJoin_v1.fxml"));
+        FXMLLoader fxmlLoader =
+                new FXMLLoader(GameBoard.class.getResource("multiplayerHostOrJoin_v1.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         Stage stage = Main.getStage();
 

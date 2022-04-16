@@ -1,7 +1,5 @@
 package at.rennweg.htl.cardclubclient;
 
-import at.rennweg.htl.cardclubclient.logic.ServerConnection;
-import at.rennweg.htl.cardclubserver.Server;
 import javafx.application.Application;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
@@ -45,7 +43,8 @@ public class Main extends Application {
         Main.primaryStage.setTitle("CardClub V" + propsInfo.getProperty("version"));
 
         // Set icon
-        Main.primaryStage.getIcons().add(new Image(Main.class.getResourceAsStream("img/cc-logo.png")));
+        Main.primaryStage.getIcons().add(
+                new Image(Main.class.getResourceAsStream("img/cc-logo.png")));
 
         // Generate client uuid
         Properties settings = OptionsController.getProps();
