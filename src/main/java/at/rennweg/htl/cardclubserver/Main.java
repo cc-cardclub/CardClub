@@ -1,7 +1,5 @@
 package at.rennweg.htl.cardclubserver;
 
-import at.rennweg.htl.cardclubclient.logic.ServerConnection;
-
 /**
  * Main class for the CardClub server
  *
@@ -14,7 +12,8 @@ public class Main {
      * @param args program args
      */
     public static void main(String[] args) {
-        RateLimit.timer.schedule(RateLimit.resetRate, 0, 10000);
+        final int rateLimitTime = 10000;
+        RateLimit.TIMER.schedule(RateLimit.TIMER_TASK, 0, rateLimitTime);
 
         for (String arg : args) {
             if (arg.startsWith("databaseUrl:")) {

@@ -6,11 +6,26 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * Class for rate-limiting server requests
+ *
+ * @author Mattias Burkard
+ */
 public class RateLimit {
+    /**
+     * Addresses which should be limited
+     */
     public static List<InetAddress> addresses = new ArrayList<>();
 
-    public static final Timer timer = new Timer();
-    public static final TimerTask resetRate = new TimerTask() {
+    /**
+     * Timer for the reset task
+     */
+    public static final Timer TIMER = new Timer();
+
+    /**
+     * Periodically resets the limited addresses
+     */
+    public static final TimerTask TIMER_TASK = new TimerTask() {
         @Override
         public void run() {
             addresses.clear();
