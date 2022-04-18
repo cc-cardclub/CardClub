@@ -81,6 +81,7 @@ public class OptionsController implements Initializable {
         // onVolumeSlider
         volumeSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
             props.setProperty("volume", String.valueOf(volumeSlider.getValue()));
+            Main.mediaPlayer.setVolume(Double.parseDouble(props.getProperty("volume")) / 100);
             setProps(props);
         });
     }

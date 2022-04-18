@@ -2,7 +2,10 @@ package at.rennweg.htl.cardclubclient;
 
 import javafx.application.Application;
 import javafx.scene.image.Image;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.util.Properties;
 import java.util.UUID;
@@ -17,6 +20,11 @@ public class Main extends Application {
      * store the current stage
      */
     private static Stage primaryStage;
+
+    /**
+     * Background music player
+     */
+    public static MediaPlayer mediaPlayer;
 
     /**
      * get the current stage
@@ -62,6 +70,12 @@ public class Main extends Application {
             settings.setProperty("username", uuid.toString());
             OptionsController.setProps(settings);
         }
+
+        // Start background music
+        mediaPlayer = new MediaPlayer(new Media(getClass().getResource("audio/bgmusic.mp3").toString()));
+        mediaPlayer.setVolume(Double.parseDouble(settings.getProperty("volume")) / 100);
+        mediaPlayer.setOnEndOfMedia(() -> mediaPlayer.seek(Duration.ZERO));
+        mediaPlayer.play();
 
         Startmenu.start();
     }
