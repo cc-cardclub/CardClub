@@ -64,11 +64,11 @@
                         <Font name="Franklin Gothic Medium" size="36.0"/>
                     </font>
                 </Label>
-                <TextField fx:id="timeForTurn" layoutX="14.0" layoutY="115.0" onAction="#checkTimeForTurn"
+                <TextField fx:id="timeForTurn" layoutX="14.0" layoutY="115.0" onKeyReleased="#checkTimeForTurn"
                            prefHeight="26.0" prefWidth="111.0" promptText="Zugdauer in sek."/>
-                <TextField fx:id="startingCards" layoutX="155.0" layoutY="115.0" onAction="#startingCards"
+                <TextField fx:id="startingCards" layoutX="155.0" layoutY="115.0" onKeyReleased="#startingCards"
                            prefHeight="26.0" prefWidth="111.0" promptText="Anzahl Startkarten"/>
-                <TextField fx:id="players" layoutX="296.0" layoutY="115.0" onAction="#howManyPlayers" prefHeight="26.0"
+                <TextField fx:id="players" layoutX="296.0" layoutY="115.0" onKeyReleased="#howManyPlayers" prefHeight="26.0"
                            prefWidth="111.0" promptText="max. 3 Mitspieler"/>
                 <Label layoutX="40.0" layoutY="93.0" prefHeight="18.0" prefWidth="60.0" text="Zugdauer">
                     <font>

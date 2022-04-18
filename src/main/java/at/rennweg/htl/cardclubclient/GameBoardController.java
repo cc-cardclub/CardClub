@@ -241,8 +241,7 @@ public class GameBoardController implements Initializable {
                 if (!oneCardLeft) {
                     changeToNextPlayer();
                 }
-                refreshHandCards();
-                refreshDiscardPile();
+                refresh();
             }
         }
     }
