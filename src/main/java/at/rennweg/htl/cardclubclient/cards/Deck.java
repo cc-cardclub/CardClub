@@ -1,6 +1,7 @@
 package at.rennweg.htl.cardclubclient.cards;
 
 import at.rennweg.htl.cardclubclient.GameBoard;
+import at.rennweg.htl.cardclubclient.logic.Bot;
 import at.rennweg.htl.cardclubclient.logic.Checker;
 import at.rennweg.htl.cardclubclient.logic.GameCore;
 
@@ -180,6 +181,31 @@ public class Deck {
                 playerID++;
                 GameCore.getPlayer(playerID).replaceCards(tempCards);
             }
+        }
+
+        if (GameCore.switchCardsWithPlayer
+                && GameCore.getCurrentPlayer() instanceof Bot
+                && card.getNumber().equals("7")) {
+            List<Player> players = GameCore.getPlayers();
+
+            int leastCards = 0;
+            Player leastCardsPlayer = null;
+
+            for (Player player : players) {
+                if (leastCards == 0) {
+                    leastCards = player.getAllCards().size();
+                    leastCardsPlayer = player;
+                } else if (leastCards > player.getAllCards().size()) {
+                    leastCards = player.getAllCards().size();
+                    leastCardsPlayer = player;
+                }
+            }
+
+            GameCore.chosenPlayerSwitchCards = leastCardsPlayer;
+
+            List<Card> tempCards = new ArrayList<>(GameCore.getCurrentPlayer().getAllCards());
+            GameCore.getCurrentPlayer().replaceCards(GameCore.chosenPlayerSwitchCards.getAllCards());
+            GameCore.chosenPlayerSwitchCards.replaceCards(tempCards);
         }
 
         if (GameCore.getPlayers().size() == 2) {
