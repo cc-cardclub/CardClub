@@ -25,7 +25,7 @@ The whole GUI is built with [JavaFX](https://openjfx.io/) and SceneBuilder to ge
 ### CardClubClient
 Download the latest release [here](https://github.com/cc-cardclub/CardClub/releases).
  * Windows: Execute the EXE or the JAR-File
- * Other: Execute the JAR-File
+ * Other: Execute the JAR-File (OpenJDK 17.0.1 & JavaFX 17.0.2 required)
 ### CardClubServer
 The CardClubServer is built using Docker.
 
