@@ -1,3 +1,9 @@
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![MIT License][license-shield]][license-url]
+
 # CardClub
 
 A Java implementation of the card game "UNO!"
@@ -71,3 +77,18 @@ Lisa-Marie Hörmann:
 
 - GitHub: [dasechtelima](https://github.com/dasechtelima)
 - Email: [Lisa-Marie Hörmann](mailto:lisa-marie.hoermann@htl.rennweg.at)
+
+
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[contributors-shield]: https://img.shields.io/github/issues/cc-cardclub/CardClub?style=for-the-badge
+[contributors-url]: https://github.com/cc-cardclub/CardClub/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/cc-cardclub/CardClub?style=for-the-badge
+[forks-url]: https://github.com/cc-cardclub/CardClub/network/members
+[stars-shield]: https://img.shields.io/github/stars/cc-cardclub/CardClub?style=for-the-badge
+[stars-url]: https://github.com/cc-cardclub/CardClub/stargazers
+[issues-shield]: https://img.shields.io/github/issues/cc-cardclub/CardClub?style=for-the-badge
+[issues-url]: https://github.com/cc-cardclub/CardClub/issues
+[license-shield]: https://img.shields.io/github/license/cc-cardclub/CardClub?style=for-the-badge
+[license-url]: https://github.com/cc-cardclub/CardClub/blob/master/LICENSE.txt
