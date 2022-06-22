@@ -91,4 +91,4 @@ Lisa-Marie Hörmann:
 [issues-shield]: https://img.shields.io/github/issues/cc-cardclub/CardClub?style=for-the-badge
 [issues-url]: https://github.com/cc-cardclub/CardClub/issues
 [license-shield]: https://img.shields.io/github/license/cc-cardclub/CardClub?style=for-the-badge
-[license-url]: https://github.com/cc-cardclub/CardClub/blob/master/LICENSE.txt
+[license-url]: https://github.com/cc-cardclub/CardClub/blob/master/LICENSE
