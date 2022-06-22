@@ -44,7 +44,7 @@ public class AboutController implements Initializable {
     @FXML
     protected void onLink() {
         try {
-            Desktop.getDesktop().browse(new URL("https://github.com/cc-cardclub/CardClubClient").toURI());
+            Desktop.getDesktop().browse(new URL("https://github.com/cc-cardclub/CardClub").toURI());
         } catch (IOException | URISyntaxException e) {
             e.printStackTrace();
         }
