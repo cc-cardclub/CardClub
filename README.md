@@ -19,7 +19,7 @@ In the single player mode it is possible to play against a bot and in the option
 ### Current state
 During the lessons, only a leaderboard was implemented instead of the multiplayer mode.<br>
 In order to use it, the CardClubServer must be deployed using Docker. 
-Instructions for this can be found [here](https://github.com/cc-cardclub/CardClub#cardclubserver).
+Instructions for that can be found [here](https://github.com/cc-cardclub/CardClub#cardclubserver).
 
 
 ### Built with
