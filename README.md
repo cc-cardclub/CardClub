@@ -28,23 +28,28 @@ Download the latest release [here](https://github.com/cc-cardclub/CardClub/relea
  * Other: Execute the JAR-File
 ### CardClubServer
 The CardClubServer is built using Docker.
+
 1. Clone the repo 
-```sh
-git clone https://github.com/cc-cardclub/CardClub.git
-```
+
+   ```sh
+   git clone https://github.com/cc-cardclub/CardClub.git
+   ```
 2. Change the passwords in .env
-```sh
-cd CardClub
-nano .env
-```
+
+   ```sh
+   cd CardClub
+   nano .env
+   ```
 3. Make start.sh executable
-```sh
-chmod +x start.sh
-```
+
+   ```sh
+   chmod +x start.sh
+   ```
 4. Run start.sh to set up the server containers
-```sh
-./start.sh
-```
+
+   ```sh
+   ./start.sh
+   ```
 
 ## Contact
 
