@@ -3,7 +3,7 @@ package at.rennweg.htl.cardclubserver;
 /**
  * Main class for the CardClub server
  *
- * @author Mattias Burkard
+ * @author Raven Burkard
  */
 public class Main {
     /**

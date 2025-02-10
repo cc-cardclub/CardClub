@@ -6,7 +6,7 @@ import java.net.Socket;
 /**
  * Class for CardClub leaderboard server threads
  *
- * @author Mattias Burkard
+ * @author Raven Burkard
  */
 public class ServerThread extends Thread {
     /**

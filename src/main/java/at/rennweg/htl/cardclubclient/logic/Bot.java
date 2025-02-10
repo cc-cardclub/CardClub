@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 /**
  * This class gives bots all of their needed functions to compete against players
  *
- * @author Mattias Burkard
+ * @author Raven Burkard
  */
 public class Bot extends Player {
     /**

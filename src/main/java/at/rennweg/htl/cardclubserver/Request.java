@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Class for handling server requests
  *
- * @author Mattias Burkard
+ * @author Raven Burkard
  */
 public class Request {
     /**

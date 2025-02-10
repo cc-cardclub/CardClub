@@ -31,7 +31,7 @@ import java.util.*;
 /**
  * class to control the GameBoard's buttons, Cards and more
  *
- * @author Lisa-Marie Hörmann, Bernd Reither, Mattias Burkard
+ * @author Lisa-Marie Hörmann, Bernd Reither, Raven Burkard
  */
 public class GameBoardController implements Initializable {
 

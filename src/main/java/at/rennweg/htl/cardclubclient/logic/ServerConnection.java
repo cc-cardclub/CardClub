@@ -13,7 +13,7 @@ import java.util.Properties;
 /**
  * Class for connecting the client to the server
  *
- * @author Mattias Burkard
+ * @author Raven Burkard
  */
 public class ServerConnection {
     public static List<User> getLeaderboard() {

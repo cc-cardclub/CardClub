@@ -9,7 +9,7 @@ import java.util.Properties;
 
 /**
  * Class for the cardclub sever
- * @author Mattias Burkard
+ * @author Raven Burkard
  */
 public class Server {
     /**

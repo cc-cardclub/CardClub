@@ -1,4 +1,4 @@
-# Author: Mattias Burkard
+# Author: Raven Burkard
 FROM gradle:jdk17 AS build
 LABEL stage=builder
 COPY --chown=gradle:gradle . /home/gradle/src

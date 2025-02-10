@@ -1,4 +1,4 @@
-# Author: Mattias Burkard
+# Author: Raven Burkard
 sudo docker-compose down || true
 sudo docker rmi cardclub/server:latest || true
 sudo docker build . -t cardclub/server:latest

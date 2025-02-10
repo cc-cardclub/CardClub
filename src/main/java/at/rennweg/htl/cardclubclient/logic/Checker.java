@@ -8,7 +8,7 @@ import javafx.scene.control.Alert;
 /**
  * Class for checking the validity of a turn
  *
- * @author Mattias Burkard, Lisa-Marie Hörmann
+ * @author Raven Burkard, Lisa-Marie Hörmann
  */
 public class Checker {
     /**

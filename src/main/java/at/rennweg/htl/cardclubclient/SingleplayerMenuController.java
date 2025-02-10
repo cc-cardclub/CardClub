@@ -19,7 +19,7 @@ import java.util.ResourceBundle;
 /**
  * class to control the Singleplayer Menu's buttons
  *
- * @author Lisa-Marie Hörmann, Bernd Reither, Mattias Burkard
+ * @author Lisa-Marie Hörmann, Bernd Reither, Raven Burkard
  */
 public class SingleplayerMenuController implements Initializable {
     /**

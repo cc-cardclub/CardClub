@@ -3,7 +3,7 @@ package at.rennweg.htl.cardclubserver;
 /**
  * Class for user data objects
  *
- * @author Mattias Burkard
+ * @author Raven Burkard
  */
 public class User {
     /**

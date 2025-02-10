@@ -16,7 +16,7 @@
          <font>
             <Font name="Franklin Gothic Medium" size="14.0" />
          </font></Label>
-      <Label layoutX="104.0" layoutY="151.0" prefHeight="27.0" prefWidth="389.0" text="Developer: Bernd Reither, Mattias Burkard, Lisa-Marie Hörmann" />
+      <Label layoutX="104.0" layoutY="151.0" prefHeight="27.0" prefWidth="389.0" text="Developer: Bernd Reither, Raven Burkard, Lisa-Marie Hörmann" />
       <Group layoutX="103.0" layoutY="178.0">
          <children>
             <Label prefHeight="27.0" prefWidth="389.0" text="GitHub: " />

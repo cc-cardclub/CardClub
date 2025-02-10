@@ -13,7 +13,7 @@ import java.util.Random;
 /**
  * Class containing the card deck for the game
  *
- * @author Mattias Burkard
+ * @author Raven Burkard
  */
 public class Deck {
     /**

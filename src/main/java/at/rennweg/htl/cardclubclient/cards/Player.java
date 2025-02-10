@@ -7,7 +7,7 @@ import java.util.List;
  * Player class<br>
  * Represents a player
  *
- * @author Bernd Reither, Lisa-Marie Hörmann, Mattias Burkard
+ * @author Bernd Reither, Lisa-Marie Hörmann, Raven Burkard
  */
 public class Player {
     /**

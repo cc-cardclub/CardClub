@@ -13,7 +13,7 @@ import java.util.UUID;
 /**
  * change between stages
  *
- * @author Bernd Reither, Mattias Burkard
+ * @author Bernd Reither, Raven Burkard
  */
 public class Main extends Application {
     /**

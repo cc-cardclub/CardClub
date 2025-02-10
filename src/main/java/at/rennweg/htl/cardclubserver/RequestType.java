@@ -3,7 +3,7 @@ package at.rennweg.htl.cardclubserver;
 /**
  * Request types
  *
- * @author Mattias Burkard
+ * @author Raven Burkard
  */
 public enum RequestType {
     /**

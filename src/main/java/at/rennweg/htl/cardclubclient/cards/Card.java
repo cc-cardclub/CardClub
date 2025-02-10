@@ -4,7 +4,7 @@ package at.rennweg.htl.cardclubclient.cards;
  * Card class<br>
  * Represents a class
  *
- * @author Bernd Reither, Lisa-Marie Hörmann, Mattias Burkard
+ * @author Bernd Reither, Lisa-Marie Hörmann, Raven Burkard
  */
 public class Card {
     /**

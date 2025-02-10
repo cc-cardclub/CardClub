@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Class used to store information about a game
  *
- * @author Bernd Reither, Mattias Burkard, Lisa-Marie Hörmann
+ * @author Bernd Reither, Raven Burkard, Lisa-Marie Hörmann
  */
 public class GameCore {
     /**

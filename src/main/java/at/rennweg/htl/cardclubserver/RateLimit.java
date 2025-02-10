@@ -9,7 +9,7 @@ import java.util.TimerTask;
 /**
  * Class for rate-limiting server requests
  *
- * @author Mattias Burkard
+ * @author Raven Burkard
  */
 public class RateLimit {
     /**

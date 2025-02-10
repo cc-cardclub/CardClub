@@ -66,10 +66,10 @@ Bernd Reither:
 
 
 
-Mattias Burkard:
+Raven Burkard:
 
 - GitHub: [Mathematti](https://github.com/Mathematti)
-- Email: [Mattias Burkard](mailto:mattias.burkard@htl.rennweg.at)
+- Email: [Raven Burkard](mailto:raven.burkard@gmail.com)
 
 
 

@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Class for handling leaderboard MySQL database connections
  *
- * @author Mattias Burkard
+ * @author Raven Burkard
  */
 public class Leaderboard {
     /**

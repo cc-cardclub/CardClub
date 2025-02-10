@@ -18,7 +18,7 @@ import java.util.ResourceBundle;
  * OptionsController class<br>
  * Used to access the settings file and control the options menu
  *
- * @author Bernd Reither, Mattias Burkard
+ * @author Bernd Reither, Raven Burkard
  */
 public class OptionsController implements Initializable {
 
